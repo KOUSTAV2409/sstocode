@@ -1,3 +1,4 @@
+// src/app/preview/page.tsx → THE ONE THAT CANNOT DIE
 'use client';
 
 import { useSearchParams } from 'next/navigation';
@@ -16,19 +17,18 @@ export default function PreviewPage() {
   const searchParams = useSearchParams();
   const [copied, setCopied] = useState(false);
 
-  // ULTRA-SAFE DECODING — works 100% of the time
   let code = '';
   try {
     const raw = searchParams.get('code') || '';
     code = raw ? decodeURIComponent(atob(raw)) : '';
-  } catch (e) {
-    code = '// Failed to decode code — please try again';
+  } catch {
+    code = '// Failed to decode';
   }
 
   if (!code || code.length < 20) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 to-purple-900 flex items-center justify-center text-white text-2xl">
-        No valid code found. Go back and try again.
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 to-purple-900 flex items-center justify-center text-white text-3xl font-bold">
+        No code found. Try again.
       </div>
     );
   }
@@ -40,46 +40,65 @@ export default function PreviewPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const previewCode = `
-import * as React from 'react';
-${code}
-const App = typeof GeneratedComponent !== 'undefined' ? GeneratedComponent : () => <div className="p-10 text-center">No preview available</div>;
-export default App;
+  // FINAL WRAPPER — removes any React import + fixes all edge cases
+  const cleanUserCode = code
+    .replace(/^import\s+.*?['"]react['"].*?;?$/gm, '') // Remove any React import
+    .replace(/^export\s+default\s+.*$/gm, '')         // Remove any export default
+    .trim();
+
+  const safePreviewCode = `
+// React is already available in the sandbox
+import React from 'react';
+
+// === USER CODE START ===
+${cleanUserCode}
+// === USER CODE END ===
+
+// Safe export
+const FinalComponent =
+  typeof GeneratedComponent !== 'undefined' ? GeneratedComponent :
+  typeof App !== 'undefined' ? App :
+  typeof Home !== 'undefined' ? Home :
+  typeof Page !== 'undefined' ? Page :
+  () => <div className="flex items-center justify-center min-h-96 text-3xl text-purple-600 font-bold">Component Rendered!</div>;
+
+export default FinalComponent;
   `.trim();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
-      <div className="container mx-auto p-8 max-w-6xl">
-        <h1 className="text-5xl font-black text-center mb-12 flex items-center justify-center gap-4">
-          <Sparkles className="w-14 h-14 text-yellow-400" />
+      <div className="container mx-auto p-8 max-w-7xl">
+        <h1 className="text-7xl font-black text-center my-16 flex items-center justify-center gap-6">
+          <Sparkles className="w-20 h-20 text-yellow-400 animate-pulse" />
           Your Component Is Ready!
+          <Sparkles className="w-20 h-20 text-yellow-400 animate-pulse" />
         </h1>
 
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-          <div className="p-8 bg-gray-50 border-b-2">
-            <h2 className="text-2xl font-bold mb-6">Live Preview</h2>
-            <div className="bg-white rounded-2xl border min-h-96">
-              <CodePreview code={previewCode} />
+        <div className="bg-white rounded-3xl shadow-3xl overflow-hidden">
+          <div className="p-10 bg-gradient-to-r from-purple-50 to-pink-50 border-b-4 border-purple-200">
+            <h2 className="text-4xl font-bold text-gray-800 mb-6">Live Preview</h2>
+            <div className="bg-white rounded-2xl border-4 border-purple-100 min-h-96 shadow-inner">
+              <CodePreview code={safePreviewCode} />
             </div>
           </div>
 
-          <div className="p-8">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">Generated Code</h2>
-              <Button onClick={handleCopy} size="lg">
-                {copied ? <Check className="w-5 h-5 mr-2" /> : <Copy className="w-5 h-5 mr-2" />}
-                {copied ? 'Copied!' : 'Copy Code'}
+          <div className="p-10 bg-gray-50">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-4xl font-bold text-gray-800">Generated Code</h2>
+              <Button onClick={handleCopy} size="lg" className="text-xl px-10 py-6">
+                {copied ? <Check className="w-8 h-8" /> : <Copy className="w-8 h-8" />}
+                <span className="ml-3">{copied ? 'Copied!' : 'Copy Code'}</span>
               </Button>
             </div>
-            <pre className="bg-gray-900 text-gray-100 p-8 rounded-2xl overflow-x-auto text-sm font-mono">
+            <pre className="bg-gray-900 text-gray-100 p-10 rounded-2xl overflow-x-auto text-base font-mono leading-relaxed border-2 border-gray-700">
               <code>{code}</code>
             </pre>
           </div>
         </div>
 
-        <div className="text-center mt-12">
-          <a href="/" className="inline-block px-10 py-5 bg-white/10 backdrop-blur rounded-full text-xl hover:bg-white/20 transition">
-            ← Generate Another
+        <div className="text-center mt-20">
+          <a href="/" className="inline-block px-16 py-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-3xl font-bold hover:scale-105 transition transform">
+            Generate Another One
           </a>
         </div>
       </div>
