@@ -2,9 +2,7 @@
 
 **Drop any UI screenshot → get clean, responsive React + Tailwind code instantly**
 
-[Live Demo](https://sstocode.vercel.app) • [Quick Start](#quick-start) • [Twitter](https://twitter.com/koustav_codes)
-
-![SSToCode demo](https://sstocode.vercel.app/og.png)
+[Live Demo](https://sstocode.vercel.app) • [Quick Start](#quick-start) • [Twitter](https://twitter.com/iamk_xyz)
 
 ---
 
