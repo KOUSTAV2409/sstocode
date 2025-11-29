@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+````markdown
+<div align="center">
+  <h1>SSToCode</h1>
+  <p><strong>Drop any UI screenshot → get clean, responsive React + Tailwind code instantly</strong></p>
+  
+  <p>
+    <a href="https://sstocode.vercel.app">Live Demo</a> • 
+    <a href="#installation">Quick Start</a> • 
+    <a href="https://twitter.com/koustav_codes">Twitter</a>
+  </p>
 
-First, run the development server:
+  <img src="https://sstocode.vercel.app/og.png" alt="SSToCode demo" width="800"/>
+</div>
 
+<br>
+
+**No prompts. No login. No $20/month.**  
+Built in one night with Next.js 16 + Gemini 2.5 Flash.
+
+### Features
+- Upload any screenshot (mobile, web, Figma, Dribbble)
+- Instant React 19 + TypeScript + Tailwind CSS
+- shadcn/ui standards + dark mode ready
+- Live preview + one-click copy
+- 100% free & open-source
+
+### Tech Stack
+`Next.js 16` `React 19` `Tailwind` `Gemini 2.5 Flash` `shadcn/ui` `Vercel`
+
+### Quick Start
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone https://github.com/KOUSTAV2409/sstocode.git
+cd sstocode
+cp .env.example .env.local
+# Add GEMINI_API_KEY=your_key
+pnpm install
 pnpm dev
-# or
-bun dev
-```
+````
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Roadmap
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* [ ] Multi-file components
+* [ ] Export to StackBlitz / CodeSandbox
+* [ ] Figma plugin
+* [ ] CLI version
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Built with passion. Shipped with zero regrets.
 
-## Learn More
+Made by [@iamk_xyz](https://twitter.com/iam_xyz)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
