@@ -4,9 +4,10 @@
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Copy, Check, Sparkles } from 'lucide-react';
+import { Copy, Check, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import Link from 'next/link';
 
 const CodePreview = dynamic(
   () => import('@uiw/react-code-preview').then((mod) => mod.default),
@@ -27,8 +28,14 @@ export default function PreviewContent() {
 
   if (!code || code.length < 20) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 to-purple-900 flex items-center justify-center text-white text-4xl font-bold">
-        No code found. Generate again.
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center space-y-6">
+          <p className="text-xl font-medium text-slate-900">No code found</p>
+          <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors">
+            <Home className="w-4 h-4" />
+            Generate Again
+          </Link>
+        </div>
       </div>
     );
   }
@@ -36,7 +43,7 @@ export default function PreviewContent() {
   const handleCopy = () => {
     navigator.clipboard.writeText(code);
     setCopied(true);
-    toast.success('Copied!');
+    toast.success('Code copied!');
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -53,46 +60,67 @@ ${cleanUserCode}
 const FinalComponent =
   typeof GeneratedComponent !== 'undefined' ? GeneratedComponent :
   typeof App !== 'undefined' ? App :
-  () => <div className="p-20 text-center text-4xl">Component Ready</div>;
+  () => <div className="p-20 text-center text-2xl text-slate-700">Component Ready</div>;
 
 export default FinalComponent;
   `.trim();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
-      <div className="container mx-auto p-8 max-w-7xl">
-        <h1 className="text-7xl font-black text-center my-16 flex items-center justify-center gap-6">
-          <Sparkles className="w-20 h-20 text-yellow-400 animate-pulse" />
-          Your Component Is Ready!
-          <Sparkles className="w-20 h-20 text-yellow-400 animate-pulse" />
-        </h1>
-
-        <div className="bg-white rounded-3xl shadow-3xl overflow-hidden">
-          <div className="p-10 bg-gradient-to-r from-purple-50 to-pink-50 border-b-4">
-            <h2 className="text-4xl font-bold text-gray-800 mb-6">Live Preview</h2>
-            <div className="bg-white rounded-2xl border-4 border-purple-100 min-h-96">
-              <CodePreview code={safePreviewCode} />
-            </div>
+    <div className="min-h-screen bg-white">
+      <div className="max-w-6xl mx-auto px-6 py-12 space-y-8">
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-slate-200 pb-8">
+          <div className="space-y-1">
+            <h1 className="text-3xl font-bold text-slate-900">Your Component</h1>
+            <p className="text-sm text-slate-600">Review and copy your generated code</p>
           </div>
+          <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-slate-700 font-medium">
+            <Home className="w-4 h-4" />
+            New Upload
+          </Link>
+        </div>
 
-          <div className="p-10 bg-gray-50">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-4xl font-bold text-gray-800">Generated Code</h2>
-              <Button onClick={handleCopy} size="lg" className="text-xl px-10 py-6">
-                {copied ? <Check className="w-8 h-8" /> : <Copy className="w-8 h-8" />}
-                <span className="ml-3">{copied ? 'Copied!' : 'Copy Code'}</span>
-              </Button>
-            </div>
-            <pre className="bg-gray-900 text-gray-100 p-10 rounded-2xl overflow-x-auto text-base font-mono border-2 border-gray-700">
-              <code>{code}</code>
-            </pre>
+        {/* Preview Section */}
+        <div className="space-y-4">
+          <h2 className="text-lg font-semibold text-slate-900">Live Preview</h2>
+          <div className="border border-slate-200 rounded-lg overflow-hidden bg-slate-50">
+            <CodePreview code={safePreviewCode} />
           </div>
         </div>
 
-        <div className="text-center mt-20">
-          <a href="/" className="inline-block px-16 py-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-3xl font-bold hover:scale-105 transition">
-            Generate Another One
-          </a>
+        {/* Code Section */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-slate-900">Generated Code</h2>
+            <Button
+              onClick={handleCopy}
+              className="gap-2 bg-slate-900 hover:bg-slate-800 text-white"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-4 h-4" />
+                  Copied!
+                </>
+              ) : (
+                <>
+                  <Copy className="w-4 h-4" />
+                  Copy Code
+                </>
+              )}
+            </Button>
+          </div>
+
+          <pre className="bg-slate-900 text-slate-100 p-6 rounded-lg overflow-x-auto text-sm leading-relaxed border border-slate-800">
+            <code>{code}</code>
+          </pre>
+        </div>
+
+        {/* Footer CTA */}
+        <div className="pt-8 border-t border-slate-200 text-center">
+          <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors font-medium">
+            Convert Another Design
+            <Copy className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </div>
