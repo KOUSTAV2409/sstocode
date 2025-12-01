@@ -11,14 +11,14 @@ export default function Header() {
           <div className="w-9 h-9 bg-slate-900 rounded-lg flex items-center justify-center group-hover:bg-slate-800 transition-colors">
             <Code2 className="w-5 h-5 text-white" />
           </div>
-          <span className="font-semibold text-lg text-slate-900">DevForge</span>
+          <span className="font-semibold text-lg text-slate-900">sstocode</span>
         </Link>
 
         <nav className="flex items-center gap-8">
           <a href="#features" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
             Features
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+          <a href="https://github.com/KOUSTAV2409/sstocode" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
             GitHub
           </a>
         </nav>

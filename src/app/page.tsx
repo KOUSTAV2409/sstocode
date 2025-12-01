@@ -28,7 +28,7 @@ export default function Home() {
       <section id="features" className="py-20 border-t border-slate-200 bg-slate-50/50">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-slate-900 mb-16 text-center">
-            Why choose DevForge?
+            Why choose sstocode?
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -72,7 +72,7 @@ export default function Home() {
             Open source and free to use. Built for developers.
           </p>
           <a
-            href="https://github.com"
+            href="https://github.com/KOUSTAV2409/sstocode"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-slate-900 font-medium hover:text-slate-600 transition-colors"
