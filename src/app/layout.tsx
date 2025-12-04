@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/Header";
@@ -21,7 +21,11 @@ export const metadata: Metadata = {
   description: "Transform UI screenshots into production-ready React components with AI precision",
   keywords: ["AI", "React", "UI", "Code Generation", "Screenshot to Code"],
   authors: [{ name: "DevForge Team" }],
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
