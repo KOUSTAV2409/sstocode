@@ -2,18 +2,17 @@
 
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Upload, X, Loader2, CheckCircle, AlertCircle, Settings } from 'lucide-react';
+import { Upload, X, CheckCircle, AlertCircle, Settings, Zap } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import AIProviderSelector from './AIProviderSelector';
 
-export default function UploadZone() {
+export default function StreamingUploadZone() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [progress, setProgress] = useState(0);
+  const [streamingCode, setStreamingCode] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [usedProvider, setUsedProvider] = useState<string | null>(null);
   const router = useRouter();
 
   const onDrop = useCallback((acceptedFiles: File[], rejectedFiles: any[]) => {
@@ -35,57 +34,73 @@ export default function UploadZone() {
     onDrop,
     accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.webp'] },
     maxFiles: 1,
-    maxSize: 10 * 1024 * 1024 // 10MB
+    maxSize: 10 * 1024 * 1024
   });
 
-  const handleGenerate = async () => {
+  const handleStreamingGenerate = async () => {
     if (!uploadedFile) return;
     
     setIsLoading(true);
-    setProgress(0);
+    setStreamingCode('');
     setError(null);
-    setUsedProvider(null);
-
-    // Simulate progress
-    const progressInterval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 90) {
-          clearInterval(progressInterval);
-          return 90;
-        }
-        return prev + 10;
-      });
-    }, 200);
 
     try {
       const formData = new FormData();
       formData.append('image', uploadedFile);
 
-      const response = await fetch('/generate', {
+      const response = await fetch('/api/generate-stream', {
         method: 'POST',
         body: formData,
       });
 
-      const data = await response.json();
-      
-      if (data.error) {
-        throw new Error(data.error);
+      if (!response.ok) {
+        throw new Error('Failed to start generation');
       }
 
-      setProgress(100);
-      setUsedProvider(data.provider);
+      const reader = response.body?.getReader();
+      if (!reader) throw new Error('No response stream');
+
+      let fullCode = '';
       
-      setTimeout(() => {
-        const encoded = btoa(encodeURIComponent(data.code));
-        router.push(`/preview?code=${encoded}&provider=${encodeURIComponent(data.provider)}`);
-      }, 500);
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = new TextDecoder().decode(value);
+        const lines = chunk.split('\n');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            try {
+              const data = JSON.parse(line.slice(6));
+              
+              if (data.chunk) {
+                fullCode += data.chunk;
+                setStreamingCode(fullCode);
+              }
+              
+              if (data.done) {
+                setTimeout(() => {
+                  const encoded = btoa(encodeURIComponent(fullCode));
+                  router.push(`/preview?code=${encoded}&streaming=true`);
+                }, 1000);
+                return;
+              }
+              
+              if (data.error) {
+                throw new Error(data.error);
+              }
+            } catch (e) {
+              // Skip invalid JSON
+            }
+          }
+        }
+      }
 
     } catch (error) {
-      console.error('Generation failed:', error);
+      console.error('Streaming generation failed:', error);
       setError(error instanceof Error ? error.message : 'Generation failed');
-      setProgress(0);
     } finally {
-      clearInterval(progressInterval);
       setIsLoading(false);
     }
   };
@@ -127,7 +142,11 @@ export default function UploadZone() {
               </motion.p>
               <p className="text-sm text-gray-500 mb-6">PNG, JPG, WEBP up to 10MB</p>
               
-              {/* AI Provider Display */}
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Zap className="w-4 h-4 text-yellow-400" />
+                <span className="text-sm text-yellow-400">Streaming Generation Enabled</span>
+              </div>
+              
               <div className="flex items-center justify-center gap-2 mb-4">
                 <Settings className="w-4 h-4 text-gray-400" />
                 <span className="text-sm text-gray-400">AI Model:</span>
@@ -167,7 +186,7 @@ export default function UploadZone() {
                 </motion.div>
                 <div>
                   <p className="font-medium">Design uploaded successfully</p>
-                  <p className="text-sm text-gray-400">Ready to generate code</p>
+                  <p className="text-sm text-gray-400">Ready for streaming generation</p>
                 </div>
               </div>
               <motion.button
@@ -177,8 +196,7 @@ export default function UploadZone() {
                   setPreviewUrl(null);
                   setUploadedFile(null);
                   setError(null);
-                  setProgress(0);
-                  setUsedProvider(null);
+                  setStreamingCode('');
                 }}
                 className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
               >
@@ -195,11 +213,10 @@ export default function UploadZone() {
               <img src={previewUrl} alt="Preview" className="w-full h-full object-contain" />
             </motion.div>
 
-            {/* AI Provider Display */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <Settings className="w-4 h-4 text-gray-400" />
-                <span className="text-sm text-gray-400">AI Model:</span>
+                <Zap className="w-4 h-4 text-yellow-400" />
+                <span className="text-sm text-yellow-400">Streaming Mode</span>
               </div>
               <AIProviderSelector />
             </div>
@@ -207,38 +224,37 @@ export default function UploadZone() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={handleGenerate}
+              onClick={handleStreamingGenerate}
               disabled={isLoading}
               className="w-full bg-white text-black py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center gap-2">
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  Generating... {progress}%
+                  <Zap className="w-5 h-5 animate-pulse" />
+                  Streaming Generation...
                 </span>
               ) : (
-                'Generate Code'
+                <span className="flex items-center justify-center gap-2">
+                  <Zap className="w-5 h-5" />
+                  Generate with Streaming
+                </span>
               )}
             </motion.button>
 
-            {/* Progress Bar */}
-            {isLoading && (
+            {/* Streaming Code Preview */}
+            {streamingCode && (
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="mt-4"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                className="mt-4 p-4 bg-gray-900 rounded-lg border border-gray-700"
               >
-                <div className="w-full bg-gray-800 rounded-full h-2">
-                  <motion.div
-                    className="bg-white h-2 rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${progress}%` }}
-                    transition={{ duration: 0.3 }}
-                  />
+                <div className="flex items-center gap-2 mb-2">
+                  <Zap className="w-4 h-4 text-yellow-400 animate-pulse" />
+                  <span className="text-sm text-yellow-400">Live Generation</span>
                 </div>
-                <p className="text-sm text-gray-400 mt-2 text-center">
-                  {usedProvider ? `Using ${usedProvider}...` : 'AI is analyzing your design...'}
-                </p>
+                <pre className="text-xs text-gray-300 overflow-auto max-h-32">
+                  {streamingCode}
+                </pre>
               </motion.div>
             )}
 

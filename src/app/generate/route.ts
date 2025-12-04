@@ -3,45 +3,38 @@ import sharp from 'sharp';
 import { AIManager } from '@/lib/ai-providers';
 
 const ENHANCED_SYSTEM_PROMPT = `
-You are an expert React + Tailwind CSS engineer. Analyze this UI screenshot and generate a SINGLE, pixel-perfect React component.
+CRITICAL: You MUST analyze this UI screenshot and generate a complete, functional React component. DO NOT return empty or minimal code.
 
-CRITICAL REQUIREMENTS:
-- Use React 19 + TypeScript syntax
-- Import React: import * as React from 'react';
-- Use ONLY Tailwind CSS classes (no custom CSS)
-- Component name: GeneratedComponent
-- Syntax: const GeneratedComponent = () => { return (...); }; export default GeneratedComponent;
-- NO React.FC, NO explanations, NO markdown - pure code only
+REQUIREMENTS:
+1. Analyze EVERY element in the image: buttons, text, colors, layout, spacing
+2. Create a COMPLETE React component that recreates the UI exactly
+3. Use React 19 + TypeScript syntax
+4. Use ONLY Tailwind CSS classes for styling
+5. Component structure: const GeneratedComponent = () => { return (...); };
+6. Include ALL visual elements from the screenshot
+7. Make it responsive and interactive where appropriate
+8. NO explanations - ONLY the complete React component code
 
-DESIGN ANALYSIS:
-1. Identify layout structure (flex, grid, positioning)
-2. Extract exact colors, spacing, typography
-3. Detect interactive elements (buttons, inputs, links)
-4. Recognize component patterns (cards, modals, navigation)
-5. Implement responsive behavior (mobile-first)
+EXAMPLE OUTPUT FORMAT:
+import * as React from 'react';
 
-TAILWIND BEST PRACTICES:
-- Use semantic spacing (p-4, m-6, gap-3)
-- Proper color palette (gray-50 to gray-900, blue-500, etc.)
-- Responsive prefixes (sm:, md:, lg:, xl:)
-- Modern utilities (backdrop-blur, bg-opacity, ring)
-- Hover/focus states for interactive elements
+const GeneratedComponent = () => {
+  return (
+    <div className="...">
+      {/* Complete UI recreation here */}
+    </div>
+  );
+};
 
-OUTPUT REQUIREMENTS:
-- Pixel-perfect recreation of the design
-- Clean, readable, production-ready code
-- Proper component structure and hierarchy
-- Accessible markup (proper semantic HTML)
-- Dark mode support where applicable
+export default GeneratedComponent;
 
-Generate ONLY the React component code - no explanations or markdown.
+ANALYZE THE IMAGE CAREFULLY AND GENERATE THE COMPLETE COMPONENT:
 `;
 
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const image = formData.get('image') as File | null;
-    const preferredProvider = formData.get('provider') as string | null;
 
     if (!image) {
       return NextResponse.json({ error: 'No image provided' }, { status: 400 });
@@ -63,13 +56,9 @@ export async function POST(req: NextRequest) {
       })
       .toBuffer();
 
-    // Generate with AI fallback
+    // Generate with Gemini
     const aiManager = new AIManager();
-    const result = await aiManager.generateWithFallback(
-      optimized, 
-      ENHANCED_SYSTEM_PROMPT, 
-      preferredProvider || undefined
-    );
+    const result = await aiManager.generateWithFallback(optimized, ENHANCED_SYSTEM_PROMPT);
 
     // Enhanced code cleaning
     let cleanCode = result.code.trim();
