@@ -104,51 +104,54 @@ export default function UploadZone() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            {...getRootProps()}
-            className={`border-2 border-dashed rounded-xl p-16 text-center cursor-pointer transition-all duration-300
-              ${isDragActive 
-                ? 'border-white bg-white/5 scale-[1.02]' 
-                : 'border-gray-700 hover:border-gray-500 hover:bg-white/[0.02]'
-              }
-            `}
           >
-            <input {...getInputProps()} />
-            
-            <motion.div
-              animate={isDragActive ? { scale: 1.1 } : { scale: 1 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            <div
+              {...getRootProps()}
+              className={`border-2 border-dashed rounded-xl p-16 text-center cursor-pointer transition-all duration-300
+                ${isDragActive 
+                  ? 'border-white bg-white/5 scale-[1.02]' 
+                  : 'border-gray-700 hover:border-gray-500 hover:bg-white/[0.02]'
+                }
+              `}
             >
-              <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-            </motion.div>
-            
-            <motion.p 
-              className="text-lg font-medium mb-2"
-              animate={isDragActive ? { scale: 1.05 } : { scale: 1 }}
-            >
-              {isDragActive ? 'Drop here' : 'Drop screenshot or click to upload'}
-            </motion.p>
-            <p className="text-sm text-gray-500 mb-6">PNG, JPG, WEBP up to 10MB</p>
-            
-            {/* AI Provider Selector */}
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Settings className="w-4 h-4 text-gray-400" />
-              <span className="text-sm text-gray-400">AI Model:</span>
-              <AIProviderSelector 
-                selectedProvider={selectedProvider}
-                onProviderChange={setSelectedProvider}
-              />
-            </div>
-            
-            {error && (
+              <input {...getInputProps()} />
+              
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 flex items-center gap-2 text-red-400 text-sm"
+                animate={isDragActive ? { scale: 1.1 } : { scale: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <AlertCircle className="w-4 h-4" />
-                {error}
+                <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
               </motion.div>
-            )}
+              
+              <motion.p 
+                className="text-lg font-medium mb-2"
+                animate={isDragActive ? { scale: 1.05 } : { scale: 1 }}
+              >
+                {isDragActive ? 'Drop here' : 'Drop screenshot or click to upload'}
+              </motion.p>
+              <p className="text-sm text-gray-500 mb-6">PNG, JPG, WEBP up to 10MB</p>
+              
+              {/* AI Provider Selector */}
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Settings className="w-4 h-4 text-gray-400" />
+                <span className="text-sm text-gray-400">AI Model:</span>
+                <AIProviderSelector 
+                  selectedProvider={selectedProvider}
+                  onProviderChange={setSelectedProvider}
+                />
+              </div>
+              
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 flex items-center gap-2 text-red-400 text-sm"
+                >
+                  <AlertCircle className="w-4 h-4" />
+                  {error}
+                </motion.div>
+              )}
+            </div>
           </motion.div>
         ) : (
           <motion.div
