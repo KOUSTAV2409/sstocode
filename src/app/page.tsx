@@ -1,88 +1,110 @@
 import UploadZone from '@/components/UploadZone';
-import { Zap, Code2, Sparkles, Github, ArrowRight } from 'lucide-react';
+import { ArrowRight, Zap, Code2, Sparkles } from 'lucide-react';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="pt-20 pb-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16 space-y-6">
-            <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight">
-              Convert Designs to Code
-              <span className="block text-slate-500 text-4xl lg:text-5xl font-normal mt-2">
-                in seconds
-              </span>
-            </h1>
-
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Upload a UI screenshot and let AI generate clean, production-ready React components with TypeScript and Tailwind CSS.
-            </p>
+      <section className="pt-32 pb-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+            Design to Code.
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto">
+            Transform your UI designs into production-ready React components with AI precision.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="bg-white text-black px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors">
+              Start Deploying
+            </button>
+            <button className="border border-gray-700 text-white px-6 py-3 rounded-md font-medium hover:border-gray-500 transition-colors">
+              Get a Demo
+            </button>
           </div>
+        </div>
+      </section>
 
+      {/* Upload Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
           <UploadZone />
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-20 border-t border-slate-200 bg-slate-50/50">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-slate-900 mb-16 text-center">
-            Why choose sstocode?
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="group">
-              <div className="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center mb-6 group-hover:bg-slate-800 transition-colors">
-                <Zap className="w-6 h-6 text-white" />
+      {/* Features */}
+      <section className="py-20 px-6 border-t border-gray-900">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-12">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mx-auto mb-6">
+                <Zap className="w-6 h-6 text-black" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Lightning Fast</h3>
-              <p className="text-slate-600">
-                Generate production-ready components in seconds, not hours.
+              <h3 className="text-lg font-semibold mb-3">Fast Generation</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Generate production-ready components in seconds with advanced AI.
               </p>
             </div>
 
-            <div className="group">
-              <div className="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center mb-6 group-hover:bg-slate-800 transition-colors">
-                <Code2 className="w-6 h-6 text-white" />
+            <div className="text-center">
+              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mx-auto mb-6">
+                <Code2 className="w-6 h-6 text-black" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Clean Code</h3>
-              <p className="text-slate-600">
+              <h3 className="text-lg font-semibold mb-3">Clean Code</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
                 TypeScript, Tailwind CSS, and modern React patterns included.
               </p>
             </div>
 
-            <div className="group">
-              <div className="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center mb-6 group-hover:bg-slate-800 transition-colors">
-                <Sparkles className="w-6 h-6 text-white" />
+            <div className="text-center">
+              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mx-auto mb-6">
+                <Sparkles className="w-6 h-6 text-black" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">AI Precision</h3>
-              <p className="text-slate-600">
-                Advanced vision models ensure pixel-perfect accuracy.
+              <h3 className="text-lg font-semibold mb-3">AI Precision</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Advanced computer vision for pixel-perfect accuracy.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 px-6 border-t border-slate-200">
+      {/* CTA */}
+      <section className="py-20 px-6 border-t border-gray-900">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-slate-600 mb-6">
-            Open source and free to use. Built for developers.
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Ready to ship?
+          </h2>
+          <p className="text-xl text-gray-400 mb-8">
+            Start building with AI-powered code generation.
           </p>
-          <a
-            href="https://github.com/KOUSTAV2409/sstocode"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-slate-900 font-medium hover:text-slate-600 transition-colors"
-          >
-            <Github className="w-5 h-5" />
-            View on GitHub
-            <ArrowRight className="w-4 h-4" />
-          </a>
+          <button className="bg-white text-black px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors">
+            Get Started
+          </button>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-900 py-12 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+          <div className="flex items-center gap-3 mb-6 md:mb-0">
+            <div className="w-6 h-6 bg-white rounded flex items-center justify-center">
+              <svg className="w-4 h-4 text-black" viewBox="0 0 76 65" fill="currentColor">
+                <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" />
+              </svg>
+            </div>
+            <span className="font-medium">sstocode</span>
+          </div>
+          <div className="flex items-center gap-6 text-gray-400 text-sm">
+            <a href="#" className="hover:text-white transition-colors">Privacy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms</a>
+            <a href="https://github.com/KOUSTAV2409/sstocode" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              GitHub
+            </a>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

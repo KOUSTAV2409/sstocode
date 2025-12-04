@@ -17,10 +17,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DevForge - AI-Powered UI to Code",
-  description: "Transform UI screenshots into production-ready React components with AI precision",
-  keywords: ["AI", "React", "UI", "Code Generation", "Screenshot to Code"],
-  authors: [{ name: "DevForge Team" }],
+  title: "sstocode - AI-Powered Design to Code",
+  description: "Transform UI designs into production-ready React components with AI precision. Upload, generate, and ship faster than ever.",
+  keywords: ["AI", "React", "UI", "Code Generation", "Design to Code", "Component Generator"],
+  authors: [{ name: "sstocode Team" }],
 };
 
 export const viewport: Viewport = {
@@ -34,9 +34,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth dark">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-white text-slate-900 min-h-screen`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen bg-black text-white selection:bg-purple-500/20`}
       >
         <Header />
         {children}
@@ -44,9 +44,9 @@ export default function RootLayout({
           position="top-right"
           toastOptions={{
             style: {
-              background: '#1e293b',
-              border: '1px solid #475569',
-              color: '#f1f5f9',
+              background: '#0a0a0a',
+              border: '1px solid #374151',
+              color: '#f9fafb',
             },
           }}
         />
