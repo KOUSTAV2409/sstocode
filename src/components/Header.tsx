@@ -8,7 +8,8 @@ export default function Header() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const navItems = [
-    { name: 'Features', href: '#features' },
+    { name: 'Roadmap', href: '/roadmap' },
+    { name: 'Contributing', href: '/contributing' },
     { name: 'Docs', href: '#docs' },
     { name: 'GitHub', href: 'https://github.com/KOUSTAV2409/sstocode' },
   ];
