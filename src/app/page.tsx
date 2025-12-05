@@ -10,17 +10,17 @@ export default function Home() {
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
             Design to Code.
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto">
             Transform your UI designs into production-ready React components with AI precision.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button className="bg-white text-black px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors">
-              Start Deploying
+              New Features coming soon ...
             </button>
             <button className="border border-gray-700 text-white px-6 py-3 rounded-md font-medium hover:border-gray-500 transition-colors">
-              Get a Demo
+              New Features coming soon ...
             </button>
           </div>
         </div>
