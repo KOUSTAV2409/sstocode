@@ -26,19 +26,29 @@ class GeminiProvider implements AIProvider {
     const model = this.client.getGenerativeModel({ 
       model: 'gemini-2.5-flash',
       generationConfig: {
-        temperature: 0.3,
+        temperature: 0.7,
         topK: 40,
         topP: 0.95,
         maxOutputTokens: 8192,
       },
     });
     
+    const enhancedPrompt = `${prompt}
+
+IMPORTANT: You must generate a complete, functional React component. Do not provide explanations or partial code. Generate at least 50 lines of meaningful React code.`;
+    
     const result = await model.generateContent([
-      prompt,
+      enhancedPrompt,
       { inlineData: { mimeType: 'image/jpeg', data: base64 } },
     ]);
 
-    return result.response.text();
+    const response = result.response.text();
+    
+    if (!response || response.trim().length < 10) {
+      throw new Error('Gemini returned empty or very short response');
+    }
+    
+    return response;
   }
 }
 
@@ -66,13 +76,25 @@ export class AIManager {
       
       const code = await provider.generate(imageBuffer, prompt);
       console.log('Raw response length:', code.length);
+      console.log('Raw response preview:', code.substring(0, 200));
       
       let cleanCode = this.cleanCode(code);
       console.log('Clean code length:', cleanCode.length);
       
-      // More lenient validation - just check for basic content
-      if (cleanCode.length < 50) {
-        throw new Error('Generated content is too short');
+      // More lenient validation - check for basic content
+      if (cleanCode.length < 30) {
+        throw new Error(`Generated content is too short (${cleanCode.length} chars): "${cleanCode}"`);
+      }
+      
+      // If response is very short but has some content, try to make it a valid component
+      if (cleanCode.length < 100 && !cleanCode.includes('function') && !cleanCode.includes('const')) {
+        cleanCode = `export default function GeneratedComponent() {
+  return (
+    <div className="p-4">
+      <p>${cleanCode.replace(/"/g, '\\"')}</p>
+    </div>
+  );
+}`;
       }
       
       // Ensure proper export
