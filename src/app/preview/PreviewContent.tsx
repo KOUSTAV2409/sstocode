@@ -41,7 +41,36 @@ export default function PreviewContent() {
   }
 
   return (
-    <div className="h-screen flex bg-black text-zinc-100 overflow-hidden">
+    <div className="h-screen flex flex-col bg-black text-zinc-100 overflow-hidden">
+      {/* Preview Header */}
+      <header className="h-12 border-b border-zinc-800 flex items-center justify-between px-4 bg-zinc-950/50 shrink-0">
+        <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
+            <Home className="w-4 h-4" />
+            <span className="text-sm font-medium">Back</span>
+          </Link>
+          <div className="h-4 w-px bg-zinc-700" />
+          <span className="text-sm text-zinc-300">Component Preview</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button className="px-3 py-1.5 text-xs bg-zinc-800 hover:bg-zinc-700 rounded-md transition-colors">
+            Settings
+          </button>
+          <button className="px-3 py-1.5 text-xs bg-zinc-800 hover:bg-zinc-700 rounded-md transition-colors">
+            Improve
+          </button>
+          <button 
+            onClick={() => navigator.clipboard.writeText(code)}
+            className="px-3 py-1.5 text-xs bg-white text-black hover:bg-zinc-200 rounded-md transition-colors font-medium"
+          >
+            Copy Code
+          </button>
+        </div>
+      </header>
+
+      {/* Split View */}
+      <main className="flex-1 flex overflow-hidden">
       <ResizablePanelGroup direction="horizontal">
 
           {/* Editor */}
@@ -78,6 +107,7 @@ export default function PreviewContent() {
           </ResizablePanel>
 
         </ResizablePanelGroup>
+      </main>
     </div>
   );
 }

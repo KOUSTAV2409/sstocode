@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import Header from "@/components/Header";
+import ConditionalHeader from "@/components/ConditionalHeader";
 import "./globals.css";
 
 const inter = Inter({
@@ -38,7 +38,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen bg-black text-white selection:bg-purple-500/20`}
       >
-        <Header />
+        <ConditionalHeader />
         {children}
         <Toaster
           position="top-right"
