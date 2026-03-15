@@ -75,9 +75,14 @@ export default function UploadZone() {
       setProgress(100);
       setUsedProvider(data.provider);
       
+      // Store code in sessionStorage to avoid HTTP 431 (URL too long)
+      const sid = crypto.randomUUID();
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem(`sstocode_${sid}`, JSON.stringify({ code: data.code, provider: data.provider }));
+      }
+      
       setTimeout(() => {
-        const encoded = btoa(encodeURIComponent(data.code));
-        router.push(`/preview?code=${encoded}&provider=${encodeURIComponent(data.provider)}`);
+        router.push(`/preview?sid=${sid}`);
       }, 500);
 
     } catch (error) {

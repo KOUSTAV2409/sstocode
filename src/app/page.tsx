@@ -1,5 +1,6 @@
 import UploadZone from '@/components/UploadZone';
-import { ArrowRight, Zap, Code2, Sparkles } from 'lucide-react';
+import { Zap, Code2, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -16,18 +17,24 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-white text-black px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors">
-              New Features coming soon ...
-            </button>
-            <button className="border border-gray-700 text-white px-6 py-3 rounded-md font-medium hover:border-gray-500 transition-colors">
-              New Features coming soon ...
-            </button>
+            <a
+              href="#upload"
+              className="bg-white text-black px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors"
+            >
+              Try it now
+            </a>
+            <Link
+              href="/roadmap"
+              className="border border-gray-700 text-white px-6 py-3 rounded-md font-medium hover:border-gray-500 transition-colors"
+            >
+              View Roadmap
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Upload Section */}
-      <section className="py-20 px-6">
+      <section id="upload" className="py-20 px-6 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <UploadZone />
         </div>
@@ -79,9 +86,12 @@ export default function Home() {
           <p className="text-xl text-gray-400 mb-8">
             Start building with AI-powered code generation.
           </p>
-          <button className="bg-white text-black px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors">
+          <a
+            href="#upload"
+            className="inline-block bg-white text-black px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors"
+          >
             Get Started
-          </button>
+          </a>
         </div>
       </section>
 

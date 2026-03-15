@@ -8,10 +8,9 @@ export default function Header() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const navItems = [
-    { name: 'Roadmap', href: '/roadmap' },
-    { name: 'Contributing', href: '/contributing' },
-    { name: 'Docs', href: '#docs' },
-    { name: 'GitHub', href: 'https://github.com/KOUSTAV2409/sstocode' },
+    { name: 'Roadmap', href: '/roadmap', external: false },
+    { name: 'Contributing', href: '/contributing', external: false },
+    { name: 'GitHub', href: 'https://github.com/KOUSTAV2409/sstocode', external: true },
   ];
 
   return (
@@ -70,23 +69,18 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* CTA Buttons */}
+        {/* CTA */}
         <div className="flex items-center gap-3">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link href="/login" className="text-sm text-white/70 hover:text-white transition-colors hidden sm:block">
-              Login
-            </Link>
-          </motion.div>
           <motion.div
             whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(255,255,255,0.3)" }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <Link href="/signup" className="text-sm font-medium bg-white text-black px-4 py-2 rounded-full hover:bg-white/90 transition-colors">
-              Sign Up
+            <Link
+              href="/#upload"
+              className="text-sm font-medium bg-white text-black px-4 py-2 rounded-full hover:bg-white/90 transition-colors"
+            >
+              Try it now
             </Link>
           </motion.div>
         </div>

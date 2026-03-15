@@ -80,9 +80,12 @@ export default function StreamingUploadZone() {
               }
               
               if (data.done) {
+                const sid = crypto.randomUUID();
+                if (typeof window !== 'undefined') {
+                  sessionStorage.setItem(`sstocode_${sid}`, JSON.stringify({ code: fullCode, provider: 'Gemini 2.5 Flash' }));
+                }
                 setTimeout(() => {
-                  const encoded = btoa(encodeURIComponent(fullCode));
-                  router.push(`/preview?code=${encoded}&streaming=true`);
+                  router.push(`/preview?sid=${sid}`);
                 }, 1000);
                 return;
               }

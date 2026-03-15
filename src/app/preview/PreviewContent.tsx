@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Home } from 'lucide-react';
 import Link from 'next/link';
+import { toast } from 'sonner';
 import CodeEditor from '@/components/Editor';
 import LivePreview from '@/components/LivePreview';
 import {
@@ -17,20 +18,46 @@ export default function PreviewContent() {
   const [code, setCode] = useState('');
 
   useEffect(() => {
-    try {
-      const raw = searchParams.get('code') || '';
-      const decoded = raw ? decodeURIComponent(atob(raw)) : '';
-      setCode(decoded);
-    } catch {
-      setCode('// Failed to decode code');
+    const sid = searchParams.get('sid');
+    const codeParam = searchParams.get('code');
+    
+    if (sid && typeof window !== 'undefined') {
+      // New flow: code stored in sessionStorage (avoids HTTP 431 for large code)
+      try {
+        const stored = sessionStorage.getItem(`sstocode_${sid}`);
+        if (stored) {
+          const { code: storedCode } = JSON.parse(stored);
+          setCode(storedCode || '');
+          return;
+        }
+      } catch {
+        // Fall through to error state
+      }
     }
+    
+    // Legacy: code in URL (only works for short code, < ~2KB)
+    if (codeParam) {
+      try {
+        const decoded = decodeURIComponent(atob(codeParam));
+        setCode(decoded);
+        return;
+      } catch {
+        setCode('// Failed to decode code');
+        return;
+      }
+    }
+    
+    setCode('');
   }, [searchParams]);
 
   if (!code) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">
-        <div className="text-center space-y-6">
+        <div className="text-center space-y-6 max-w-md">
           <p className="text-xl font-medium text-white">No code found</p>
+          <p className="text-sm text-zinc-400">
+            Generate a new component from the home page, or the link may have expired (codes are stored in this tab session).
+          </p>
           <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full hover:bg-zinc-200 transition-colors font-medium">
             <Home className="w-4 h-4" />
             Go Home
@@ -61,7 +88,14 @@ export default function PreviewContent() {
             Improve
           </button>
           <button 
-            onClick={() => navigator.clipboard.writeText(code)}
+            onClick={async () => {
+              try {
+                await navigator.clipboard.writeText(code);
+                toast.success('Code copied to clipboard!');
+              } catch {
+                toast.error('Failed to copy code');
+              }
+            }}
             className="px-3 py-1.5 text-xs bg-white text-black hover:bg-zinc-200 rounded-md transition-colors font-medium"
           >
             Copy Code
