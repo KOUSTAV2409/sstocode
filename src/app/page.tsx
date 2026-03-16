@@ -1,6 +1,7 @@
 import UploadZone from '@/components/UploadZone';
 import HowItWorks from '@/components/HowItWorks';
 import OnboardingModal from '@/components/OnboardingModal';
+import Logo from '@/components/Logo';
 import { Zap, Code2, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
@@ -107,10 +108,8 @@ export default function Home() {
       <footer className="border-t border-zinc-900 py-12 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-3 mb-6 md:mb-0">
-            <div className="w-6 h-6 bg-white rounded flex items-center justify-center">
-              <svg className="w-4 h-4 text-black" viewBox="0 0 76 65" fill="currentColor">
-                <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" />
-              </svg>
+            <div className="w-6 h-6 bg-white rounded flex items-center justify-center text-black">
+              <Logo size="sm" />
             </div>
             <span className="font-medium">sstocode</span>
           </div>
