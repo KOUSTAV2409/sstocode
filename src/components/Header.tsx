@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Logo from './Logo';
 
 export default function Header() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -28,13 +29,11 @@ export default function Header() {
         >
           <Link href="/" className="flex items-center gap-2 group">
             <motion.div 
-              className="w-7 h-7 bg-white rounded-md flex items-center justify-center"
+              className="w-7 h-7 bg-white rounded-md flex items-center justify-center text-black"
               whileHover={{ rotate: 180 }}
               transition={{ duration: 0.3 }}
             >
-              <svg className="w-4 h-4 text-black" viewBox="0 0 76 65" fill="currentColor">
-                <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" />
-              </svg>
+              <Logo size="sm" />
             </motion.div>
             <span className="font-semibold text-white">sstocode</span>
           </Link>
