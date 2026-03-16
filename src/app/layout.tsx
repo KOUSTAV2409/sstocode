@@ -16,11 +16,27 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
   title: "sstocode - AI-Powered Design to Code",
   description: "Transform UI designs into production-ready React components with AI precision. Upload, generate, and ship faster than ever.",
   keywords: ["AI", "React", "UI", "Code Generation", "Design to Code", "Component Generator"],
   authors: [{ name: "sstocode Team" }],
+  openGraph: {
+    title: "sstocode - AI-Powered Design to Code",
+    description: "Transform UI designs into production-ready React components with AI precision. Upload, generate, and ship faster than ever.",
+    type: "website",
+    siteName: "sstocode",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "sstocode - AI-Powered Design to Code",
+    description: "Transform UI designs into production-ready React components with AI precision.",
+  },
 };
 
 export const viewport: Viewport = {
