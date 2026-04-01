@@ -14,6 +14,8 @@ REQUIREMENTS:
 6. Include ALL visual elements from the screenshot
 7. Make it responsive and interactive where appropriate
 8. NO explanations - ONLY the complete React component code
+9. NEVER stop mid-string: every className="..." must end with a closing double-quote. If a line would be too long, split into nested divs or shorten class lists — never truncate mid-className.
+10. The file MUST end with valid closing tags, }; and export default GeneratedComponent;
 
 EXAMPLE OUTPUT FORMAT:
 import * as React from 'react';
