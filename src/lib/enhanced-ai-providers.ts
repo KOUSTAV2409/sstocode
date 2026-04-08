@@ -1,68 +1,118 @@
 import { streamText } from 'ai';
 import { google } from '@ai-sdk/google';
+import { isTransientGeminiError } from '@/lib/ai-providers';
+import { OPENROUTER_MODEL_CHAIN, streamOpenRouterCompletion } from '@/lib/openrouter-provider';
 
-// Enhanced AI Provider with only Gemini
+const STREAMING_GEMINI_CHAIN = [
+  { id: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash' },
+  { id: 'gemini-2.0-flash', label: 'Gemini 2.0 Flash' },
+  { id: 'gemini-1.5-flash', label: 'Gemini 1.5 Flash' },
+] as const;
+
 export class EnhancedAIManager {
-  
   async generateWithStreaming(
-    imageBuffer: Buffer, 
-    prompt: string, 
+    imageBuffer: Buffer,
+    prompt: string,
     onProgress?: (chunk: string) => void
   ) {
     const base64 = imageBuffer.toString('base64');
     const imageUrl = `data:image/jpeg;base64,${base64}`;
 
-    if (!process.env.GEMINI_API_KEY) {
-      throw new Error('Gemini API key not configured');
+    if (!process.env.OPENROUTER_API_KEY?.trim() && !process.env.GEMINI_API_KEY) {
+      throw new Error('No AI provider configured. Add OPENROUTER_API_KEY or GEMINI_API_KEY.');
     }
 
-    try {
-      const model = google('gemini-2.5-flash');
-      
-      const { textStream } = await streamText({
-        model,
-        messages: [
-          {
-            role: 'user',
-            content: [
-              { type: 'text', text: prompt },
-              { type: 'image', image: imageUrl }
-            ]
+    let lastError: unknown;
+
+    if (process.env.OPENROUTER_API_KEY?.trim()) {
+      for (const { modelId, displayName } of OPENROUTER_MODEL_CHAIN) {
+        try {
+          console.log(`OpenRouter streaming: ${displayName}...`);
+          let fullCode = '';
+          await streamOpenRouterCompletion(modelId, imageBuffer, prompt, (chunk) => {
+            fullCode += chunk;
+            onProgress?.(chunk);
+          });
+          return {
+            code: this.cleanCode(fullCode),
+            provider: displayName,
+          };
+        } catch (error) {
+          lastError = error;
+          console.error(`${displayName} OpenRouter stream failed:`, error);
+          if (
+            !isTransientGeminiError(error) &&
+            !/404|not found|invalid model/i.test(String(error))
+          ) {
+            throw new Error(error instanceof Error ? error.message : 'Streaming generation failed');
           }
-        ],
-        temperature: 0.1,
-        maxRetries: 3,
-      });
-
-      let fullCode = '';
-      for await (const chunk of textStream) {
-        fullCode += chunk;
-        onProgress?.(chunk);
+        }
       }
-
-      return {
-        code: this.cleanCode(fullCode),
-        provider: 'Gemini 2.5 Flash'
-      };
-
-    } catch (error) {
-      console.error('Gemini failed:', error);
-      throw new Error(`Gemini generation failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
+
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error(
+        lastError instanceof Error
+          ? `OpenRouter streaming failed: ${lastError.message}`
+          : 'OpenRouter streaming failed'
+      );
+    }
+
+    for (const { id, label } of STREAMING_GEMINI_CHAIN) {
+      try {
+        console.log(`Streaming with ${label} (direct Gemini)...`);
+        const model = google(id);
+
+        const { textStream } = await streamText({
+          model,
+          messages: [
+            {
+              role: 'user',
+              content: [
+                { type: 'text', text: prompt },
+                { type: 'image', image: imageUrl },
+              ],
+            },
+          ],
+          temperature: 0.1,
+          maxRetries: 2,
+        });
+
+        let fullCode = '';
+        for await (const chunk of textStream) {
+          fullCode += chunk;
+          onProgress?.(chunk);
+        }
+
+        return {
+          code: this.cleanCode(fullCode),
+          provider: label,
+        };
+      } catch (error) {
+        lastError = error;
+        console.error(`${label} streaming failed:`, error);
+        if (!isTransientGeminiError(error) && !/404|not found|invalid model/i.test(String(error))) {
+          throw new Error(error instanceof Error ? error.message : 'Streaming generation failed');
+        }
+      }
+    }
+
+    throw new Error(
+      lastError instanceof Error
+        ? `Streaming failed after fallbacks: ${lastError.message}`
+        : 'Streaming failed after fallbacks'
+    );
   }
 
   private cleanCode(code: string): string {
     let cleaned = code.trim();
-    
-    // Remove markdown
+
     cleaned = cleaned.replace(/^```(?:tsx|typescript|javascript|jsx|react)?\n?/i, '');
     cleaned = cleaned.replace(/\n?```$/i, '');
-    
-    // Remove explanations
+
     cleaned = cleaned.replace(/^Here's.*?component.*?:/im, '');
     cleaned = cleaned.replace(/^This.*?component.*?:/im, '');
-    
-    // Ensure React import
+
     if (!cleaned.includes('import') || !cleaned.includes('react')) {
       cleaned = "import * as React from 'react';\n\n" + cleaned;
     }

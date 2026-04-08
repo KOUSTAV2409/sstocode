@@ -3,30 +3,64 @@ import { ArrowLeft, Code, Users, Zap, Shield } from 'lucide-react';
 
 export default function ContributingPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="max-w-4xl mx-auto px-4 pt-24 pb-12">
-        <div className="mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-6">
+    <div className="min-h-screen bg-obsidian-bg text-obsidian-on">
+      <div className="max-w-4xl mx-auto px-4 md:px-8 pt-28 pb-16">
+        <div className="mb-10">
+          <Link href="/" className="inline-flex items-center gap-2 text-obsidian-on/50 hover:text-obsidian-gold transition-colors mb-8 text-sm">
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
-          <h1 className="text-4xl font-bold mb-4">Contributing to sstocode</h1>
-          <p className="text-zinc-400 text-lg">Help us build the future of AI-powered design to code</p>
+          <div className="inline-block bg-obsidian-surface-highest px-3 py-1 mb-4">
+            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-obsidian-tertiary">
+              Open source
+            </span>
+          </div>
+          <h1 className="font-headline text-4xl md:text-5xl font-bold tracking-tight text-obsidian-on mb-4">
+            Contributing to <span className="text-obsidian-gold">sstocode</span>
+          </h1>
+          <p className="text-obsidian-on/55 text-lg">
+            sstocode is an open source app: screenshots → React + Tailwind with Gemini, Monaco, and Sandpack. Help us improve
+            prompts, UI, and docs.
+          </p>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 mt-8 text-sm text-obsidian-on/60" aria-label="Site sections">
+            <Link href="/" className="hover:text-obsidian-gold transition-colors">
+              Home
+            </Link>
+            <Link href="/docs" className="hover:text-obsidian-gold transition-colors">
+              Docs
+            </Link>
+            <Link href="/pricing" className="hover:text-obsidian-gold transition-colors">
+              Pricing
+            </Link>
+            <Link href="/roadmap" className="hover:text-obsidian-gold transition-colors">
+              Roadmap
+            </Link>
+            <Link href="/auth" className="hover:text-obsidian-gold transition-colors">
+              Auth
+            </Link>
+            <a
+              href="https://github.com/KOUSTAV2409/sstocode"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-obsidian-gold transition-colors"
+            >
+              GitHub
+            </a>
+          </nav>
         </div>
 
-        {/* Quick Start */}
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6">🚀 Quick Start</h2>
-          <div className="bg-zinc-900/50 rounded-lg p-6">
+          <h2 className="font-headline text-2xl font-semibold mb-6 text-obsidian-on">Quick start</h2>
+          <div className="bg-obsidian-surface-low border border-obsidian-outline/25 rounded-sm p-6 obsidian-glass">
             <div className="space-y-4">
               <div>
-                <h3 className="font-medium mb-2">Prerequisites</h3>
-                <p className="text-zinc-400">Node.js 18+, Git, Gemini API key</p>
+                <h3 className="font-medium mb-2 text-obsidian-on">Prerequisites</h3>
+                <p className="text-obsidian-on/55">Node.js 18+, Git, Gemini API key</p>
               </div>
               <div>
-                <h3 className="font-medium mb-2">Setup</h3>
-                <pre className="bg-black p-4 rounded text-sm overflow-x-auto">
-{`git clone https://github.com/your-username/sstocode.git
+                <h3 className="font-medium mb-2 text-obsidian-on">Setup</h3>
+                <pre className="bg-obsidian-bg border border-obsidian-outline/20 p-4 rounded-sm text-sm overflow-x-auto text-obsidian-on/80">
+{`git clone https://github.com/KOUSTAV2409/sstocode.git
 cd sstocode
 npm install
 cp .env.local.example .env.local
@@ -38,16 +72,15 @@ npm run dev`}
           </div>
         </section>
 
-        {/* Contribution Areas */}
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6">🎯 Contribution Areas</h2>
+          <h2 className="font-headline text-2xl font-semibold mb-6 text-obsidian-on">Contribution areas</h2>
           <div className="grid gap-6">
-            <div className="p-6 bg-green-900/20 border border-green-800/30 rounded-lg">
+            <div className="p-6 bg-obsidian-surface-low border border-emerald-500/20 rounded-sm">
               <div className="flex items-center gap-3 mb-3">
-                <Code className="w-6 h-6 text-green-400" />
-                <h3 className="text-xl font-medium text-green-400">🟢 Beginner Friendly</h3>
+                <Code className="w-6 h-6 text-emerald-400/90" />
+                <h3 className="text-xl font-headline font-medium text-emerald-400/95">Beginner friendly</h3>
               </div>
-              <ul className="space-y-2 text-zinc-300">
+              <ul className="space-y-2 text-obsidian-on/75">
                 <li>• UI improvements and styling fixes</li>
                 <li>• Documentation updates and tutorials</li>
                 <li>• Bug fixes and error message improvements</li>
@@ -55,12 +88,12 @@ npm run dev`}
               </ul>
             </div>
 
-            <div className="p-6 bg-yellow-900/20 border border-yellow-800/30 rounded-lg">
+            <div className="p-6 bg-obsidian-surface-low border border-obsidian-gold/25 rounded-sm">
               <div className="flex items-center gap-3 mb-3">
-                <Zap className="w-6 h-6 text-yellow-400" />
-                <h3 className="text-xl font-medium text-yellow-400">🟡 Intermediate</h3>
+                <Zap className="w-6 h-6 text-obsidian-gold" />
+                <h3 className="text-xl font-headline font-medium text-obsidian-gold">Intermediate</h3>
               </div>
-              <ul className="space-y-2 text-zinc-300">
+              <ul className="space-y-2 text-obsidian-on/75">
                 <li>• New feature implementation</li>
                 <li>• AI provider integrations</li>
                 <li>• Performance optimizations</li>
@@ -68,12 +101,12 @@ npm run dev`}
               </ul>
             </div>
 
-            <div className="p-6 bg-red-900/20 border border-red-800/30 rounded-lg">
+            <div className="p-6 bg-obsidian-surface-low border border-rose-500/25 rounded-sm">
               <div className="flex items-center gap-3 mb-3">
-                <Shield className="w-6 h-6 text-red-400" />
-                <h3 className="text-xl font-medium text-red-400">🔴 Advanced</h3>
+                <Shield className="w-6 h-6 text-rose-400/90" />
+                <h3 className="text-xl font-headline font-medium text-rose-400/95">Advanced</h3>
               </div>
-              <ul className="space-y-2 text-zinc-300">
+              <ul className="space-y-2 text-obsidian-on/75">
                 <li>• Architecture improvements</li>
                 <li>• Security enhancements</li>
                 <li>• Infrastructure and CI/CD</li>
@@ -83,13 +116,12 @@ npm run dev`}
           </div>
         </section>
 
-        {/* Development Guidelines */}
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6">📝 Development Guidelines</h2>
+          <h2 className="font-headline text-2xl font-semibold mb-6 text-obsidian-on">Development guidelines</h2>
           <div className="space-y-6">
-            <div className="bg-zinc-900/50 rounded-lg p-6">
-              <h3 className="font-medium mb-3">Code Style</h3>
-              <ul className="space-y-2 text-zinc-400">
+            <div className="bg-obsidian-surface-low border border-obsidian-outline/25 rounded-sm p-6">
+              <h3 className="font-medium mb-3 text-obsidian-on">Code style</h3>
+              <ul className="space-y-2 text-obsidian-on/55">
                 <li>• Use TypeScript for all new code</li>
                 <li>• Follow existing naming conventions</li>
                 <li>• Use Tailwind CSS for styling</li>
@@ -97,9 +129,9 @@ npm run dev`}
               </ul>
             </div>
 
-            <div className="bg-zinc-900/50 rounded-lg p-6">
-              <h3 className="font-medium mb-3">Pull Request Process</h3>
-              <ol className="space-y-2 text-zinc-400 list-decimal list-inside">
+            <div className="bg-obsidian-surface-low border border-obsidian-outline/25 rounded-sm p-6">
+              <h3 className="font-medium mb-3 text-obsidian-on">Pull request process</h3>
+              <ol className="space-y-2 text-obsidian-on/55 list-decimal list-inside">
                 <li>Fork and create a feature branch</li>
                 <li>Make your changes with tests</li>
                 <li>Ensure all checks pass</li>
@@ -110,33 +142,32 @@ npm run dev`}
           </div>
         </section>
 
-        {/* Community */}
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-            <Users className="w-6 h-6" />
+          <h2 className="font-headline text-2xl font-semibold mb-6 flex items-center gap-2 text-obsidian-on">
+            <Users className="w-6 h-6 text-obsidian-gold" />
             Community
           </h2>
-          <div className="bg-zinc-900/50 rounded-lg p-6">
+          <div className="bg-obsidian-surface-low border border-obsidian-outline/25 rounded-sm p-6">
             <div className="space-y-4">
               <div>
-                <h3 className="font-medium mb-2">Communication</h3>
-                <ul className="space-y-1 text-zinc-400">
+                <h3 className="font-medium mb-2 text-obsidian-on">Communication</h3>
+                <ul className="space-y-1 text-obsidian-on/55">
                   <li>• GitHub Issues for bugs and features</li>
                   <li>• GitHub Discussions for questions</li>
                   <li>• Real-time chat (coming soon)</li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-medium mb-2">Need Help?</h3>
-                <p className="text-zinc-400 mb-3">If you have any problems or questions:</p>
-                <div className="flex gap-4">
-                  <a href="mailto:koustavganguly24@gmail.com" className="text-blue-400 hover:text-blue-300 transition-colors">
+                <h3 className="font-medium mb-2 text-obsidian-on">Need help?</h3>
+                <p className="text-obsidian-on/55 mb-3">If you have any problems or questions:</p>
+                <div className="flex flex-wrap gap-4">
+                  <a href="mailto:koustavganguly24@gmail.com" className="text-obsidian-gold hover:text-obsidian-bright transition-colors text-sm">
                     Email
                   </a>
-                  <a href="https://iamk.xyz" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
+                  <a href="https://iamk.xyz" target="_blank" rel="noopener noreferrer" className="text-obsidian-gold hover:text-obsidian-bright transition-colors text-sm">
                     Website
                   </a>
-                  <a href="https://x.com/iamk_xyz" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
+                  <a href="https://x.com/iamk_xyz" target="_blank" rel="noopener noreferrer" className="text-obsidian-gold hover:text-obsidian-bright transition-colors text-sm">
                     Twitter
                   </a>
                 </div>
@@ -145,24 +176,29 @@ npm run dev`}
           </div>
         </section>
 
-        {/* Get Started */}
-        <section className="text-center p-8 bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4">Ready to Contribute?</h2>
-          <p className="text-zinc-400 mb-6">Check out our GitHub repository and start making a difference!</p>
-          <div className="flex justify-center gap-4">
+        <section className="text-center p-8 md:p-10 obsidian-glass border border-obsidian-gold/15 rounded-sm">
+          <h2 className="font-headline text-2xl font-semibold mb-4 text-obsidian-on">Ready to contribute?</h2>
+          <p className="text-obsidian-on/55 mb-8">Fork the repo, read the docs, and open a PR — every improvement counts.</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-3 flex-wrap">
             <a 
-              href="https://github.com/your-username/sstocode" 
+              href="https://github.com/KOUSTAV2409/sstocode" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-white text-black rounded-lg font-medium hover:bg-zinc-200 transition-colors"
+              className="metallic-luster text-obsidian-on-primary font-bold uppercase text-[10px] tracking-[0.2em] py-3 px-8 hover:opacity-90 transition-opacity rounded-sm"
             >
               View on GitHub
             </a>
             <Link 
               href="/roadmap"
-              className="px-6 py-3 bg-zinc-800 text-white rounded-lg font-medium hover:bg-zinc-700 transition-colors"
+              className="text-obsidian-tertiary border border-obsidian-tertiary/25 font-bold uppercase text-[10px] tracking-[0.2em] py-3 px-8 hover:bg-obsidian-tertiary/10 transition-colors rounded-sm"
             >
-              View Roadmap
+              Roadmap
+            </Link>
+            <Link href="/docs" className="text-obsidian-tertiary border border-obsidian-tertiary/25 font-bold uppercase text-[10px] tracking-[0.2em] py-3 px-8 hover:bg-obsidian-tertiary/10 transition-colors rounded-sm">
+              Docs
+            </Link>
+            <Link href="/pricing" className="text-obsidian-tertiary border border-obsidian-tertiary/25 font-bold uppercase text-[10px] tracking-[0.2em] py-3 px-8 hover:bg-obsidian-tertiary/10 transition-colors rounded-sm">
+              Pricing
             </Link>
           </div>
         </section>

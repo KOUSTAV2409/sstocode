@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import ConditionalHeader from "@/components/ConditionalHeader";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
   display: "swap",
 });
@@ -52,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth dark">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen bg-black text-white selection:bg-purple-500/20`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen bg-obsidian-bg text-obsidian-on selection:bg-obsidian-gold/30 selection:text-obsidian-on-primary`}
       >
         <ConditionalHeader />
         {children}
@@ -60,9 +66,9 @@ export default function RootLayout({
           position="top-right"
           toastOptions={{
             style: {
-              background: '#0a0a0a',
-              border: '1px solid #374151',
-              color: '#f9fafb',
+              background: '#071f1f',
+              border: '1px solid #223938',
+              color: '#cee8e7',
             },
           }}
         />

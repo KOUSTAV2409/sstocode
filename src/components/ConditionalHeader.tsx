@@ -6,8 +6,9 @@ import Header from './Header';
 export default function ConditionalHeader() {
   const pathname = usePathname();
   
-  // Don't show header on preview page
-  if (pathname?.startsWith('/preview')) {
+  const hideHeader = pathname?.startsWith('/preview');
+
+  if (hideHeader) {
     return null;
   }
   
