@@ -9,10 +9,10 @@ export default function PreviewPage() {
   return (
     <ErrorBoundary>
     <Suspense fallback={
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-obsidian-bg flex items-center justify-center">
         <div className="text-center space-y-4">
-          <div className="w-8 h-8 border-2 border-zinc-600 border-t-white rounded-full animate-spin mx-auto" />
-          <p className="text-zinc-400 font-medium">Loading your component...</p>
+          <div className="w-8 h-8 border-2 border-obsidian-outline/50 border-t-obsidian-gold rounded-full animate-spin mx-auto" />
+          <p className="text-obsidian-on/55 font-medium">Loading your component...</p>
         </div>
       </div>
     }>

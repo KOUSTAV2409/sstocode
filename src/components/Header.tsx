@@ -1,91 +1,77 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import Logo from './Logo';
 
-export default function Header() {
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+const navItems = [
+  { name: 'Home', href: '/' },
+  { name: 'Docs', href: '/docs' },
+  { name: 'Pricing', href: '/pricing' },
+  { name: 'Roadmap', href: '/roadmap' },
+  { name: 'Auth', href: '/auth' },
+  { name: 'Contributing', href: '/contributing' },
+  { name: 'GitHub', href: 'https://github.com/KOUSTAV2409/sstocode', external: true },
+];
 
-  const navItems = [
-    { name: 'Roadmap', href: '/roadmap', external: false },
-    { name: 'Contributing', href: '/contributing', external: false },
-    { name: 'GitHub', href: 'https://github.com/KOUSTAV2409/sstocode', external: true },
-  ];
+export default function Header() {
+  const pathname = usePathname();
 
   return (
-    <motion.header 
+    <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/20 border-b border-white/5"
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+      className="fixed top-0 left-0 right-0 z-50 bg-obsidian-bg border-b border-obsidian-surface-high/40"
     >
-      <div className="max-w-6xl mx-auto px-4 md:px-6 h-14 md:h-16 flex items-center justify-between">
-        {/* Logo */}
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        >
-          <Link href="/" className="flex items-center gap-2 group">
-            <motion.div 
-              className="w-7 h-7 bg-white rounded-md flex items-center justify-center text-black"
-              whileHover={{ rotate: 180 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Logo size="sm" />
-            </motion.div>
-            <span className="font-semibold text-white">sstocode</span>
-          </Link>
-        </motion.div>
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="w-8 h-8 rounded-sm bg-obsidian-gold flex items-center justify-center text-obsidian-on-primary">
+            <Logo size="sm" />
+          </div>
+          <span className="font-headline text-xl font-bold tracking-tighter text-obsidian-gold">
+            SSTOCODE
+          </span>
+        </Link>
 
-        {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-1 bg-zinc-900/50 rounded-full px-2 py-1 backdrop-blur-sm">
-          {navItems.map((item) => (
-            <motion.div
-              key={item.name}
-              className="relative"
-              onMouseEnter={() => setHoveredItem(item.name)}
-              onMouseLeave={() => setHoveredItem(null)}
-            >
+        <nav className="hidden md:flex items-center gap-10">
+          {navItems.map((item) => {
+            const active = !item.external && pathname === item.href;
+            return (
               <Link
+                key={item.name}
                 href={item.href}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noopener noreferrer' : undefined}
-                className="relative block px-4 py-2 text-sm text-zinc-400 hover:text-white transition-colors rounded-full"
+                className={`font-headline text-sm tracking-tight transition-colors duration-200 ${
+                  active
+                    ? 'text-obsidian-gold font-bold border-b-2 border-obsidian-gold pb-0.5'
+                    : 'text-obsidian-on/80 hover:text-obsidian-gold hover:bg-obsidian-surface/50 rounded px-1 -mx-1'
+                }`}
               >
-              {hoveredItem === item.name && (
-                <motion.div
-                  layoutId="navbar-hover"
-                  className="absolute inset-0 bg-violet-500/20 rounded-full"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              <span className="relative z-10">{item.name}</span>
+                {item.name}
               </Link>
-            </motion.div>
-          ))}
+            );
+          })}
         </nav>
 
-        {/* CTA */}
-        <div className="flex items-center gap-3">
-          <motion.div
-            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(255,255,255,0.3)" }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        <div className="flex items-center gap-4 md:gap-6">
+          <Link
+            href="/contributing"
+            className="hidden sm:block text-[10px] uppercase tracking-widest font-bold text-obsidian-gold hover:opacity-80 transition-opacity"
           >
-            <Link
-              href="/#upload"
-              className="text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white px-4 py-2 rounded-full transition-colors shadow-lg shadow-violet-500/20"
-            >
-              Try it now
-            </Link>
-          </motion.div>
+            Contribute
+          </Link>
+          <Link
+            href="/#upload"
+            className="metallic-luster text-obsidian-on-primary px-4 py-2 rounded-sm text-xs font-bold tracking-tight hover:opacity-90 active:scale-95 transition-transform"
+          >
+            Upload
+          </Link>
         </div>
       </div>
+      <div className="nav-gradient-line h-px w-full absolute bottom-0 left-0" />
     </motion.header>
   );
 }
