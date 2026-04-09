@@ -25,13 +25,18 @@ export default function RoadmapPageContent() {
             </div>
 
             <div className="bg-surface-container-low p-8 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-4 opacity-10">
-                <LayoutGrid className="size-[6.5rem] text-on-surface" strokeWidth={1} aria-hidden />
+              <div
+                className="pointer-events-none absolute top-0 right-0 p-4 text-primary-container/25 select-none"
+                aria-hidden
+              >
+                <LayoutGrid className="size-26 max-md:size-20" strokeWidth={1.25} />
               </div>
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-6 flex-wrap gap-2">
                   <h3 className="text-2xl sm:text-3xl font-headline font-bold text-on-surface">Preview &amp; editor polish</h3>
-                  <span className="text-[10px] font-label bg-primary-container/10 text-primary-container px-2 py-1">in progress</span>
+                  <span className="text-[10px] font-label uppercase tracking-widest bg-primary-container/10 text-primary-container px-2 py-1 rounded-sm shrink-0">
+                    In progress
+                  </span>
                 </div>
                 <p className="text-on-surface/50 mb-8 max-w-md">
                   Sandpack preview, Monaco editing, device modes, and zoom — so generated code is easy to verify before you copy it into
