@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowRight, Download } from 'lucide-react';
 import UploadZone from '@/components/UploadZone';
 import MarketingFooter from '@/components/marketing/MarketingFooter';
 
@@ -123,11 +124,13 @@ export default function HomeLanding() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center p-4">
-                <span className="material-symbols-outlined text-primary-container text-4xl transform rotate-90 md:rotate-0">
-                  arrow_forward
-                </span>
-                <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary-container/30 to-transparent hidden md:block mt-2" />
+              <div className="flex flex-none shrink-0 flex-col items-center justify-center gap-2 p-2 md:p-4">
+                <ArrowRight
+                  className="size-8 text-primary-container rotate-90 md:rotate-0 shrink-0"
+                  strokeWidth={2}
+                  aria-hidden
+                />
+                <div className="h-px w-16 md:w-24 bg-linear-to-r from-transparent via-primary-container/30 to-transparent hidden md:block" />
               </div>
               <div className="flex-1 w-full bg-[#001111] p-6 font-mono text-sm leading-relaxed overflow-hidden">
                 <div className="flex gap-2 mb-4">
@@ -145,21 +148,18 @@ export default function HomeLanding() {
           <div className="max-w-[1440px] mx-auto px-6 md:px-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
               <div className="p-12 border-r border-white/5 bg-surface-container-lowest">
-                <span className="material-symbols-outlined text-tertiary text-4xl mb-8">auto_awesome</span>
                 <h3 className="font-headline text-2xl font-bold mb-4 tracking-tight">Instant Tailwind Styling</h3>
                 <p className="text-on-surface/60 leading-relaxed text-sm">
                   Outputs map to Tailwind utilities so you stay in the design system — no mystery CSS blobs to untangle.
                 </p>
               </div>
               <div className="p-12 border-r border-white/5 bg-surface-container-low">
-                <span className="material-symbols-outlined text-primary-container text-4xl mb-8">javascript</span>
                 <h3 className="font-headline text-2xl font-bold mb-4 tracking-tight">Clean React Components</h3>
                 <p className="text-on-surface/60 leading-relaxed text-sm">
                   Functional React with TypeScript, not pasted HTML — components you can split, rename, and ship.
                 </p>
               </div>
               <div className="p-12 bg-surface-container-lowest">
-                <span className="material-symbols-outlined text-tertiary text-4xl mb-8">devices</span>
                 <h3 className="font-headline text-2xl font-bold mb-4 tracking-tight">Responsive by Default</h3>
                 <p className="text-on-surface/60 leading-relaxed text-sm">
                   The model infers layout intent from your screenshot — flex and grid patterns that scale from mobile to desktop.
@@ -188,12 +188,11 @@ export default function HomeLanding() {
                 </button>
                 <div className="flex-1" />
                 <div className="flex items-center gap-4 px-6">
-                  <span className="material-symbols-outlined text-on-surface/40 text-lg cursor-pointer hover:text-on-surface">
-                    content_copy
-                  </span>
-                  <span className="material-symbols-outlined text-on-surface/40 text-lg cursor-pointer hover:text-on-surface">
-                    download
-                  </span>
+                  <Download
+                    className="size-5 text-on-surface/40 cursor-pointer hover:text-on-surface transition-colors"
+                    strokeWidth={1.75}
+                    aria-hidden
+                  />
                 </div>
               </div>
               <div className="flex flex-col lg:flex-row min-h-[600px]">

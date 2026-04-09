@@ -5,24 +5,27 @@ export default function ContributingPage() {
   return (
     <div className="min-h-screen bg-obsidian-bg text-obsidian-on">
       <div className="max-w-4xl mx-auto px-4 md:px-8 pt-28 pb-16">
-        <div className="mb-10">
-          <Link href="/" className="inline-flex items-center gap-2 text-obsidian-on/50 hover:text-obsidian-gold transition-colors mb-8 text-sm">
-            <ArrowLeft className="w-4 h-4" />
+        <div className="mb-10 flex flex-col gap-5">
+          <Link
+            href="/"
+            className="inline-flex w-fit items-center gap-2 text-sm text-obsidian-on/50 transition-colors hover:text-obsidian-gold"
+          >
+            <ArrowLeft className="h-4 w-4 shrink-0" />
             Back to Home
           </Link>
-          <div className="inline-block bg-obsidian-surface-highest px-3 py-1 mb-4">
+          <div className="w-fit bg-obsidian-surface-highest px-3 py-1">
             <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-obsidian-tertiary">
               Open source
             </span>
           </div>
-          <h1 className="font-headline text-4xl md:text-5xl font-bold tracking-tight text-obsidian-on mb-4">
+          <h1 className="font-headline text-4xl font-bold tracking-tight text-obsidian-on md:text-5xl">
             Contributing to <span className="text-obsidian-gold">sstocode</span>
           </h1>
           <p className="text-obsidian-on/55 text-lg">
             sstocode is an open source app: screenshots → React + Tailwind with Gemini, Monaco, and Sandpack. Help us improve
             prompts, UI, and docs.
           </p>
-          <nav className="flex flex-wrap gap-x-6 gap-y-2 mt-8 text-sm text-obsidian-on/60" aria-label="Site sections">
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-obsidian-on/60" aria-label="Site sections">
             <Link href="/" className="hover:text-obsidian-gold transition-colors">
               Home
             </Link>

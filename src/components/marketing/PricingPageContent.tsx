@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CheckCircle, Shield, Zap } from 'lucide-react';
 
 const BOTTOM_IMG =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuAHt1LMaFUnHYuOOAA3QwK_KMP1uUss_a9GFiDOCtpF_oGSzMfOSYL5WvasXcvfFtO89KgP0qy2eWYe-SiCMONKqmb_0QcPvuvnLg99py46dLKzewnPf56pYrRlAyOdACyOdYzngMbKXM5qYgzFAiZBmuZwHF8XzeigKGcK0WYmpu413Cbo6Ds7YuRClTcNyfS6iJ_yy1TItcZZlbSo0mzNIw01EqgNdQ9hdmJL1iph_D8RPufRJb6pTDgKNL4dUZAD2iZOUKOvKld6';
@@ -31,7 +32,7 @@ export default function PricingPageContent() {
             <div className="flex-grow space-y-6">
               {['Single project node', 'Community support', 'Public repositories only'].map((t) => (
                 <div key={t} className="flex gap-3 items-start">
-                  <span className="material-symbols-outlined text-tertiary text-lg">check_circle</span>
+                  <CheckCircle className="size-5 shrink-0 text-tertiary mt-0.5" strokeWidth={1.75} aria-hidden />
                   <span className="text-sm text-on-surface/80">{t}</span>
                 </div>
               ))}
@@ -62,9 +63,7 @@ export default function PricingPageContent() {
             <div className="flex-grow space-y-6">
               {['Unlimited exports', 'Private projects', 'Team collaboration', 'Advanced analytics'].map((t) => (
                 <div key={t} className="flex gap-3 items-start">
-                  <span className="material-symbols-outlined text-primary-container text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>
-                    check_circle
-                  </span>
+                  <CheckCircle className="size-5 shrink-0 text-primary-container mt-0.5" strokeWidth={1.75} aria-hidden />
                   <span className="text-sm text-on-surface">{t}</span>
                 </div>
               ))}
@@ -91,7 +90,7 @@ export default function PricingPageContent() {
             <div className="flex-grow space-y-6">
               {['Custom SLA agreements', 'Dedicated support engineer', 'On-premise deployment', 'White-label capability'].map((t) => (
                 <div key={t} className="flex gap-3 items-start">
-                  <span className="material-symbols-outlined text-tertiary text-lg">check_circle</span>
+                  <CheckCircle className="size-5 shrink-0 text-tertiary mt-0.5" strokeWidth={1.75} aria-hidden />
                   <span className="text-sm text-on-surface/80">{t}</span>
                 </div>
               ))}
@@ -114,14 +113,14 @@ export default function PricingPageContent() {
             </p>
           </div>
           <div className="bg-surface-container-high p-8 flex flex-col justify-between">
-            <span className="material-symbols-outlined text-primary-container text-4xl">shield</span>
+            <Shield className="size-10 text-primary-container shrink-0" strokeWidth={1.5} aria-hidden />
             <div className="mt-4">
               <p className="font-label text-[10px] uppercase text-primary-container tracking-widest mb-1">Security</p>
               <p className="text-sm font-bold">End-to-End Encryption</p>
             </div>
           </div>
           <div className="bg-surface-container-high p-8 flex flex-col justify-between">
-            <span className="material-symbols-outlined text-tertiary text-4xl">bolt</span>
+            <Zap className="size-10 text-tertiary shrink-0" strokeWidth={1.5} aria-hidden />
             <div className="mt-4">
               <p className="font-label text-[10px] uppercase text-tertiary tracking-widest mb-1">Latency</p>
               <p className="text-sm font-bold">&lt; 15ms Global Transit</p>
