@@ -48,9 +48,9 @@ export default function PricingPageContent() {
           <div className="bg-surface-container p-8 flex flex-col min-h-[500px] relative">
             <div className="absolute inset-x-0 -top-px h-1 bg-gradient-to-r from-transparent via-primary-container to-transparent" />
             <div className="mb-12">
-              <div className="flex justify-between items-start gap-2">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                 <span className="font-label text-[10px] uppercase tracking-widest text-primary-container">Tier 02</span>
-                <span className="px-2 py-0.5 bg-primary-container/10 text-primary-container text-[9px] font-bold uppercase tracking-tighter rounded-sm">
+                <span className="w-fit px-2 py-0.5 text-[9px] font-bold uppercase tracking-tighter text-primary-container bg-primary-container/10 rounded-sm">
                   Highly Recommended
                 </span>
               </div>

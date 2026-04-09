@@ -1,6 +1,7 @@
 import { streamText } from 'ai';
 import { google } from '@ai-sdk/google';
 import { isTransientGeminiError } from '@/lib/ai-providers';
+import { MISTRAL_MODEL_CHAIN, streamMistralCompletion } from '@/lib/mistral-provider';
 import { OPENROUTER_MODEL_CHAIN, streamOpenRouterCompletion } from '@/lib/openrouter-provider';
 
 const STREAMING_GEMINI_CHAIN = [
@@ -18,8 +19,12 @@ export class EnhancedAIManager {
     const base64 = imageBuffer.toString('base64');
     const imageUrl = `data:image/jpeg;base64,${base64}`;
 
-    if (!process.env.OPENROUTER_API_KEY?.trim() && !process.env.GEMINI_API_KEY) {
-      throw new Error('No AI provider configured. Add OPENROUTER_API_KEY or GEMINI_API_KEY.');
+    if (
+      !process.env.OPENROUTER_API_KEY?.trim() &&
+      !process.env.MISTRAL_API_KEY?.trim() &&
+      !process.env.GEMINI_API_KEY
+    ) {
+      throw new Error('No AI provider configured. Add OPENROUTER_API_KEY, MISTRAL_API_KEY, or GEMINI_API_KEY.');
     }
 
     let lastError: unknown;
@@ -50,11 +55,37 @@ export class EnhancedAIManager {
       }
     }
 
+    if (process.env.MISTRAL_API_KEY?.trim()) {
+      for (const { modelId, displayName } of MISTRAL_MODEL_CHAIN) {
+        try {
+          console.log(`Mistral streaming: ${displayName}...`);
+          let fullCode = '';
+          await streamMistralCompletion(modelId, imageBuffer, prompt, (chunk) => {
+            fullCode += chunk;
+            onProgress?.(chunk);
+          });
+          return {
+            code: this.cleanCode(fullCode),
+            provider: displayName,
+          };
+        } catch (error) {
+          lastError = error;
+          console.error(`${displayName} Mistral stream failed:`, error);
+          if (
+            !isTransientGeminiError(error) &&
+            !/404|not found|invalid model/i.test(String(error))
+          ) {
+            throw new Error(error instanceof Error ? error.message : 'Streaming generation failed');
+          }
+        }
+      }
+    }
+
     if (!process.env.GEMINI_API_KEY) {
       throw new Error(
         lastError instanceof Error
-          ? `OpenRouter streaming failed: ${lastError.message}`
-          : 'OpenRouter streaming failed'
+          ? `Streaming failed: ${lastError.message}`
+          : 'Streaming failed (no Gemini fallback configured)'
       );
     }
 

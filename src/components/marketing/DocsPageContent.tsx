@@ -71,8 +71,8 @@ export default function DocsPageContent() {
           </div>
         </aside>
 
-        <main className="md:ml-64 flex-1 flex w-full min-w-0">
-          <div className="flex-1 max-w-4xl px-6 md:px-12 py-12 md:py-16">
+        <main className="flex w-full min-w-0 flex-1 md:ml-64">
+          <div className="flex-1 max-w-4xl overflow-x-auto px-4 py-10 sm:px-6 md:px-12 md:py-16">
             <div className="mb-12">
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-[10px] uppercase tracking-[0.3em] text-primary-container font-bold">Documentation</span>

@@ -5,7 +5,7 @@ const GITHUB = 'https://github.com/KOUSTAV2409/sstocode';
 export default function MarketingFooter() {
   return (
     <footer className="w-full border-t border-white/5 bg-obsidian-nav">
-      <div className="flex flex-col md:flex-row justify-between items-center w-full px-6 md:px-12 py-12 md:py-16 max-w-[1440px] mx-auto gap-8">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-8 px-4 py-10 md:flex-row md:justify-between md:px-12 md:py-16">
         <Link href="/" className="text-lg font-black text-obsidian-on font-headline hover:text-obsidian-gold transition-colors">
           sstocode
         </Link>
@@ -42,7 +42,7 @@ export default function MarketingFooter() {
             Sign in
           </Link>
         </nav>
-        <p className="text-obsidian-on/40 font-sans text-xs uppercase tracking-widest text-center md:text-right">
+        <p className="max-w-full text-center font-sans text-xs uppercase tracking-widest text-obsidian-on/40 break-words md:text-right">
           © {new Date().getFullYear()} sstocode · open source design-to-code
         </p>
       </div>

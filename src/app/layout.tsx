@@ -58,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth dark">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen bg-obsidian-bg text-obsidian-on selection:bg-obsidian-gold/30 selection:text-obsidian-on-primary`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen overflow-x-hidden bg-obsidian-bg text-obsidian-on selection:bg-obsidian-gold/30 selection:text-obsidian-on-primary`}
       >
         <ConditionalHeader />
         {children}

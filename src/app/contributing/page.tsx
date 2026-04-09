@@ -67,7 +67,7 @@ export default function ContributingPage() {
 cd sstocode
 npm install
 cp .env.local.example .env.local
-# Add your GEMINI_API_KEY to .env.local
+# Add GEMINI_API_KEY (and/or OPENROUTER_API_KEY / MISTRAL_API_KEY) to .env.local
 npm run dev`}
                 </pre>
               </div>

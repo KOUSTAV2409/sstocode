@@ -55,10 +55,11 @@ export default function HomeLanding() {
   return (
     <div className="min-h-screen bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
       <main>
-        <section className="relative pt-12 sm:pt-16 md:pt-20 pb-32 overflow-hidden">
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-            <div className="text-center mb-24">
-              <h1 className="font-headline text-5xl sm:text-7xl md:text-8xl font-bold tracking-tighter text-on-surface leading-[0.9] mb-8">
+        {/* pt: clear fixed header (h-16) + breathing room — was pt-12 and overlapped nav on small screens */}
+        <section className="relative overflow-hidden pb-32 pt-24 sm:pt-28 md:pt-32">
+          <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-12">
+            <div className="mb-16 text-center sm:mb-24">
+              <h1 className="mb-8 font-headline text-4xl font-bold leading-[0.95] tracking-tighter text-on-surface break-words sm:text-5xl md:text-7xl md:leading-[0.9] lg:text-8xl">
                 From Screenshot to
                 <br />
                 <span className="text-primary-container">Production-Ready Code</span>
@@ -70,16 +71,16 @@ export default function HomeLanding() {
                   <strong className="text-on-surface">sstocode</strong> turns UI screenshots into editable React and Tailwind —
                   upload a frame, generate code with Gemini, then refine in the browser with a live preview.
                 </p>
-                <div className="flex gap-4 flex-wrap">
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                   <Link
                     href="#upload"
-                    className="metallic-luster text-on-primary px-10 py-4 font-bold text-lg tracking-tight hover:opacity-90 transition-opacity inline-block text-center"
+                    className="metallic-luster inline-block px-8 py-3 text-center text-base font-bold tracking-tight text-on-primary transition-opacity hover:opacity-90 sm:px-10 sm:py-4 sm:text-lg"
                   >
                     Upload a screenshot
                   </Link>
                   <Link
                     href="/docs"
-                    className="bg-surface-bright text-on-surface px-10 py-4 font-bold text-lg tracking-tight hover:bg-surface-container-high transition-colors inline-block text-center"
+                    className="inline-block bg-surface-bright px-8 py-3 text-center text-base font-bold tracking-tight text-on-surface transition-colors hover:bg-surface-container-high sm:px-10 sm:py-4 sm:text-lg"
                   >
                     Read the docs
                   </Link>
@@ -92,7 +93,7 @@ export default function HomeLanding() {
                   .
                 </p>
               </div>
-              <div id="upload" className="relative scroll-mt-28">
+              <div id="upload" className="relative scroll-mt-32">
                 <p className="sr-only">Upload a UI screenshot to generate React code</p>
                 <div className="rounded-sm border border-outline-variant/20 bg-surface-container-low/50 p-3 md:p-4">
                   <UploadZone />
@@ -132,7 +133,7 @@ export default function HomeLanding() {
                 />
                 <div className="h-px w-16 md:w-24 bg-linear-to-r from-transparent via-primary-container/30 to-transparent hidden md:block" />
               </div>
-              <div className="flex-1 w-full bg-[#001111] p-6 font-mono text-sm leading-relaxed overflow-hidden">
+              <div className="min-w-0 flex-1 w-full overflow-x-auto bg-[#001111] p-4 font-mono text-sm leading-relaxed sm:p-6">
                 <div className="flex gap-2 mb-4">
                   <div className="w-3 h-3 rounded-full bg-error/40" />
                   <div className="w-3 h-3 rounded-full bg-primary-container/40" />
@@ -175,19 +176,22 @@ export default function HomeLanding() {
               <h2 className="font-headline text-4xl font-bold tracking-tight mb-4">Deep Inspection</h2>
               <div className="w-12 h-1 bg-primary-container" />
             </div>
-            <div className="obsidian-glass border border-white/5 overflow-hidden">
-              <div className="flex border-b border-white/5 bg-surface-container">
-                <button type="button" className="px-8 py-4 text-xs font-bold tracking-widest text-primary-container border-r border-white/5">
+            <div className="obsidian-glass overflow-hidden border border-white/5">
+              <div className="flex min-w-0 overflow-x-auto border-b border-white/5 bg-surface-container [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <button
+                  type="button"
+                  className="shrink-0 border-r border-white/5 px-4 py-3 text-xs font-bold tracking-widest text-primary-container sm:px-8 sm:py-4"
+                >
                   PREVIEW.TSX
                 </button>
                 <button
                   type="button"
-                  className="px-8 py-4 text-xs font-bold tracking-widest text-on-surface/40 hover:text-on-surface border-r border-white/5"
+                  className="shrink-0 border-r border-white/5 px-4 py-3 text-xs font-bold tracking-widest text-on-surface/40 hover:text-on-surface sm:px-8 sm:py-4"
                 >
                   GLOBALS.CSS
                 </button>
-                <div className="flex-1" />
-                <div className="flex items-center gap-4 px-6">
+                <div className="min-w-2 flex-1" />
+                <div className="flex shrink-0 items-center gap-3 px-3 sm:gap-4 sm:px-6">
                   <Download
                     className="size-5 text-on-surface/40 cursor-pointer hover:text-on-surface transition-colors"
                     strokeWidth={1.75}
@@ -195,28 +199,33 @@ export default function HomeLanding() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col lg:flex-row min-h-[600px]">
-                <div className="lg:w-1/2 p-8 bg-surface-container-lowest font-mono text-xs overflow-auto">
+              <div className="flex min-h-[min(600px,85vh)] flex-col lg:min-h-[600px] lg:flex-row">
+                <div className="min-w-0 overflow-auto bg-surface-container-lowest p-4 font-mono text-xs sm:p-8 lg:w-1/2">
                   <div className="flex flex-col gap-1">
                     {previewLines.map((row) => (
-                      <div key={row.n} className={`flex gap-4 ${row.dim ? 'opacity-40' : ''}`}>
-                        <span className="w-4">{row.n}</span>
-                        <span className={row.pl}>{row.line}</span>
+                      <div key={row.n} className={`flex min-w-0 gap-2 sm:gap-4 ${row.dim ? 'opacity-40' : ''}`}>
+                        <span className="w-4 shrink-0 tabular-nums">{row.n}</span>
+                        <span className={`min-w-0 break-all font-mono sm:break-normal ${row.pl ?? ''}`}>{row.line}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="lg:w-1/2 bg-white flex items-center justify-center p-12 overflow-hidden relative">
-                  <div className="absolute top-4 left-4 bg-surface-container-lowest text-on-surface px-3 py-1 text-[10px] font-bold tracking-widest">
-                    LIVE_RENDER
+                {/* Stacked label + headline on mobile avoids absolute LIVE_RENDER overlapping the h2 */}
+                <div className="flex min-w-0 flex-1 flex-col justify-center gap-6 overflow-hidden bg-white p-6 sm:min-h-0 sm:gap-8 sm:p-12 lg:w-1/2">
+                  <div className="shrink-0">
+                    <span className="inline-block rounded-sm bg-surface-container-lowest px-2 py-1 text-[10px] font-bold tracking-widest text-on-surface">
+                      LIVE_RENDER
+                    </span>
                   </div>
-                  <div className="text-center w-full max-w-md">
-                    <h2 className="text-[#001717] text-3xl sm:text-5xl font-black tracking-tighter leading-none mb-8">
+                  <div className="mx-auto w-full max-w-md text-center">
+                    <h2 className="mb-6 text-xl font-black leading-tight tracking-tighter text-[#001717] sm:mb-8 sm:text-3xl sm:leading-none md:text-5xl">
                       THE FUTURE OF DEVELOPMENT IS VISUAL
                     </h2>
-                    <div className="flex justify-center gap-4 flex-wrap">
-                      <div className="bg-[#001717] text-white px-8 py-3 font-bold text-sm">GET STARTED</div>
-                      <div className="border-2 border-[#001717] text-[#001717] px-8 py-3 font-bold text-sm">LEARN MORE</div>
+                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+                      <div className="bg-[#001717] px-6 py-2.5 text-sm font-bold text-white sm:px-8 sm:py-3">GET STARTED</div>
+                      <div className="border-2 border-[#001717] px-6 py-2.5 text-sm font-bold text-[#001717] sm:px-8 sm:py-3">
+                        LEARN MORE
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -227,27 +236,27 @@ export default function HomeLanding() {
 
         <section className="py-40 bg-surface">
           <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-            <div className="bg-surface-container p-12 md:p-20 text-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-container/10 to-transparent pointer-events-none" />
-              <h2 className="font-headline text-4xl sm:text-6xl font-bold tracking-tighter mb-8 relative z-10">
+            <div className="relative overflow-hidden bg-surface-container p-6 text-center sm:p-12 md:p-20">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary-container/10 to-transparent" />
+              <h2 className="relative z-10 mb-6 font-headline text-3xl font-bold tracking-tighter break-words sm:mb-8 sm:text-4xl md:text-6xl">
                 READY TO SHIP
                 <br />
                 FROM SCREENSHOTS?
               </h2>
-              <p className="text-on-surface/60 text-lg mb-12 max-w-2xl mx-auto relative z-10">
+              <p className="relative z-10 mx-auto mb-10 max-w-2xl px-1 text-base text-on-surface/60 sm:mb-12 sm:text-lg">
                 Clone sstocode, add your Gemini key, and go from mockup to React + Tailwind in one flow — open source and built for
                 builders.
               </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
+              <div className="relative z-10 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
                 <Link
                   href="/contributing"
-                  className="metallic-luster text-on-primary px-12 py-5 font-bold text-xl tracking-tight hover:opacity-90 inline-block text-center"
+                  className="metallic-luster inline-block px-8 py-4 text-center text-lg font-bold tracking-tight text-on-primary hover:opacity-90 sm:px-12 sm:py-5 sm:text-xl"
                 >
                   Contribute or run locally
                 </Link>
                 <a
                   href="mailto:koustavganguly24@gmail.com"
-                  className="bg-surface-bright text-on-surface px-12 py-5 font-bold text-xl tracking-tight hover:bg-surface-container-high transition-colors inline-block text-center"
+                  className="inline-block bg-surface-bright px-8 py-4 text-center text-lg font-bold tracking-tight text-on-surface transition-colors hover:bg-surface-container-high sm:px-12 sm:py-5 sm:text-xl"
                 >
                   Contact
                 </a>

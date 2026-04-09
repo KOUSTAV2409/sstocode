@@ -44,9 +44,10 @@ function getFriendlyErrorMessage(error: string): string {
     error.includes('API key') ||
     error.includes('GEMINI') ||
     error.includes('OPENROUTER') ||
+    error.includes('MISTRAL') ||
     error.includes('No AI provider configured')
   ) {
-    return 'Add OPENROUTER_API_KEY and/or GEMINI_API_KEY to your environment (.env.local).';
+    return 'Add OPENROUTER_API_KEY, MISTRAL_API_KEY, and/or GEMINI_API_KEY to your environment (.env.local).';
   }
   if (
     error.includes('503') ||
@@ -215,7 +216,7 @@ export default function UploadZone() {
           >
             <div
               {...getRootProps()}
-              className={`border-2 border-dashed rounded-sm p-10 md:p-14 text-center cursor-pointer transition-all duration-300 bg-obsidian-surface-lowest border-obsidian-outline/40
+              className={`cursor-pointer rounded-sm border-2 border-dashed border-obsidian-outline/40 bg-obsidian-surface-lowest p-6 text-center transition-all duration-300 sm:p-10 md:p-14
                 ${isDragActive 
                   ? 'border-obsidian-gold bg-obsidian-gold/5 scale-[1.01]' 
                   : 'hover:border-obsidian-gold/50 hover:bg-obsidian-surface-low/80'
@@ -254,9 +255,9 @@ export default function UploadZone() {
                 Try with sample design
               </button>
               
-              <div className="flex items-center justify-center gap-2">
-                <Settings className="w-4 h-4 text-obsidian-on/50" />
-                <span className="text-sm text-obsidian-on/50">AI Model:</span>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <Settings className="h-4 w-4 shrink-0 text-obsidian-on/50" />
+                <span className="shrink-0 text-sm text-obsidian-on/50">AI Model:</span>
                 <AIProviderSelector />
               </div>
               
@@ -264,10 +265,10 @@ export default function UploadZone() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 flex items-center gap-2 text-red-400 text-sm"
+                  className="mt-4 flex items-start gap-2 text-left text-sm text-red-400"
                 >
-                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                  {error}
+                  <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span className="min-w-0 break-words">{error}</span>
                 </motion.div>
               )}
             </div>
@@ -279,10 +280,10 @@ export default function UploadZone() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="border border-obsidian-outline/30 rounded-sm p-6 bg-obsidian-surface-low obsidian-glass"
+            className="obsidian-glass rounded-sm border border-obsidian-outline/30 bg-obsidian-surface-low p-4 sm:p-6"
           >
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center gap-3">
+            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex min-w-0 items-center gap-3">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
@@ -291,10 +292,10 @@ export default function UploadZone() {
                 >
                   <CheckCircle className="w-5 h-5 text-white" />
                 </motion.div>
-                <div>
+                <div className="min-w-0">
                   <p className="font-medium text-obsidian-on">Design uploaded successfully</p>
                   {imageInfo && (
-                    <p className="text-sm text-obsidian-on/50">
+                    <p className="text-sm text-obsidian-on/50 break-words">
                       {imageInfo.width}×{imageInfo.height} · {imageInfo.size}
                     </p>
                   )}
@@ -304,7 +305,7 @@ export default function UploadZone() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={handleReset}
-                className="p-2 hover:bg-obsidian-surface rounded-sm transition-colors text-obsidian-on/70"
+                className="self-end p-2 text-obsidian-on/70 transition-colors hover:bg-obsidian-surface rounded-sm sm:self-auto"
                 aria-label="Remove and upload new"
               >
                 <X className="w-4 h-4" />
@@ -341,17 +342,17 @@ export default function UploadZone() {
               </motion.div>
             )}
 
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-              <div className="flex items-center gap-2">
-                <Settings className="w-4 h-4 text-obsidian-on/50" />
-                <span className="text-sm text-obsidian-on/50">AI Model:</span>
+            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4">
+              <div className="flex min-w-0 flex-wrap items-center gap-2">
+                <Settings className="h-4 w-4 shrink-0 text-obsidian-on/50" />
+                <span className="shrink-0 text-sm text-obsidian-on/50">AI Model:</span>
                 <AIProviderSelector />
               </div>
               {generatedCode && (
                 <button
                   type="button"
                   onClick={() => setIsCompareMode(!isCompareMode)}
-                  className="text-sm text-obsidian-tertiary hover:text-obsidian-gold transition-colors"
+                  className="text-left text-sm text-obsidian-tertiary transition-colors hover:text-obsidian-gold sm:text-right"
                 >
                   {isCompareMode ? 'Hide compare' : 'Compare original vs generated'}
                 </button>
@@ -428,10 +429,10 @@ export default function UploadZone() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-4 flex items-center gap-2 text-red-400 text-sm"
+                className="mt-4 flex items-start gap-2 text-left text-sm text-red-400"
               >
-                <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                {error}
+                <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+                <span className="min-w-0 break-words">{error}</span>
               </motion.div>
             )}
           </motion.div>
