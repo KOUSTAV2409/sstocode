@@ -100,14 +100,14 @@ export default function PreviewContent() {
   return (
     <div className="h-screen flex flex-col bg-obsidian-bg text-obsidian-on overflow-hidden">
       {/* Preview Header */}
-      <header className="h-12 border-b border-obsidian-outline/30 flex items-center justify-between px-4 bg-obsidian-surface-low/80 shrink-0 flex-wrap gap-2">
-        <div className="flex items-center gap-3">
-          <Link href="/" className="flex items-center gap-2 text-obsidian-on/50 hover:text-obsidian-gold transition-colors">
-            <Home className="w-4 h-4" />
-            <span className="text-sm font-medium hidden sm:inline">Back</span>
+      <header className="flex min-h-12 shrink-0 flex-wrap items-center justify-between gap-x-2 gap-y-2 border-b border-obsidian-outline/30 bg-obsidian-surface-low/80 px-3 py-2 sm:h-12 sm:flex-nowrap sm:px-4 sm:py-0">
+        <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
+          <Link href="/" className="flex shrink-0 items-center gap-1.5 text-obsidian-on/50 transition-colors hover:text-obsidian-gold sm:gap-2">
+            <Home className="h-4 w-4 shrink-0" />
+            <span className="hidden text-sm font-medium sm:inline">Back</span>
           </Link>
-          <div className="h-4 w-px bg-obsidian-outline/40 hidden sm:block" />
-          <span className="text-sm text-obsidian-on/80">Component Preview</span>
+          <div className="hidden h-4 w-px bg-obsidian-outline/40 sm:block" />
+          <span className="truncate text-xs text-obsidian-on/80 sm:text-sm">Component Preview</span>
           <div className="hidden lg:flex items-center gap-4 text-[11px] uppercase tracking-widest text-obsidian-on/40">
             <Link href="/docs" className="hover:text-obsidian-gold transition-colors">
               Docs
@@ -121,7 +121,7 @@ export default function PreviewContent() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex w-full shrink-0 flex-wrap items-center justify-end gap-2 sm:w-auto">
           {/* Settings dropdown */}
           <div className="relative">
             <button
@@ -134,7 +134,7 @@ export default function PreviewContent() {
             {showSettings && (
               <>
                 <div className="fixed inset-0 z-40" onClick={() => setShowSettings(false)} />
-                <div className="absolute right-0 top-full mt-1 z-50 w-48 py-2 bg-obsidian-surface-low border border-obsidian-outline/40 rounded-sm shadow-xl obsidian-glass">
+                <div className="obsidian-glass absolute right-0 top-full z-50 mt-1 w-48 max-w-[min(12rem,calc(100vw-1.5rem))] rounded-sm border border-obsidian-outline/40 bg-obsidian-surface-low py-2 shadow-xl">
                   <p className="px-3 py-1 text-xs text-obsidian-on/45 font-medium">Device</p>
                   <div className="flex gap-1 px-2 py-1">
                     {(['desktop', 'tablet', 'mobile'] as const).map((mode) => (
@@ -232,20 +232,20 @@ export default function PreviewContent() {
         </ResizablePanelGroup>
 
         {/* Mobile: stacked layout */}
-        <div className="flex-1 flex flex-col md:hidden overflow-hidden">
-          <div className="flex-1 min-h-0 border-b border-obsidian-outline/30">
-            <div className="h-8 border-b border-obsidian-outline/25 flex items-center px-3 bg-obsidian-surface-low/60">
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden md:hidden">
+          <div className="flex min-h-0 flex-[0_1_auto] flex-col border-b border-obsidian-outline/30">
+            <div className="flex h-8 shrink-0 items-center border-b border-obsidian-outline/25 bg-obsidian-surface-low/60 px-3">
               <span className="text-xs font-medium text-obsidian-on/50">Editor</span>
             </div>
-            <div className="h-48 min-h-[150px]">
+            <div className="h-[min(40vh,220px)] min-h-[140px] shrink-0">
               <CodeEditor code={code} onChange={(val) => setCode(val || '')} />
             </div>
           </div>
-          <div className="flex-1 min-h-0">
-            <div className="h-8 border-b border-obsidian-outline/25 flex items-center px-3 bg-obsidian-surface-low/60">
+          <div className="flex min-h-0 flex-1 flex-col">
+            <div className="flex h-8 shrink-0 items-center border-b border-obsidian-outline/25 bg-obsidian-surface-low/60 px-3">
               <span className="text-xs font-medium text-obsidian-on/50">Preview</span>
             </div>
-            <div className="h-full overflow-auto">
+            <div className="min-h-0 flex-1 overflow-auto">
               <LivePreview code={code} deviceMode="mobile" zoomLevel={zoomLevel} />
             </div>
           </div>

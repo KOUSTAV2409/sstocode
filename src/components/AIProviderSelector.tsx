@@ -28,7 +28,7 @@ export default function AIProviderSelector() {
         className="flex items-center gap-2 px-4 py-2 bg-obsidian-surface-highest border border-obsidian-outline/40 rounded-sm text-sm text-obsidian-on"
       >
         <Sparkles className="w-4 h-4 text-obsidian-gold shrink-0" />
-        <span className="truncate max-w-[200px]" title={label}>
+        <span className="max-w-[min(200px,calc(100vw-8rem))] truncate sm:max-w-[200px]" title={label}>
           {label}
         </span>
       </motion.div>

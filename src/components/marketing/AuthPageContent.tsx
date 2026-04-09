@@ -53,8 +53,8 @@ export default function AuthPageContent() {
           </div>
 
           <div className="flex-1 flex items-center justify-center">
-            <div className="glass-panel w-full max-w-md p-8 md:p-10 border border-outline-variant/15 relative">
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-primary-container flex items-center justify-center text-on-primary">
+            <div className="glass-panel relative w-full max-w-md border border-outline-variant/15 p-6 sm:p-8 md:p-10">
+              <div className="absolute right-2 top-2 flex h-10 w-10 items-center justify-center bg-primary-container text-on-primary sm:-right-4 sm:-top-4 sm:h-12 sm:w-12">
                 <Unlock className="size-6" strokeWidth={1.75} aria-hidden />
               </div>
               <div className="space-y-8">

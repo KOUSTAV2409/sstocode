@@ -48,12 +48,12 @@ export default function Header() {
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className="fixed top-0 left-0 right-0 z-50 bg-obsidian-bg border-b border-obsidian-surface-high/40"
     >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 h-16 flex items-center justify-between gap-3 min-w-0">
-        <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group shrink-0 min-w-0">
-          <div className="w-8 h-8 rounded-sm bg-obsidian-gold flex items-center justify-center text-obsidian-on-primary shrink-0">
+      <div className="max-w-[1440px] mx-auto px-3 sm:px-6 md:px-12 h-16 flex items-center justify-between gap-2 sm:gap-3 min-w-0">
+        <Link href="/" className="flex min-w-0 max-w-[min(100%,11rem)] items-center gap-1.5 sm:gap-2.5 group sm:max-w-none sm:shrink-0">
+          <div className="w-8 h-8 shrink-0 rounded-sm bg-obsidian-gold flex items-center justify-center text-obsidian-on-primary">
             <Logo size="sm" />
           </div>
-          <span className="font-headline text-lg sm:text-xl font-bold tracking-tighter text-obsidian-gold truncate">
+          <span className="font-headline truncate text-base font-bold tracking-tighter text-obsidian-gold sm:text-lg md:text-xl">
             SSTOCODE
           </span>
         </Link>
@@ -78,10 +78,10 @@ export default function Header() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-4 md:gap-6 shrink-0">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-4 md:gap-6">
           <button
             type="button"
-            className="lg:hidden p-2 rounded-sm text-obsidian-on hover:bg-obsidian-surface/80 -mr-1"
+            className="lg:hidden shrink-0 rounded-sm p-2 text-obsidian-on hover:bg-obsidian-surface/80"
             onClick={() => setMobileOpen(true)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
@@ -98,7 +98,7 @@ export default function Header() {
           </Link>
           <Link
             href="/#upload"
-            className="metallic-luster text-obsidian-on-primary px-3 py-2 sm:px-4 rounded-sm text-xs font-bold tracking-tight hover:opacity-90 active:scale-95 transition-transform whitespace-nowrap"
+            className="metallic-luster whitespace-nowrap rounded-sm px-2.5 py-2 text-[11px] font-bold tracking-tight text-obsidian-on-primary transition-transform hover:opacity-90 active:scale-95 sm:px-4 sm:text-xs"
           >
             Upload
           </Link>
