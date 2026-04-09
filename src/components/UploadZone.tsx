@@ -44,9 +44,10 @@ function getFriendlyErrorMessage(error: string): string {
     error.includes('API key') ||
     error.includes('GEMINI') ||
     error.includes('OPENROUTER') ||
+    error.includes('MISTRAL') ||
     error.includes('No AI provider configured')
   ) {
-    return 'Add OPENROUTER_API_KEY and/or GEMINI_API_KEY to your environment (.env.local).';
+    return 'Add OPENROUTER_API_KEY, MISTRAL_API_KEY, and/or GEMINI_API_KEY to your environment (.env.local).';
   }
   if (
     error.includes('503') ||

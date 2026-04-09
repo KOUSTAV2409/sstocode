@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { shouldRetryGeneration } from '@/lib/code-validation';
 import type { AIProvider, GenerateResult } from '@/lib/ai-types';
+import { MISTRAL_MODEL_CHAIN, MistralProvider } from '@/lib/mistral-provider';
 import { OPENROUTER_MODEL_CHAIN, OpenRouterProvider } from '@/lib/openrouter-provider';
 
 export type { AIProvider, GenerateResult } from '@/lib/ai-types';
@@ -103,7 +104,7 @@ const GEMINI_MODEL_CHAIN: { modelId: string; displayName: string }[] = [
 
 const TRANSIENT_ATTEMPTS = 3;
 
-// AI Manager: OpenRouter models first (if OPENROUTER_API_KEY), then direct Gemini (if GEMINI_API_KEY)
+// AI Manager: OpenRouter → Mistral (Pixtral) → direct Gemini when keys are set
 export class AIManager {
   private providers: AIProvider[];
 
@@ -116,6 +117,11 @@ export class AIManager {
     if (process.env.OPENROUTER_API_KEY?.trim()) {
       for (const c of OPENROUTER_MODEL_CHAIN) {
         list.push(new OpenRouterProvider(c.modelId, c.displayName));
+      }
+    }
+    if (process.env.MISTRAL_API_KEY?.trim()) {
+      for (const c of MISTRAL_MODEL_CHAIN) {
+        list.push(new MistralProvider(c.modelId, c.displayName));
       }
     }
     if (process.env.GEMINI_API_KEY?.trim()) {
@@ -138,7 +144,7 @@ export class AIManager {
 
     if (availableProviders.length === 0) {
       throw new Error(
-        'No AI provider configured. Add OPENROUTER_API_KEY (OpenRouter) and/or GEMINI_API_KEY (Google AI Studio) to your environment.'
+        'No AI provider configured. Add OPENROUTER_API_KEY, MISTRAL_API_KEY (Pixtral vision), and/or GEMINI_API_KEY to your environment.'
       );
     }
 
@@ -208,7 +214,7 @@ export class AIManager {
             throw new Error(
               error instanceof Error
                 ? error.message
-                : 'API rejected the request. Check OPENROUTER_API_KEY / GEMINI_API_KEY and billing.'
+                : 'API rejected the request. Check OPENROUTER_API_KEY / MISTRAL_API_KEY / GEMINI_API_KEY and billing.'
             );
           }
 
@@ -247,7 +253,7 @@ export class AIManager {
         ? ' The service may be busy — wait a minute and try again.'
         : '';
     throw new Error(
-      `Generation failed after trying available models (OpenRouter and/or Gemini).${hint} ${lastError instanceof Error ? lastError.message : ''}`.trim()
+      `Generation failed after trying available models.${hint} ${lastError instanceof Error ? lastError.message : ''}`.trim()
     );
   }
 
