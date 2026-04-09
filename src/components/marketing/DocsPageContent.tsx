@@ -1,15 +1,31 @@
 import Link from 'next/link';
+import type { LucideIcon } from 'lucide-react';
+import {
+  Braces,
+  Code2,
+  Copy,
+  GitBranch,
+  HelpCircle,
+  Info,
+  MessageCircle,
+  Puzzle,
+  Rocket,
+  Sparkles,
+  Terminal,
+  UserCircle,
+  Zap,
+} from 'lucide-react';
 
 const DOC_IMG =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuDkYoQByKjBJOoyLGNligq1e-MGC9PNBXAVaQ3DQTsDh3wUNEGeM70ce7YVA_apshwEdj0GbLen5GaIytSPFDKqrUO9YWxYwPUJe1lDNiYYdDXggAkn2ueDt8AeWsSeXXSl9PHoqcXyVL1YcwPU2oo6Dt9URYLNd75pIpUzlJQv_93D03K8575l46deMx1vqeKmKkl0shPsP1tLPggxxpWXLCu9kT-VlSGzXYcZs34Vam3PIftnxxPEKCVb8MrIwM1MHWYpgPqnnKTA';
 
-const sidebarNav = [
-  { icon: 'rocket_launch', label: 'Getting Started', active: true, href: '#' },
-  { icon: 'account_tree', label: 'Core Concepts', href: '#' },
-  { icon: 'api', label: 'API Reference', href: '#' },
-  { icon: 'terminal', label: 'CLI Tool', href: '#' },
-  { icon: 'extension', label: 'Figma Plugin', href: '#' },
-  { icon: 'code_blocks', label: 'Examples', href: '#' },
+const sidebarNav: { Icon: LucideIcon; label: string; active: boolean; href: string }[] = [
+  { Icon: Rocket, label: 'Getting Started', active: true, href: '#' },
+  { Icon: GitBranch, label: 'Core Concepts', active: false, href: '#' },
+  { Icon: Braces, label: 'API Reference', active: false, href: '#' },
+  { Icon: Terminal, label: 'CLI Tool', active: false, href: '#' },
+  { Icon: Puzzle, label: 'Figma Plugin', active: false, href: '#' },
+  { Icon: Code2, label: 'Examples', active: false, href: '#' },
 ];
 
 export default function DocsPageContent() {
@@ -22,20 +38,18 @@ export default function DocsPageContent() {
             <p className="text-on-surface/40 text-[10px] uppercase tracking-[0.2em]">sstocode · open source</p>
           </div>
           <nav className="flex flex-col gap-y-1" aria-label="Documentation">
-            {sidebarNav.map((item) => (
+            {sidebarNav.map(({ Icon, label, active, href }) => (
               <a
-                key={item.label}
-                href={item.href}
+                key={label}
+                href={href}
                 className={
-                  item.active
+                  active
                     ? 'text-primary-container border-l-2 border-primary-container pl-4 bg-gradient-to-r from-primary-container/10 to-transparent font-body text-sm tracking-wide uppercase font-bold py-2 flex items-center gap-3'
                     : 'text-on-surface/60 pl-4 border-l-2 border-transparent hover:text-on-surface hover:bg-white/5 font-body text-sm tracking-wide uppercase font-bold py-2 flex items-center gap-3 transition-all duration-150 ease-in-out'
                 }
               >
-                <span className="material-symbols-outlined text-lg" style={item.active ? { fontVariationSettings: "'FILL' 1" } : undefined}>
-                  {item.icon}
-                </span>
-                {item.label}
+                <Icon className="size-5 shrink-0 opacity-90" strokeWidth={1.75} aria-hidden />
+                {label}
               </a>
             ))}
           </nav>
@@ -44,14 +58,14 @@ export default function DocsPageContent() {
               href="/contributing"
               className="flex items-center gap-3 text-on-surface/60 hover:text-primary-container text-xs font-bold uppercase tracking-widest transition-colors"
             >
-              <span className="material-symbols-outlined text-sm">help_center</span>
+              <HelpCircle className="size-4 shrink-0" strokeWidth={1.75} aria-hidden />
               Contributing
             </Link>
             <Link
               href="/auth"
               className="flex items-center gap-3 text-on-surface/60 hover:text-primary-container text-xs font-bold uppercase tracking-widest transition-colors"
             >
-              <span className="material-symbols-outlined text-sm">account_circle</span>
+              <UserCircle className="size-4 shrink-0" strokeWidth={1.75} aria-hidden />
               Sign in
             </Link>
           </div>
@@ -75,9 +89,7 @@ export default function DocsPageContent() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
               <div className="p-6 bg-surface-container-low rounded-lg border-l-2 border-primary-container">
-                <span className="material-symbols-outlined text-primary-container mb-4" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  bolt
-                </span>
+                <Zap className="size-8 text-primary-container mb-4" strokeWidth={1.75} aria-hidden />
                 <h3 className="text-lg font-headline font-bold mb-2">Zero Configuration</h3>
                 <p className="text-sm text-on-surface-variant leading-relaxed">
                   Clone the repo, run <code className="text-tertiary">npm install</code>, copy env — no extra design system to wire up
@@ -85,9 +97,7 @@ export default function DocsPageContent() {
                 </p>
               </div>
               <div className="p-6 bg-surface-container-low rounded-lg">
-                <span className="material-symbols-outlined text-tertiary-fixed mb-4" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  auto_awesome
-                </span>
+                <Sparkles className="size-8 text-tertiary mb-4" strokeWidth={1.75} aria-hidden />
                 <h3 className="text-lg font-headline font-bold mb-2">Type-Safe Output</h3>
                 <p className="text-sm text-on-surface-variant leading-relaxed">
                   Generated output is TypeScript-first React so you can tighten types and refactor like any hand-written component.
@@ -104,7 +114,7 @@ export default function DocsPageContent() {
               <div className="code-block rounded-lg p-1 overflow-hidden">
                 <div className="flex items-center justify-between px-4 py-2 bg-surface-container-highest/30">
                   <span className="text-[10px] font-bold tracking-widest text-on-surface/40 uppercase">Terminal</span>
-                  <span className="material-symbols-outlined text-sm hover:text-[#ffe0b0] transition-colors">content_copy</span>
+                  <Copy className="size-4 text-on-surface/40 shrink-0" strokeWidth={1.75} aria-hidden />
                 </div>
                 <pre className="p-6 text-sm leading-relaxed overflow-x-auto">
                   <code className="text-on-surface">
@@ -134,7 +144,7 @@ export default function DocsPageContent() {
               <div className="code-block rounded-lg p-1 overflow-hidden">
                 <div className="flex items-center justify-between px-4 py-2 bg-surface-container-highest/30">
                   <span className="text-[10px] font-bold tracking-widest text-on-surface/40 uppercase">Terminal</span>
-                  <span className="material-symbols-outlined text-sm hover:text-[#ffe0b0] transition-colors">content_copy</span>
+                  <Copy className="size-4 text-on-surface/40 shrink-0" strokeWidth={1.75} aria-hidden />
                 </div>
                 <pre className="p-6 text-sm leading-relaxed overflow-x-auto">
                   <code className="text-on-surface">
@@ -160,7 +170,7 @@ export default function DocsPageContent() {
               <div className="code-block rounded-lg p-1 overflow-hidden">
                 <div className="flex items-center justify-between px-4 py-2 bg-surface-container-highest/30">
                   <span className="text-[10px] font-bold tracking-widest text-on-surface/40 uppercase">Flow</span>
-                  <span className="material-symbols-outlined text-sm hover:text-[#ffe0b0] transition-colors">content_copy</span>
+                  <Copy className="size-4 text-on-surface/40 shrink-0" strokeWidth={1.75} aria-hidden />
                 </div>
                 <pre className="p-6 text-sm leading-relaxed overflow-x-auto">
                   <code className="text-on-surface">
@@ -174,9 +184,7 @@ export default function DocsPageContent() {
                 </pre>
               </div>
               <div className="mt-8 p-6 bg-surface-container-low rounded-lg border-l-2 border-tertiary flex gap-4">
-                <span className="material-symbols-outlined text-tertiary" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  info
-                </span>
+                <Info className="size-5 text-tertiary shrink-0 mt-0.5" strokeWidth={1.75} aria-hidden />
                 <div>
                   <h4 className="text-sm font-bold uppercase tracking-wider text-tertiary mb-1">Developer note</h4>
                   <p className="text-sm text-on-surface-variant">
@@ -256,7 +264,7 @@ export default function DocsPageContent() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="material-symbols-outlined text-sm">forum</span>
+                  <MessageCircle className="size-4 shrink-0" strokeWidth={1.75} aria-hidden />
                   GitHub Discussions
                 </a>
                 <a
@@ -265,7 +273,7 @@ export default function DocsPageContent() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="material-symbols-outlined text-sm">terminal</span>
+                  <Terminal className="size-4 shrink-0" strokeWidth={1.75} aria-hidden />
                   GitHub Issues
                 </a>
               </div>
