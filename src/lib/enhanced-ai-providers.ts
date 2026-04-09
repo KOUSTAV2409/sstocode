@@ -29,6 +29,47 @@ export class EnhancedAIManager {
 
     let lastError: unknown;
 
+    if (process.env.GEMINI_API_KEY) {
+      for (const { id, label } of STREAMING_GEMINI_CHAIN) {
+        try {
+          console.log(`Streaming with ${label} (direct Gemini)...`);
+          const model = google(id);
+
+          const { textStream } = await streamText({
+            model,
+            messages: [
+              {
+                role: 'user',
+                content: [
+                  { type: 'text', text: prompt },
+                  { type: 'image', image: imageUrl },
+                ],
+              },
+            ],
+            temperature: 0.1,
+            maxRetries: 2,
+          });
+
+          let fullCode = '';
+          for await (const chunk of textStream) {
+            fullCode += chunk;
+            onProgress?.(chunk);
+          }
+
+          return {
+            code: this.cleanCode(fullCode),
+            provider: label,
+          };
+        } catch (error) {
+          lastError = error;
+          console.error(`${label} streaming failed:`, error);
+          if (!isTransientGeminiError(error) && !/404|not found|invalid model/i.test(String(error))) {
+            throw new Error(error instanceof Error ? error.message : 'Streaming generation failed');
+          }
+        }
+      }
+    }
+
     if (process.env.OPENROUTER_API_KEY?.trim()) {
       for (const { modelId, displayName } of OPENROUTER_MODEL_CHAIN) {
         try {
@@ -77,53 +118,6 @@ export class EnhancedAIManager {
           ) {
             throw new Error(error instanceof Error ? error.message : 'Streaming generation failed');
           }
-        }
-      }
-    }
-
-    if (!process.env.GEMINI_API_KEY) {
-      throw new Error(
-        lastError instanceof Error
-          ? `Streaming failed: ${lastError.message}`
-          : 'Streaming failed (no Gemini fallback configured)'
-      );
-    }
-
-    for (const { id, label } of STREAMING_GEMINI_CHAIN) {
-      try {
-        console.log(`Streaming with ${label} (direct Gemini)...`);
-        const model = google(id);
-
-        const { textStream } = await streamText({
-          model,
-          messages: [
-            {
-              role: 'user',
-              content: [
-                { type: 'text', text: prompt },
-                { type: 'image', image: imageUrl },
-              ],
-            },
-          ],
-          temperature: 0.1,
-          maxRetries: 2,
-        });
-
-        let fullCode = '';
-        for await (const chunk of textStream) {
-          fullCode += chunk;
-          onProgress?.(chunk);
-        }
-
-        return {
-          code: this.cleanCode(fullCode),
-          provider: label,
-        };
-      } catch (error) {
-        lastError = error;
-        console.error(`${label} streaming failed:`, error);
-        if (!isTransientGeminiError(error) && !/404|not found|invalid model/i.test(String(error))) {
-          throw new Error(error instanceof Error ? error.message : 'Streaming generation failed');
         }
       }
     }

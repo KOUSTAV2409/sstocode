@@ -104,7 +104,8 @@ const GEMINI_MODEL_CHAIN: { modelId: string; displayName: string }[] = [
 
 const TRANSIENT_ATTEMPTS = 3;
 
-// AI Manager: OpenRouter → Mistral (Pixtral) → direct Gemini when keys are set
+// AI Manager: direct Gemini first when GEMINI_API_KEY is set (same path as original app — best UI/code quality),
+// then OpenRouter, then Mistral as fallbacks / extras.
 export class AIManager {
   private providers: AIProvider[];
 
@@ -114,6 +115,11 @@ export class AIManager {
 
   private buildProviders(): AIProvider[] {
     const list: AIProvider[] = [];
+    if (process.env.GEMINI_API_KEY?.trim()) {
+      for (const c of GEMINI_MODEL_CHAIN) {
+        list.push(new GeminiProvider(c.modelId, c.displayName));
+      }
+    }
     if (process.env.OPENROUTER_API_KEY?.trim()) {
       for (const c of OPENROUTER_MODEL_CHAIN) {
         list.push(new OpenRouterProvider(c.modelId, c.displayName));
@@ -122,11 +128,6 @@ export class AIManager {
     if (process.env.MISTRAL_API_KEY?.trim()) {
       for (const c of MISTRAL_MODEL_CHAIN) {
         list.push(new MistralProvider(c.modelId, c.displayName));
-      }
-    }
-    if (process.env.GEMINI_API_KEY?.trim()) {
-      for (const c of GEMINI_MODEL_CHAIN) {
-        list.push(new GeminiProvider(c.modelId, c.displayName));
       }
     }
     return list;
