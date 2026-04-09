@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CalendarDays, Check, CheckCircle, LayoutGrid, RefreshCw, Terminal } from 'lucide-react';
 
 export default function RoadmapPageContent() {
   return (
@@ -19,15 +20,13 @@ export default function RoadmapPageContent() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <section className="lg:col-span-7 flex flex-col gap-8">
             <div className="flex items-center gap-4 mb-4">
-              <span className="material-symbols-outlined text-primary-container" style={{ fontVariationSettings: "'FILL' 1" }}>
-                cycle
-              </span>
+              <RefreshCw className="size-6 shrink-0 text-primary-container" strokeWidth={1.75} aria-hidden />
               <h2 className="text-[10px] font-label uppercase tracking-[0.3em] text-[#ffe0b0]">In Progress</h2>
             </div>
 
             <div className="bg-surface-container-low p-8 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-4 opacity-10">
-                <span className="material-symbols-outlined text-8xl">grid_view</span>
+                <LayoutGrid className="size-[6.5rem] text-on-surface" strokeWidth={1} aria-hidden />
               </div>
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-6 flex-wrap gap-2">
@@ -51,7 +50,7 @@ export default function RoadmapPageContent() {
             <div className="bg-surface-container-low p-8 relative group">
               <div className="flex items-start gap-8">
                 <div className="w-16 h-16 bg-surface-container flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-primary-container">terminal</span>
+                  <Terminal className="size-8 text-primary-container" strokeWidth={1.75} aria-hidden />
                 </div>
                 <div>
                   <h3 className="text-2xl font-headline font-bold text-on-surface mb-2">Generation quality</h3>
@@ -70,7 +69,7 @@ export default function RoadmapPageContent() {
           <aside className="lg:col-span-5 flex flex-col gap-12">
             <div>
               <div className="flex items-center gap-4 mb-8">
-                <span className="material-symbols-outlined text-on-surface/30">event_note</span>
+                <CalendarDays className="size-6 shrink-0 text-on-surface/30" strokeWidth={1.75} aria-hidden />
                 <h2 className="text-[10px] font-label uppercase tracking-[0.3em] text-on-surface/50">Planned</h2>
               </div>
               <div className="space-y-6">
@@ -97,19 +96,19 @@ export default function RoadmapPageContent() {
 
             <div className="bg-surface-container-low p-8">
               <div className="flex items-center gap-4 mb-8">
-                <span className="material-symbols-outlined text-tertiary">check_circle</span>
+                <CheckCircle className="size-6 shrink-0 text-tertiary" strokeWidth={1.75} aria-hidden />
                 <h2 className="text-[10px] font-label uppercase tracking-[0.3em] text-tertiary">Completed</h2>
               </div>
               <ul className="space-y-6">
                 <li className="flex items-start gap-4">
-                  <span className="material-symbols-outlined text-xs text-on-surface/30 mt-1">done</span>
+                  <Check className="size-4 shrink-0 text-on-surface/30 mt-0.5" strokeWidth={2} aria-hidden />
                   <div>
                     <span className="text-sm font-medium text-on-surface">Screenshot → React + Tailwind</span>
                     <p className="text-[11px] text-on-surface/40">Gemini multimodal generation from UI images.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
-                  <span className="material-symbols-outlined text-xs text-on-surface/30 mt-1">done</span>
+                  <Check className="size-4 shrink-0 text-on-surface/30 mt-0.5" strokeWidth={2} aria-hidden />
                   <div>
                     <span className="text-sm font-medium text-on-surface">Live preview &amp; editor</span>
                     <p className="text-[11px] text-on-surface/40">Monaco + Sandpack workflow.</p>

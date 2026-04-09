@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import UploadZone from '@/components/UploadZone';
 import MarketingFooter from '@/components/marketing/MarketingFooter';
 
@@ -188,9 +188,11 @@ export default function HomeLanding() {
                 </button>
                 <div className="flex-1" />
                 <div className="flex items-center gap-4 px-6">
-                  <span className="material-symbols-outlined text-on-surface/40 text-lg cursor-pointer hover:text-on-surface">
-                    download
-                  </span>
+                  <Download
+                    className="size-5 text-on-surface/40 cursor-pointer hover:text-on-surface transition-colors"
+                    strokeWidth={1.75}
+                    aria-hidden
+                  />
                 </div>
               </div>
               <div className="flex flex-col lg:flex-row min-h-[600px]">

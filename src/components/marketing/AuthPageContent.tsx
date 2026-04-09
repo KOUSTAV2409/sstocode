@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Cloud, Terminal, Unlock } from 'lucide-react';
 import { useState } from 'react';
 
 export default function AuthPageContent() {
@@ -54,7 +55,7 @@ export default function AuthPageContent() {
           <div className="flex-1 flex items-center justify-center">
             <div className="glass-panel w-full max-w-md p-8 md:p-10 border border-outline-variant/15 relative">
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-primary-container flex items-center justify-center text-on-primary">
-                <span className="material-symbols-outlined">lock_open</span>
+                <Unlock className="size-6" strokeWidth={1.75} aria-hidden />
               </div>
               <div className="space-y-8">
                 <div className="flex bg-surface-container-lowest p-1 rounded-sm">
@@ -124,14 +125,14 @@ export default function AuthPageContent() {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-3 bg-surface-bright py-3 text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 transition-transform"
                   >
-                    <span className="material-symbols-outlined text-lg">terminal</span>
+                    <Terminal className="size-5 shrink-0" strokeWidth={1.75} aria-hidden />
                     <span className="text-[10px] font-bold uppercase tracking-widest">GitHub</span>
                   </a>
                   <button
                     type="button"
                     className="flex items-center justify-center gap-3 bg-surface-bright py-3 text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 transition-transform"
                   >
-                    <span className="material-symbols-outlined text-lg">cloud</span>
+                    <Cloud className="size-5 shrink-0" strokeWidth={1.75} aria-hidden />
                     <span className="text-[10px] font-bold uppercase tracking-widest">Google</span>
                   </button>
                 </div>
