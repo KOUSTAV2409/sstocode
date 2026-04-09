@@ -2,6 +2,16 @@ import type { AIProvider, GenerateResult } from '@/lib/ai-types';
 
 const MISTRAL_URL = 'https://api.mistral.ai/v1/chat/completions';
 
+/** Default matches OpenRouter: avoids huge reservation on starter quotas. Override via MISTRAL_MAX_TOKENS. */
+function mistralMaxTokens(): number {
+  const raw = process.env.MISTRAL_MAX_TOKENS?.trim();
+  if (raw) {
+    const n = parseInt(raw, 10);
+    if (Number.isFinite(n) && n >= 256) return Math.min(n, 32768);
+  }
+  return 8192;
+}
+
 /** Vision-capable Mistral models (Pixtral / multimodal). Order = preference. */
 export const MISTRAL_MODEL_CHAIN: { modelId: string; displayName: string }[] = [
   { modelId: 'pixtral-12b-2409', displayName: 'Mistral · Pixtral 12B' },
@@ -53,7 +63,7 @@ IMPORTANT: You must generate a complete, functional React component. Do not prov
           },
         ],
         temperature: 0.5,
-        max_tokens: 16384,
+        max_tokens: mistralMaxTokens(),
       }),
     });
 
@@ -128,7 +138,7 @@ IMPORTANT: You must generate a complete, functional React component. Do not prov
         },
       ],
       temperature: 0.1,
-      max_tokens: 16384,
+      max_tokens: mistralMaxTokens(),
       stream: true,
     }),
   });

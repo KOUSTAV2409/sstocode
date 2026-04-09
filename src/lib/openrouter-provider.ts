@@ -2,6 +2,16 @@ import type { AIProvider, GenerateResult } from '@/lib/ai-types';
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
+/** Default cap keeps free/low-balance OpenRouter accounts from failing ("can only afford N tokens"). Override via OPENROUTER_MAX_TOKENS. */
+function openRouterMaxTokens(): number {
+  const raw = process.env.OPENROUTER_MAX_TOKENS?.trim();
+  if (raw) {
+    const n = parseInt(raw, 10);
+    if (Number.isFinite(n) && n >= 256) return Math.min(n, 32768);
+  }
+  return 8192;
+}
+
 /** Vision-capable models on OpenRouter (prefix = provider). Order = preference. */
 export const OPENROUTER_MODEL_CHAIN: { modelId: string; displayName: string }[] = [
   { modelId: 'google/gemini-2.5-flash', displayName: 'OpenRouter · Gemini 2.5 Flash' },
@@ -64,7 +74,7 @@ IMPORTANT: You must generate a complete, functional React component. Do not prov
           },
         ],
         temperature: 0.5,
-        max_tokens: 16384,
+        max_tokens: openRouterMaxTokens(),
       }),
     });
 
@@ -141,7 +151,7 @@ IMPORTANT: You must generate a complete, functional React component. Do not prov
         },
       ],
       temperature: 0.1,
-      max_tokens: 16384,
+      max_tokens: openRouterMaxTokens(),
       stream: true,
     }),
   });
