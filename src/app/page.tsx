@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
-import HomeLanding from '@/components/marketing/HomeLanding';
+import SiteRevampNotice from '@/components/SiteRevampNotice';
 
 export const metadata: Metadata = {
-  title: 'sstocode - AI-Powered Design to Code',
-  description:
-    'Transform UI designs into production-ready React components with AI. Upload screenshots, generate React + Tailwind, preview live.',
+  title: 'sstocode — Coming soon',
+  description: 'We are revamping our architecture. The full site will return soon.',
 };
 
 export default function Home() {
-  return <HomeLanding />;
+  return <SiteRevampNotice />;
 }
