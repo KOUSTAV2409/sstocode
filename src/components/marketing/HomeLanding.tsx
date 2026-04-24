@@ -55,9 +55,10 @@ export default function HomeLanding() {
   return (
     <div className="min-h-screen bg-void text-on-surface font-body selection:bg-primary-accent/30 selection:text-white">
       <main>
-        {/* Nodus Hero Section */}
+        {/* Crafted Hero Section */}
         <section className="relative overflow-hidden pb-20 pt-40 sm:pt-48 md:pt-56">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-primary-accent-dim)_0%,_transparent_40%)] pointer-events-none" />
+          {/* Subtle grid lines instead of glowing orbs */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
           
           <div className="mx-auto max-w-4xl px-6 sm:px-8 md:px-12 relative z-10 text-center flex flex-col items-center">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-ghost-border bg-surface-lowest/50 backdrop-blur-md">
@@ -65,9 +66,12 @@ export default function HomeLanding() {
               <span className="font-mono text-[10px] sm:text-xs font-semibold tracking-widest text-on-surface uppercase">FOR FAST MOVING ENGINEERING TEAMS</span>
             </div>
             
-            <h1 className="font-sans text-5xl sm:text-6xl md:text-[5rem] font-bold leading-[1.1] tracking-tight text-white mb-8">
+            <h1 className="font-sans text-5xl sm:text-6xl md:text-[5.5rem] font-bold leading-[1.05] tracking-tighter text-white mb-8">
               From Screenshot to <br className="hidden sm:block" />
-              <span className="nodus-gradient-text">Production Code</span>
+              <span className="text-white relative">
+                Production Code
+                <span className="absolute -bottom-2 left-0 right-0 h-[3px] bg-primary-accent" />
+              </span>
             </h1>
             
             <p className="text-lg md:text-xl text-on-surface-muted leading-relaxed max-w-2xl mx-auto font-light mb-10">
@@ -109,37 +113,48 @@ export default function HomeLanding() {
         </section>
 
         <section className="bg-surface-lowest py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-primary-accent)_0%,_transparent_20%)] opacity-[0.03] blur-3xl pointer-events-none" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
           <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-1 w-full glass-panel ghost-border p-2 shadow-2xl rounded-sm">
-                <div className="relative aspect-video rounded-sm overflow-hidden border border-white/5">
+            <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
+              <div className="flex-1 w-full bg-surface-low border border-white/10 p-2 shadow-2xl rounded-xl relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/5 before:to-transparent before:pointer-events-none before:rounded-xl">
+                {/* Physical MacOS window metaphor */}
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-surface-highest/20 rounded-t-lg">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                    <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                  </div>
+                  <div className="mx-auto text-[10px] font-mono font-bold tracking-widest text-on-surface-muted uppercase">source.png</div>
+                </div>
+                <div className="relative aspect-video overflow-hidden border-t border-white/5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     alt="Source UI Screenshot"
                     className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 opacity-80 hover:opacity-100"
                     src={HERO_IMG}
                   />
-                  <div className="absolute top-4 left-4 bg-void/80 backdrop-blur px-3 py-1 text-[10px] font-mono font-bold tracking-widest text-secondary-accent border border-secondary-accent/20">
-                    UI_SOURCE_01
-                  </div>
                 </div>
               </div>
-              <div className="flex flex-none shrink-0 flex-col items-center justify-center gap-2 p-2 md:p-4">
+              <div className="flex flex-none shrink-0 flex-col items-center justify-center gap-4 p-2 md:p-4">
                 <ArrowRight
-                  className="size-8 text-primary-accent rotate-90 md:rotate-0 shrink-0"
-                  strokeWidth={2}
+                  className="size-8 text-white/50 rotate-90 md:rotate-0 shrink-0"
+                  strokeWidth={1.5}
                   aria-hidden
                 />
-                <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-primary-accent/50 to-transparent hidden md:block" />
               </div>
-              <div className="min-w-0 flex-1 w-full overflow-x-auto bg-void border border-white/5 p-4 font-mono text-sm leading-relaxed sm:p-6 rounded-sm shadow-2xl">
-                <div className="flex gap-2 mb-4">
-                  <div className="w-3 h-3 rounded-full bg-red-500/40" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/40" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/40" />
+              <div className="min-w-0 flex-1 w-full overflow-x-auto bg-[#0d0d0d] border border-white/10 rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.8)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/5 before:to-transparent before:pointer-events-none before:rounded-xl">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-[#1a1a1a]">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                    <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                  </div>
+                  <div className="text-[10px] font-mono font-bold tracking-widest text-on-surface-muted uppercase">page.tsx</div>
+                  <div className="w-10" /> {/* Spacer */}
                 </div>
-                <DashboardCodeMock />
+                <div className="p-6 font-mono text-sm leading-relaxed">
+                  <DashboardCodeMock />
+                </div>
               </div>
             </div>
           </div>
@@ -148,24 +163,23 @@ export default function HomeLanding() {
         <section className="py-24 bg-void">
           <div className="max-w-[1440px] mx-auto px-6 md:px-12">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-              <div className="md:col-span-8 p-10 sm:p-12 bg-surface-lowest border border-ghost-border rounded-2xl hover:border-primary-accent/30 transition-colors group diffuse-shadow flex flex-col justify-end min-h-[320px] relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <div className="w-32 h-32 rounded-full border-4 border-primary-accent animate-pulse" />
-                </div>
-                <h3 className="font-sans text-3xl font-bold mb-4 tracking-tight group-hover:text-primary-accent transition-colors relative z-10">Instant Tailwind Styling</h3>
-                <p className="text-on-surface-muted leading-relaxed text-base font-light max-w-lg relative z-10">
+              <div className="md:col-span-8 p-12 sm:p-16 bg-surface-low border border-ghost-border relative overflow-hidden group shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] rounded-2xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <h3 className="font-sans text-3xl font-bold mb-6 tracking-tighter text-white relative z-10">Instant Tailwind Styling</h3>
+                <p className="text-on-surface-muted leading-relaxed text-lg font-light max-w-lg relative z-10">
                   Outputs map to Tailwind utilities so you stay in the design system — no mystery CSS blobs to untangle. Built directly for your codebase.
                 </p>
+                <div className="mt-12 inline-block font-mono text-xs font-bold uppercase tracking-widest text-primary-accent px-4 py-2 border border-primary-accent/20 rounded-full">Zero CSS Blobs</div>
               </div>
-              <div className="md:col-span-4 p-10 sm:p-12 bg-surface border border-ghost-border rounded-2xl hover:border-secondary-accent/30 transition-colors group diffuse-shadow flex flex-col justify-end min-h-[320px]">
-                <h3 className="font-sans text-2xl font-bold mb-4 tracking-tight group-hover:text-secondary-accent transition-colors">Clean React</h3>
-                <p className="text-on-surface-muted leading-relaxed text-sm font-light">
+              <div className="md:col-span-4 p-12 sm:p-16 bg-void border border-ghost-border relative overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] rounded-2xl">
+                <h3 className="font-sans text-2xl font-bold mb-6 tracking-tighter text-white">Clean React</h3>
+                <p className="text-on-surface-muted leading-relaxed text-base font-light">
                   Functional React with TypeScript, not pasted HTML. Components you can split, rename, and ship.
                 </p>
               </div>
-              <div className="md:col-span-12 p-10 sm:p-16 bg-surface-lowest border border-ghost-border rounded-2xl hover:border-primary-accent/30 transition-colors group diffuse-shadow flex flex-col items-center text-center justify-center min-h-[280px]">
-                <h3 className="font-sans text-3xl sm:text-4xl font-bold mb-6 tracking-tight group-hover:text-primary-accent transition-colors">Responsive by Default</h3>
-                <p className="text-on-surface-muted leading-relaxed text-base sm:text-lg font-light max-w-3xl">
+              <div className="md:col-span-12 p-16 sm:p-24 bg-[#0a0a0a] border border-ghost-border text-center flex flex-col items-center justify-center relative overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] rounded-2xl">
+                <h3 className="font-sans text-4xl sm:text-5xl font-bold mb-8 tracking-tighter text-white">Responsive by Default</h3>
+                <p className="text-on-surface-muted leading-relaxed text-lg sm:text-xl font-light max-w-3xl">
                   The model infers layout intent from your screenshot — flex and grid patterns that scale effortlessly from mobile to massive desktop displays.
                 </p>
               </div>
@@ -239,16 +253,16 @@ export default function HomeLanding() {
           </div>
         </section>
 
-        <section className="py-40 bg-surface relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--color-primary-accent-dim)_0%,_transparent_40%)] pointer-events-none" />
+        <section className="py-40 bg-void relative overflow-hidden border-t border-ghost-border">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_100%,#000_20%,transparent_100%)] pointer-events-none" />
           <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
-            <div className="relative overflow-hidden diffuse-shadow border border-ghost-border rounded-[2.5rem] bg-surface-lowest p-10 text-center sm:p-20 md:p-28">
-              <h2 className="relative z-10 mb-6 font-sans text-4xl font-bold tracking-tight break-words sm:mb-8 sm:text-5xl md:text-6xl text-white">
+            <div className="relative overflow-hidden text-center sm:p-20 md:p-28">
+              <h2 className="relative z-10 mb-8 font-sans text-5xl font-bold tracking-tighter break-words sm:text-6xl md:text-7xl text-white">
                 READY TO SHIP
                 <br />
                 FROM SCREENSHOTS?
               </h2>
-              <p className="relative z-10 mx-auto mb-10 max-w-2xl px-1 text-base text-on-surface-muted sm:mb-12 sm:text-lg font-light">
+              <p className="relative z-10 mx-auto mb-12 max-w-2xl px-1 text-lg text-on-surface-muted sm:text-xl font-light">
                 Clone NexusUI, add your Gemini key, and go from mockup to React + Tailwind in one flow. Open source and built for builders.
               </p>
               <div className="relative z-10 flex flex-col justify-center gap-4 sm:flex-row sm:gap-4">
