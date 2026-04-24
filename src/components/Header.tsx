@@ -35,10 +35,10 @@ export default function Header() {
   }, [mobileOpen]);
 
   const linkClass = (active: boolean) =>
-    `font-headline text-sm tracking-tight transition-colors duration-200 whitespace-nowrap ${
+    `font-sans text-sm tracking-normal transition-colors duration-200 whitespace-nowrap ${
       active
-        ? 'text-obsidian-gold font-bold border-b-2 border-obsidian-gold pb-0.5'
-        : 'text-obsidian-on/80 hover:text-obsidian-gold hover:bg-obsidian-surface/50 rounded px-1 -mx-1'
+        ? 'text-primary-accent font-semibold'
+        : 'text-on-surface-muted hover:text-white rounded-full px-2 py-1 -mx-2 hover:bg-white/5'
     }`;
 
   return (
@@ -46,20 +46,20 @@ export default function Header() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 bg-obsidian-bg border-b border-obsidian-surface-high/40"
+      className="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-xl border-b border-ghost-border"
     >
-      <div className="max-w-[1440px] mx-auto px-3 sm:px-6 md:px-12 h-16 flex items-center justify-between gap-2 sm:gap-3 min-w-0">
-        <Link href="/" className="flex min-w-0 max-w-[min(100%,11rem)] items-center gap-1.5 sm:gap-2.5 group sm:max-w-none sm:shrink-0">
-          <div className="w-8 h-8 shrink-0 rounded-sm bg-obsidian-gold flex items-center justify-center text-obsidian-on-primary">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 h-20 flex items-center justify-between gap-2 sm:gap-3 min-w-0">
+        <Link href="/" className="flex min-w-0 max-w-[min(100%,11rem)] items-center gap-2 sm:gap-3 group sm:max-w-none sm:shrink-0">
+          <div className="w-8 h-8 shrink-0 rounded-full bg-primary-accent flex items-center justify-center text-white">
             <Logo size="sm" />
           </div>
-          <span className="font-headline truncate text-base font-bold tracking-tighter text-obsidian-gold sm:text-lg md:text-xl">
+          <span className="font-sans truncate text-lg font-bold tracking-tight text-white sm:text-xl md:text-2xl">
             SSTOCODE
           </span>
         </Link>
 
         <nav
-          className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8 shrink-0"
+          className="hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-10 shrink-0"
           aria-label="Main"
         >
           {navItems.map((item) => {
@@ -78,10 +78,10 @@ export default function Header() {
           })}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-1.5 sm:gap-4 md:gap-6">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-5 md:gap-8">
           <button
             type="button"
-            className="lg:hidden shrink-0 rounded-sm p-2 text-obsidian-on hover:bg-obsidian-surface/80"
+            className="lg:hidden shrink-0 rounded-full p-2 text-on-surface hover:bg-surface-high"
             onClick={() => setMobileOpen(true)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
@@ -92,13 +92,13 @@ export default function Header() {
 
           <Link
             href="/contributing"
-            className="hidden sm:block text-[10px] uppercase tracking-widest font-bold text-obsidian-gold hover:opacity-80 transition-opacity whitespace-nowrap"
+            className="hidden sm:block text-[11px] uppercase tracking-widest font-semibold text-on-surface-muted hover:text-white transition-colors whitespace-nowrap"
           >
             Contribute
           </Link>
           <Link
             href="/#upload"
-            className="metallic-luster whitespace-nowrap rounded-sm px-2.5 py-2 text-[11px] font-bold tracking-tight text-obsidian-on-primary transition-transform hover:opacity-90 active:scale-95 sm:px-4 sm:text-xs"
+            className="metallic-luster whitespace-nowrap rounded-full px-5 py-2.5 text-[13px] font-bold tracking-wide text-white transition-transform hover:scale-105 active:scale-95 shadow-lg"
           >
             Upload
           </Link>
@@ -123,21 +123,21 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.2 }}
-              className="fixed top-0 right-0 z-[70] h-full w-[min(100%,20rem)] bg-obsidian-bg border-l border-obsidian-surface-high/40 shadow-xl lg:hidden flex flex-col"
+              className="fixed top-0 right-0 z-[70] h-full w-[min(100%,20rem)] bg-surface-low border-l border-ghost-border shadow-2xl lg:hidden flex flex-col"
               aria-label="Mobile"
             >
-              <div className="flex items-center justify-between h-16 px-4 border-b border-obsidian-surface-high/40">
-                <span className="font-headline text-sm font-bold text-obsidian-on">Menu</span>
+              <div className="flex items-center justify-between h-20 px-6 border-b border-ghost-border">
+                <span className="font-sans text-sm font-bold text-white">Menu</span>
                 <button
                   type="button"
-                  className="p-2 rounded-sm text-obsidian-on hover:bg-obsidian-surface/80"
+                  className="p-2 rounded-full text-on-surface-muted hover:text-white hover:bg-surface-high transition-colors"
                   onClick={() => setMobileOpen(false)}
                   aria-label="Close menu"
                 >
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <div className="flex flex-col p-4 gap-1 overflow-y-auto">
+              <div className="flex flex-col p-4 gap-2 overflow-y-auto">
                 {navItems.map((item) => {
                   const active = !item.external && pathname === item.href;
                   return (
@@ -146,10 +146,10 @@ export default function Header() {
                       href={item.href}
                       target={item.external ? '_blank' : undefined}
                       rel={item.external ? 'noopener noreferrer' : undefined}
-                      className={`px-3 py-3 rounded-sm font-headline text-sm ${
+                      className={`px-4 py-3 rounded-2xl font-sans text-sm transition-colors ${
                         active
-                          ? 'bg-obsidian-surface text-obsidian-gold font-bold'
-                          : 'text-obsidian-on/90 hover:bg-obsidian-surface/60'
+                          ? 'bg-surface-high text-primary-accent font-semibold'
+                          : 'text-on-surface hover:bg-surface-high'
                       }`}
                       onClick={() => setMobileOpen(false)}
                     >
@@ -163,7 +163,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      <div className="nav-gradient-line h-px w-full absolute bottom-0 left-0" />
+      <div className="h-px w-full absolute bottom-0 left-0 bg-ghost-border" />
     </motion.header>
   );
 }
