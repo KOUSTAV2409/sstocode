@@ -10,10 +10,6 @@ import Logo from './Logo';
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Docs', href: '/docs' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Roadmap', href: '/roadmap' },
-  { name: 'Auth', href: '/auth' },
-  { name: 'Contributing', href: '/contributing' },
   { name: 'GitHub', href: 'https://github.com/KOUSTAV2409/NexusUI', external: true },
 ];
 
@@ -84,12 +80,6 @@ export default function Header() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-3 sm:gap-4">
-          <Link
-            href="/contributing"
-            className="hidden md:block text-[10px] uppercase tracking-widest font-bold text-on-surface-muted hover:text-white transition-colors whitespace-nowrap"
-          >
-            Contribute
-          </Link>
           <Link
             href="/#upload"
             className="whitespace-nowrap rounded-full px-5 py-2 text-[10px] font-bold uppercase tracking-widest bg-primary-accent text-void transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_-5px_rgba(255,126,95,0.5)]"
