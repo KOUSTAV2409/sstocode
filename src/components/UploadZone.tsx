@@ -255,14 +255,13 @@ export default function UploadZone() {
                   <ImageIcon className="w-4 h-4" />
                   Try with sample design
                 </button>
+                {/* 
                 <button
                   type="button"
                   onClick={(e) => { 
                     e.stopPropagation(); 
-                    // In a real implementation this would open an OAuth modal or project ID input
                     const projectId = prompt("Enter Google Stitch Project ID:");
                     if (projectId) {
-                      // Call the stitch API route
                       setIsLoading(true);
                       fetch('/api/stitch/import', {
                         method: 'POST',
@@ -273,8 +272,8 @@ export default function UploadZone() {
                       .then(data => {
                         if (data.error) throw new Error(data.error);
                         const sid = crypto.randomUUID();
-                        sessionStorage.setItem(`NexusUI_${sid}`, JSON.stringify({ code: data.code, provider: data.provider }));
-                        router.push(`/preview?sid=${sid}`);
+                        sessionStorage.setItem(\`NexusUI_\${sid}\`, JSON.stringify({ code: data.code, provider: data.provider }));
+                        router.push(\`/preview?sid=\${sid}\`);
                       })
                       .catch(err => setError(err.message))
                       .finally(() => setIsLoading(false));
@@ -285,6 +284,7 @@ export default function UploadZone() {
                   <Upload className="w-4 h-4" />
                   Import from Google Stitch
                 </button>
+                */}
               </div>
               
               <div className="flex flex-wrap items-center justify-center gap-2">
