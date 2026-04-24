@@ -6,7 +6,7 @@ import Header from './Header';
 export default function ConditionalHeader() {
   const pathname = usePathname();
   
-  const hideHeader = pathname?.startsWith('/preview') || pathname === '/';
+  const hideHeader = pathname?.startsWith('/preview');
 
   if (hideHeader) {
     return null;
