@@ -1,4 +1,4 @@
-# sstocode Roadmap
+# NexusUI Roadmap
 
 ## Current Status ✅
 - [x] Basic AI-powered design to code generation

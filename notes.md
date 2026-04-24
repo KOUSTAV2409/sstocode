@@ -1,4 +1,4 @@
-# sstocode – Codebase Analysis & Improvement Recommendations
+# NexusUI – Codebase Analysis & Improvement Recommendations
 
 > **Last updated:** March 2025 – Section 3 (UX & design) fully implemented.
 
@@ -63,7 +63,7 @@ Convert UI screenshots → React + TypeScript + Tailwind components via Gemini.
 |---|------|--------|
 | 2.1 | Broken / misleading UI | ✅ Hero buttons wired, CTAs functional |
 | 2.2 | Dead links | ✅ Login/Signup removed, nav fixed |
-| 2.3 | Package name | ✅ Renamed to `sstocode` |
+| 2.3 | Package name | ✅ Renamed to `NexusUI` |
 | 2.4 | Missing `.env.local.example` | ✅ Added with placeholder |
 | 2.5 | Scrollbar CSS bug | ✅ Fixed with rgba |
 | 2.6 | Preview loading theme | ✅ Dark theme aligned |

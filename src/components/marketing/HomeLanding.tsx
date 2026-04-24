@@ -68,7 +68,7 @@ export default function HomeLanding() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               <div className="space-y-10">
                 <p className="text-xl text-on-surface/70 leading-relaxed max-w-lg">
-                  <strong className="text-on-surface">sstocode</strong> turns UI screenshots into editable React and Tailwind —
+                  <strong className="text-on-surface">NexusUI</strong> turns UI screenshots into editable React and Tailwind —
                   upload a frame, generate code with Gemini, then refine in the browser with a live preview.
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
@@ -244,7 +244,7 @@ export default function HomeLanding() {
                 FROM SCREENSHOTS?
               </h2>
               <p className="relative z-10 mx-auto mb-10 max-w-2xl px-1 text-base text-on-surface/60 sm:mb-12 sm:text-lg">
-                Clone sstocode, add your Gemini key, and go from mockup to React + Tailwind in one flow — open source and built for
+                Clone NexusUI, add your Gemini key, and go from mockup to React + Tailwind in one flow — open source and built for
                 builders.
               </p>
               <div className="relative z-10 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">

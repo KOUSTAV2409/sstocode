@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import PricingPageContent from '@/components/marketing/PricingPageContent';
 
 export const metadata: Metadata = {
-  title: 'Pricing | sstocode',
-  description: 'sstocode pricing and plans.',
+  title: 'Pricing | NexusUI',
+  description: 'NexusUI pricing and plans.',
 };
 
 export default function PricingPage() {

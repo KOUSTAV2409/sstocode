@@ -10,7 +10,7 @@ export default function RoadmapPageContent() {
             <span className="text-[10px] font-label uppercase tracking-[0.2em] text-tertiary">Product roadmap</span>
           </div>
           <h1 className="text-4xl sm:text-6xl font-headline font-bold tracking-tighter text-on-surface mb-8">
-            The <span className="text-primary-container">sstocode</span> roadmap
+            The <span className="text-primary-container">NexusUI</span> roadmap
           </h1>
           <p className="text-on-surface/60 text-xl font-light leading-relaxed">
             What we are building next: better generation, preview, and developer experience — tracked openly on GitHub.
@@ -130,7 +130,7 @@ export default function RoadmapPageContent() {
             <div className="max-w-xl relative z-10">
               <h2 className="text-3xl md:text-4xl font-headline font-bold text-on-surface mb-6">
                 Shape <br />
-                sstocode.
+                NexusUI.
               </h2>
               <p className="text-on-surface/50 leading-relaxed">
                 Open an issue, pick up a good-first-issue, or suggest a feature — the roadmap follows what builders need.
@@ -138,7 +138,7 @@ export default function RoadmapPageContent() {
             </div>
             <div className="flex flex-col gap-4 w-full md:w-auto relative z-10">
               <a
-                href="https://github.com/KOUSTAV2409/sstocode/issues"
+                href="https://github.com/KOUSTAV2409/NexusUI/issues"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-primary-container text-on-primary font-bold uppercase text-[10px] tracking-[0.2em] py-5 px-12 hover:opacity-90 transition-opacity text-center"
@@ -146,7 +146,7 @@ export default function RoadmapPageContent() {
                 Request feature
               </a>
               <a
-                href="https://github.com/KOUSTAV2409/sstocode"
+                href="https://github.com/KOUSTAV2409/NexusUI"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-tertiary border border-tertiary/20 font-bold uppercase text-[10px] tracking-[0.2em] py-5 px-12 hover:bg-tertiary/5 transition-colors text-center"
@@ -160,7 +160,7 @@ export default function RoadmapPageContent() {
 
       <footer className="w-full py-12 px-8 bg-background border-t border-obsidian-surface-high/40">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 w-full max-w-7xl mx-auto">
-          <p className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40">© {new Date().getFullYear()} sstocode</p>
+          <p className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40">© {new Date().getFullYear()} NexusUI</p>
           <div className="flex flex-wrap gap-6 justify-center">
             <Link className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300" href="/">
               Home
@@ -182,7 +182,7 @@ export default function RoadmapPageContent() {
             </Link>
             <a
               className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300"
-              href="https://github.com/KOUSTAV2409/sstocode"
+              href="https://github.com/KOUSTAV2409/NexusUI"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import DocsPageContent from '@/components/marketing/DocsPageContent';
 
 export const metadata: Metadata = {
-  title: 'Documentation | sstocode',
-  description: 'Protocol documentation — Getting started with sstocode.',
+  title: 'Documentation | NexusUI',
+  description: 'Protocol documentation — Getting started with NexusUI.',
 };
 
 export default function DocsPage() {

@@ -60,7 +60,7 @@ IMPORTANT: You must generate a complete, functional React component. Do not prov
         Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
         'HTTP-Referer': refererHeader(),
-        'X-Title': 'sstocode',
+        'X-Title': 'NexusUI',
       },
       body: JSON.stringify({
         model: this.modelId,
@@ -137,7 +137,7 @@ IMPORTANT: You must generate a complete, functional React component. Do not prov
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
       'HTTP-Referer': refererHeader(),
-      'X-Title': 'sstocode',
+      'X-Title': 'NexusUI',
     },
     body: JSON.stringify({
       model: modelId,

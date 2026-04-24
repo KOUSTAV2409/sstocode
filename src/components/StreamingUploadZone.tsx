@@ -82,7 +82,7 @@ export default function StreamingUploadZone() {
               if (data.done) {
                 const sid = crypto.randomUUID();
                 if (typeof window !== 'undefined') {
-                  sessionStorage.setItem(`sstocode_${sid}`, JSON.stringify({ code: fullCode, provider: 'Gemini 2.5 Flash' }));
+                  sessionStorage.setItem(`NexusUI_${sid}`, JSON.stringify({ code: fullCode, provider: 'Gemini 2.5 Flash' }));
                 }
                 setTimeout(() => {
                   router.push(`/preview?sid=${sid}`);

@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-const GITHUB = 'https://github.com/KOUSTAV2409/sstocode';
+const GITHUB = 'https://github.com/KOUSTAV2409/NexusUI';
 
 export default function MarketingFooter() {
   return (
     <footer className="w-full border-t border-white/5 bg-obsidian-nav">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-8 px-4 py-10 md:flex-row md:justify-between md:px-12 md:py-16">
         <Link href="/" className="text-lg font-black text-obsidian-on font-headline hover:text-obsidian-gold transition-colors">
-          sstocode
+          NexusUI
         </Link>
         <nav className="flex flex-wrap justify-center gap-6 md:gap-8" aria-label="Footer">
           <a
@@ -43,7 +43,7 @@ export default function MarketingFooter() {
           </Link>
         </nav>
         <p className="max-w-full text-center font-sans text-xs uppercase tracking-widest text-obsidian-on/40 break-words md:text-right">
-          © {new Date().getFullYear()} sstocode · open source design-to-code
+          © {new Date().getFullYear()} NexusUI · open source design-to-code
         </p>
       </div>
     </footer>

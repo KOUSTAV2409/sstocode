@@ -14,7 +14,7 @@ const navItems = [
   { name: 'Roadmap', href: '/roadmap' },
   { name: 'Auth', href: '/auth' },
   { name: 'Contributing', href: '/contributing' },
-  { name: 'GitHub', href: 'https://github.com/KOUSTAV2409/sstocode', external: true },
+  { name: 'GitHub', href: 'https://github.com/KOUSTAV2409/NexusUI', external: true },
 ];
 
 export default function Header() {

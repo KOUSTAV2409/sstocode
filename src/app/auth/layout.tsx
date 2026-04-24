@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sign in | sstocode',
+  title: 'Sign in | NexusUI',
   description: 'Access the SSTOCODE interface — sign in or create an account.',
 };
 

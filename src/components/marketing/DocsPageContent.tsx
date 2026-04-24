@@ -35,7 +35,7 @@ export default function DocsPageContent() {
         <aside className="hidden md:flex h-[calc(100vh-4rem)] w-64 fixed left-0 top-16 flex-col py-8 gap-y-4 overflow-y-auto sidebar-scroll bg-obsidian-nav border-r border-white/5">
           <div className="px-6 mb-4">
             <h3 className="text-obsidian-gold font-body text-sm tracking-wide uppercase font-bold">v2.4.0-stable</h3>
-            <p className="text-on-surface/40 text-[10px] uppercase tracking-[0.2em]">sstocode · open source</p>
+            <p className="text-on-surface/40 text-[10px] uppercase tracking-[0.2em]">NexusUI · open source</p>
           </div>
           <nav className="flex flex-col gap-y-1" aria-label="Documentation">
             {sidebarNav.map(({ Icon, label, active, href }) => (
@@ -79,10 +79,10 @@ export default function DocsPageContent() {
                 <div className="h-px w-12 bg-primary-container/30" />
               </div>
               <h1 className="text-4xl sm:text-6xl font-bold font-headline tracking-tighter text-on-surface mb-6">
-                Getting Started with sstocode
+                Getting Started with NexusUI
               </h1>
               <p className="text-xl text-on-surface-variant font-light leading-relaxed max-w-2xl">
-                Install sstocode locally, add a Gemini API key, and turn screenshots into React + Tailwind — with Monaco editor and
+                Install NexusUI locally, add a Gemini API key, and turn screenshots into React + Tailwind — with Monaco editor and
                 Sandpack preview in the app.
               </p>
             </div>
@@ -108,7 +108,7 @@ export default function DocsPageContent() {
             <section className="mb-16" id="installation">
               <h2 className="text-3xl font-headline font-bold text-primary-container mb-6 tracking-tight">Installation</h2>
               <p className="mb-6 text-on-surface-variant leading-relaxed">
-                Get the <span className="text-[#ffe0b0] font-bold">sstocode</span> app running locally — Node 18+, Git, and a{' '}
+                Get the <span className="text-[#ffe0b0] font-bold">NexusUI</span> app running locally — Node 18+, Git, and a{' '}
                 <span className="text-tertiary">GEMINI_API_KEY</span> for the generate API.
               </p>
               <div className="code-block rounded-lg p-1 overflow-hidden">
@@ -120,8 +120,8 @@ export default function DocsPageContent() {
                   <code className="text-on-surface">
                     <span className="text-tertiary-fixed"># Clone &amp; install</span>
                     {'\n'}
-                    <span className="text-primary-container">git</span> clone https://github.com/KOUSTAV2409/sstocode.git{'\n'}
-                    <span className="text-primary-container">cd</span> sstocode{'\n'}
+                    <span className="text-primary-container">git</span> clone https://github.com/KOUSTAV2409/NexusUI.git{'\n'}
+                    <span className="text-primary-container">cd</span> NexusUI{'\n'}
                     <span className="text-primary-container">npm</span> install{'\n'}
                     {'\n'}
                     <span className="text-tertiary-fixed"># Environment</span>
@@ -219,7 +219,7 @@ export default function DocsPageContent() {
               <img alt="" className="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700" src={DOC_IMG} />
               <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6">
-                <p className="text-xs uppercase tracking-[0.4em] font-bold text-primary-container">sstocode</p>
+                <p className="text-xs uppercase tracking-[0.4em] font-bold text-primary-container">NexusUI</p>
               </div>
             </div>
           </div>
@@ -260,7 +260,7 @@ export default function DocsPageContent() {
                 <p className="text-[10px] uppercase font-bold text-on-surface/30 mb-3">Community</p>
                 <a
                   className="flex items-center gap-2 text-xs text-on-surface hover:text-tertiary transition-colors mb-2"
-                  href="https://github.com/KOUSTAV2409/sstocode/discussions"
+                  href="https://github.com/KOUSTAV2409/NexusUI/discussions"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -269,7 +269,7 @@ export default function DocsPageContent() {
                 </a>
                 <a
                   className="flex items-center gap-2 text-xs text-on-surface hover:text-tertiary transition-colors"
-                  href="https://github.com/KOUSTAV2409/sstocode/issues"
+                  href="https://github.com/KOUSTAV2409/NexusUI/issues"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

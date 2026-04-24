@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## sstocode - AI-Powered Design to Code
+## NexusUI - AI-Powered Design to Code
 
 Transform UI designs into production-ready React components with AI precision. Upload your design mockups and get clean, responsive code instantly.
 
@@ -22,8 +22,8 @@ Transform UI designs into production-ready React components with AI precision. U
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/sstocode.git
-cd sstocode
+git clone https://github.com/your-username/NexusUI.git
+cd NexusUI
 
 # Install dependencies
 npm install
