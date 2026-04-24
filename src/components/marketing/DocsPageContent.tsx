@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import {
   Braces,
@@ -21,124 +24,132 @@ const DOC_IMG =
 
 const sidebarNav: { Icon: LucideIcon; label: string; active: boolean; href: string }[] = [
   { Icon: Rocket, label: 'Getting Started', active: true, href: '#' },
-  { Icon: GitBranch, label: 'Core Concepts', active: false, href: '#' },
-  { Icon: Braces, label: 'API Reference', active: false, href: '#' },
-  { Icon: Terminal, label: 'CLI Tool', active: false, href: '#' },
-  { Icon: Puzzle, label: 'Figma Plugin', active: false, href: '#' },
-  { Icon: Code2, label: 'Examples', active: false, href: '#' },
 ];
 
 export default function DocsPageContent() {
+  const [activeSection, setActiveSection] = useState<string>('');
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -80% 0px' }
+    );
+
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-void text-on-surface font-sans">
       <div className="flex pt-20">
         <aside className="hidden md:flex h-[calc(100vh-5rem)] w-64 fixed left-0 top-20 flex-col py-8 gap-y-4 overflow-y-auto sidebar-scroll bg-surface-low border-r border-ghost-border">
-          <div className="px-6 mb-4">
-            <h3 className="text-primary-accent font-mono text-xs tracking-wider uppercase font-bold">v2.4.0-stable</h3>
-            <p className="text-on-surface-muted text-[10px] uppercase tracking-[0.2em] mt-1">NexusUI · open source</p>
+          <div className="px-6 mb-4 mt-2">
+            <h3 className="text-white font-sans text-sm font-semibold flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary-accent" />
+              NexusUI Platform
+            </h3>
           </div>
-          <nav className="flex flex-col gap-y-1" aria-label="Documentation">
+          <div className="px-4 mb-4">
+            <div className="relative">
+              <input 
+                type="text" 
+                placeholder="Search documentation..." 
+                className="w-full bg-surface border border-ghost-border rounded-md px-3 py-1.5 text-sm text-on-surface placeholder:text-on-surface-muted focus:outline-none focus:border-primary-accent transition-colors"
+              />
+              <div className="absolute right-2 top-1.5 flex items-center gap-1">
+                <kbd className="hidden sm:inline-block bg-surface-high border border-ghost-border rounded px-1.5 font-mono text-[10px] text-on-surface-muted">⌘</kbd>
+                <kbd className="hidden sm:inline-block bg-surface-high border border-ghost-border rounded px-1.5 font-mono text-[10px] text-on-surface-muted">K</kbd>
+              </div>
+            </div>
+          </div>
+          <nav className="flex flex-col gap-y-0.5 px-4" aria-label="Documentation">
             {sidebarNav.map(({ Icon, label, active, href }) => (
               <a
                 key={label}
                 href={href}
                 className={
                   active
-                    ? 'text-primary-accent border-l-2 border-primary-accent pl-4 bg-gradient-to-r from-primary-accent/10 to-transparent font-sans text-sm tracking-wide font-semibold py-2.5 flex items-center gap-3'
-                    : 'text-on-surface-muted pl-4 border-l-2 border-transparent hover:text-white hover:bg-white/5 font-sans text-sm tracking-wide font-medium py-2.5 flex items-center gap-3 transition-all duration-150 ease-in-out'
+                    ? 'text-primary-accent bg-primary-accent/10 font-sans text-sm font-medium py-1.5 px-3 rounded-md flex items-center gap-2.5'
+                    : 'text-on-surface-muted hover:text-white hover:bg-surface-high font-sans text-sm font-medium py-1.5 px-3 rounded-md flex items-center gap-2.5 transition-colors'
                 }
               >
-                <Icon className="size-5 shrink-0 opacity-90" strokeWidth={1.75} aria-hidden />
+                <Icon className="size-4 shrink-0" strokeWidth={2} aria-hidden />
                 {label}
               </a>
             ))}
           </nav>
-          <div className="mt-auto px-6 py-4 flex flex-col gap-4">
-            <Link
-              href="/contributing"
-              className="flex items-center gap-3 text-on-surface-muted hover:text-primary-accent text-xs font-bold uppercase tracking-widest transition-colors"
-            >
-              <HelpCircle className="size-4 shrink-0" strokeWidth={1.75} aria-hidden />
-              Contributing
-            </Link>
-            <Link
-              href="/auth"
-              className="flex items-center gap-3 text-on-surface-muted hover:text-primary-accent text-xs font-bold uppercase tracking-widest transition-colors"
-            >
-              <UserCircle className="size-4 shrink-0" strokeWidth={1.75} aria-hidden />
-              Sign in
-            </Link>
-          </div>
         </aside>
 
         <main className="flex w-full min-w-0 flex-1 md:ml-64 pt-4">
           <div className="flex-1 max-w-4xl overflow-x-auto px-4 py-10 sm:px-6 md:px-12 md:py-16">
-            <div className="mb-16">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-ghost-border bg-surface-lowest/50 backdrop-blur-md">
-                <span className="text-[10px] uppercase tracking-widest text-primary-accent font-bold">Documentation</span>
-              </div>
-              <h1 className="text-4xl sm:text-6xl font-bold font-sans tracking-tight text-white mb-6">
-                Getting Started with NexusUI
+            <div className="mb-12">
+              <h1 className="text-4xl font-bold font-sans tracking-tight text-white mb-4">
+                Introduction
               </h1>
-              <p className="text-xl text-on-surface-muted font-light leading-relaxed max-w-2xl">
-                Install NexusUI locally, add a Gemini API key, and turn screenshots into React + Tailwind — with Monaco editor and
-                Sandpack preview in the app.
+              <p className="text-lg text-on-surface-muted font-light leading-relaxed max-w-2xl">
+                NexusUI is an AI-powered visual development platform. We transform your UI mockups, screenshots, and wireframes directly into production-ready React code, complete with Tailwind CSS styling and automated component architecture.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
-              <div className="p-8 bg-surface-lowest border border-ghost-border diffuse-shadow rounded-2xl">
-                <Zap className="size-8 text-primary-accent mb-6" strokeWidth={1.75} aria-hidden />
-                <h3 className="text-xl font-sans font-bold mb-3 text-white">Zero Configuration</h3>
-                <p className="text-base text-on-surface-muted leading-relaxed font-light">
-                  Clone the repo, run <code className="text-primary-accent bg-surface-high px-1.5 py-0.5 rounded-sm">npm install</code>, copy env — no extra design system to wire up
-                  before your first upload.
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+              <div className="p-6 bg-surface-lowest border border-ghost-border rounded-xl">
+                <Zap className="size-6 text-primary-accent mb-4" strokeWidth={2} aria-hidden />
+                <h3 className="text-lg font-sans font-semibold mb-2 text-white">Instant Feedback Loop</h3>
+                <p className="text-sm text-on-surface-muted leading-relaxed font-light">
+                  Unlike raw LLMs, NexusUI provides a live, interactive preview of your generated code instantly via Sandpack.
                 </p>
               </div>
-              <div className="p-8 bg-surface-lowest border border-ghost-border diffuse-shadow rounded-2xl">
-                <Sparkles className="size-8 text-primary-accent mb-6" strokeWidth={1.75} aria-hidden />
-                <h3 className="text-xl font-sans font-bold mb-3 text-white">Type-Safe Output</h3>
-                <p className="text-base text-on-surface-muted leading-relaxed font-light">
-                  Generated output is TypeScript-first React so you can tighten types and refactor like any hand-written component.
+              <div className="p-6 bg-surface-lowest border border-ghost-border rounded-xl">
+                <Sparkles className="size-6 text-primary-accent mb-4" strokeWidth={2} aria-hidden />
+                <h3 className="text-lg font-sans font-semibold mb-2 text-white">Component Architecture</h3>
+                <p className="text-sm text-on-surface-muted leading-relaxed font-light">
+                  Our specialized agent pipeline perfectly structures your code for modern frameworks like Next.js, splitting components automatically.
                 </p>
               </div>
             </div>
 
-            <section className="mb-16" id="installation">
-              <h2 className="text-3xl font-sans font-bold text-white mb-6 tracking-tight">Installation</h2>
-              <p className="mb-6 text-on-surface-muted leading-relaxed font-light text-lg">
-                Get the <span className="text-white font-bold">NexusUI</span> app running locally — Node 18+, Git, and a{' '}
-                <span className="text-white font-bold bg-surface-high px-1.5 py-0.5 rounded-sm">GEMINI_API_KEY</span> for the generate API.
+            <section className="mb-12" id="installation">
+              <h2 className="text-2xl font-sans font-semibold text-white mb-4 tracking-tight border-b border-ghost-border pb-2">Installation</h2>
+              <p className="mb-4 text-on-surface-muted leading-relaxed font-light text-base">
+                To get started with the NexusUI platform locally, ensure you have Node.js 18+ installed and a valid Gemini API Key.
               </p>
-              <div className="bg-surface-lowest border border-ghost-border rounded-xl diffuse-shadow overflow-hidden">
-                <div className="flex items-center justify-between px-6 py-3 bg-surface border-b border-ghost-border">
-                  <span className="text-[10px] font-bold tracking-widest text-on-surface-muted uppercase">Terminal</span>
-                  <Copy className="size-4 text-on-surface-muted hover:text-white transition-colors cursor-pointer shrink-0" strokeWidth={1.75} aria-hidden />
+              <div className="bg-[#0d0d0d] border border-white/10 rounded-lg overflow-hidden my-6 shadow-xl">
+                <div className="flex items-center justify-between px-4 py-2 bg-[#1a1a1a] border-b border-white/5">
+                  <span className="text-xs font-mono text-on-surface-muted">Terminal</span>
+                  <Copy className="size-4 text-on-surface-muted hover:text-white transition-colors cursor-pointer shrink-0" />
                 </div>
-                <pre className="p-6 text-sm leading-relaxed overflow-x-auto">
+                <pre className="p-4 text-sm overflow-x-auto">
                   <code className="text-on-surface font-mono">
-                    <span className="text-on-surface-muted"># Clone &amp; install</span>
+                    <span className="text-[#a3a3a3]"># Clone the repository</span>
                     {'\n'}
-                    <span className="text-primary-accent">git</span> clone https://github.com/KOUSTAV2409/NexusUI.git{'\n'}
-                    <span className="text-primary-accent">cd</span> NexusUI{'\n'}
-                    <span className="text-primary-accent">npm</span> install{'\n'}
+                    <span className="text-[#ff7e5f]">git</span> clone https://github.com/KOUSTAV2409/NexusUI.git{'\n'}
+                    <span className="text-[#ff7e5f]">cd</span> NexusUI{'\n'}
+                    <span className="text-[#ff7e5f]">npm</span> install{'\n'}
                     {'\n'}
-                    <span className="text-on-surface-muted"># Environment</span>
+                    <span className="text-[#a3a3a3]"># Setup Environment Variables</span>
                     {'\n'}
-                    <span className="text-primary-accent">cp</span> .env.local.example .env.local{'\n'}
-                    <span className="text-on-surface-muted"># Add GEMINI_API_KEY, then:</span>
+                    <span className="text-[#ff7e5f]">cp</span> .env.local.example .env.local{'\n'}
                     {'\n'}
-                    <span className="text-primary-accent">npm</span> run dev
+                    <span className="text-[#a3a3a3]"># Start the development server</span>
+                    {'\n'}
+                    <span className="text-[#ff7e5f]">npm</span> run dev
                   </code>
                 </pre>
               </div>
             </section>
 
-            <section className="mb-16" id="initializing">
-              <h2 className="text-3xl font-sans font-bold text-white mb-6 tracking-tight">Initializing</h2>
-              <p className="mb-6 text-on-surface-muted leading-relaxed font-light text-lg">
-                Open <span className="text-white font-bold">http://localhost:3000</span> — upload a PNG or JPG on the home page.
-                Session storage keeps generated code for preview in the same browser tab.
+            <section className="mb-12" id="initializing">
+              <h2 className="text-2xl font-sans font-semibold text-white mb-4 tracking-tight border-b border-ghost-border pb-2">Creating your first UI</h2>
+              <p className="mb-4 text-on-surface-muted leading-relaxed font-light text-base">
+                Once the server is running, navigate to <code className="bg-surface-high px-1.5 py-0.5 rounded-sm font-mono text-sm">http://localhost:3000</code>. Simply drag and drop a screenshot into the upload zone. Our Multi-Agent Pipeline will analyze the design and begin generation immediately.
               </p>
               <div className="bg-surface-lowest border border-ghost-border rounded-xl diffuse-shadow overflow-hidden">
                 <div className="flex items-center justify-between px-6 py-3 bg-surface border-b border-ghost-border">
@@ -223,35 +234,32 @@ export default function DocsPageContent() {
             </div>
           </div>
 
-          <aside className="w-64 hidden xl:block border-l border-ghost-border h-[calc(100vh-5rem)] sticky top-20 p-8 shrink-0 bg-surface-low/30 backdrop-blur-sm">
-            <h4 className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-muted mb-6">On this page</h4>
-            <nav className="flex flex-col gap-4" aria-label="On this page">
-              <a className="text-sm font-semibold text-primary-accent border-l-2 border-primary-accent pl-4" href="#installation">
+            <aside className="w-64 hidden xl:block border-l border-ghost-border h-[calc(100vh-5rem)] sticky top-20 p-6 shrink-0 bg-void">
+            <h4 className="text-xs font-semibold text-white mb-4">On this page</h4>
+            <nav className="flex flex-col gap-2.5" aria-label="On this page">
+              <a 
+                className={`text-sm transition-colors ${activeSection === 'installation' ? 'text-primary-accent' : 'text-on-surface-muted hover:text-white'}`} 
+                href="#installation"
+              >
                 Installation
               </a>
               <a
-                className="text-sm font-medium text-on-surface-muted hover:text-white pl-4 border-l-2 border-transparent transition-colors"
+                className={`text-sm transition-colors ${activeSection === 'initializing' ? 'text-primary-accent' : 'text-on-surface-muted hover:text-white'}`}
                 href="#initializing"
               >
-                Initializing
+                Creating your first UI
               </a>
               <a
-                className="text-sm font-medium text-on-surface-muted hover:text-white pl-4 border-l-2 border-transparent transition-colors"
+                className={`text-sm transition-colors ${activeSection === 'basic-usage' ? 'text-primary-accent' : 'text-on-surface-muted hover:text-white'}`}
                 href="#basic-usage"
               >
                 Basic Usage
               </a>
               <a
-                className="text-sm font-medium text-on-surface-muted hover:text-white pl-4 border-l-2 border-transparent transition-colors"
+                className={`text-sm transition-colors ${activeSection === 'configuration' ? 'text-primary-accent' : 'text-on-surface-muted hover:text-white'}`}
                 href="#configuration"
               >
                 Configuration
-              </a>
-              <a
-                className="text-sm font-medium text-on-surface-muted hover:text-white pl-4 border-l-2 border-transparent transition-colors"
-                href="#troubleshooting"
-              >
-                Troubleshooting
               </a>
             </nav>
             <div className="mt-12 pt-12 border-t border-ghost-border">
