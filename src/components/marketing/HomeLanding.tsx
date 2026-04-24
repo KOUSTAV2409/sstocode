@@ -56,7 +56,7 @@ export default function HomeLanding() {
     <div className="min-h-screen bg-void text-on-surface font-body selection:bg-primary-accent/30 selection:text-white">
       <main>
         {/* Nodus Hero Section */}
-        <section className="relative overflow-hidden pb-20 pt-32 sm:pt-40 md:pt-48">
+        <section className="relative overflow-hidden pb-20 pt-40 sm:pt-48 md:pt-56">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-primary-accent-dim)_0%,_transparent_40%)] pointer-events-none" />
           
           <div className="mx-auto max-w-4xl px-6 sm:px-8 md:px-12 relative z-10 text-center flex flex-col items-center">

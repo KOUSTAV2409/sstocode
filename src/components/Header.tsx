@@ -42,11 +42,12 @@ export default function Header() {
     }`;
 
   return (
+    <>
     <motion.header
-      initial={{ y: -100, opacity: 0, x: '-50%' }}
-      animate={{ y: 0, opacity: 1, x: '-50%' }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-4 left-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl bg-void/70 backdrop-blur-2xl border border-ghost-border rounded-full diffuse-shadow"
+      className="fixed top-4 left-0 right-0 mx-auto z-40 w-[calc(100%-2rem)] max-w-6xl bg-void/70 backdrop-blur-2xl border border-ghost-border rounded-full diffuse-shadow"
     >
       <div className="px-4 h-16 flex items-center justify-between gap-2 sm:gap-3 min-w-0">
         <Link href="/" className="flex min-w-0 items-center gap-3 group shrink-0">
@@ -108,10 +109,10 @@ export default function Header() {
           </button>
         </div>
       </div>
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <>
+    </motion.header>
+    <AnimatePresence>
+      {mobileOpen && (
+        <>
             <motion.button
               type="button"
               initial={{ opacity: 0 }}
@@ -197,10 +198,10 @@ export default function Header() {
                   NexusUI · Designed for Builders
                 </p>
               </div>
-            </motion.nav>
-          </>
-        )}
-      </AnimatePresence>
-    </motion.header>
+          </motion.nav>
+        </>
+      )}
+    </AnimatePresence>
+    </>
   );
 }
