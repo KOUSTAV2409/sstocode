@@ -28,7 +28,7 @@ export default function PreviewContent() {
     
     if (sid && typeof window !== 'undefined') {
       try {
-        const stored = sessionStorage.getItem(`sstocode_${sid}`);
+        const stored = sessionStorage.getItem(`NexusUI_${sid}`);
         if (stored) {
           const { code: storedCode } = JSON.parse(stored);
           setCode(storedCode || '');

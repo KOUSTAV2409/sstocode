@@ -1,8 +1,8 @@
-# sstocode Architecture
+# NexusUI Architecture
 
 ## Overview
 
-sstocode is an AI-powered design-to-code tool that converts UI screenshots into React + Tailwind components using Google Gemini.
+NexusUI is an AI-powered design-to-code tool that converts UI screenshots into React + Tailwind components using Google Gemini.
 
 ## Tech Stack
 

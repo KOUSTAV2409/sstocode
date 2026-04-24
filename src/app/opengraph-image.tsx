@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'sstocode - AI-Powered Design to Code';
+export const alt = 'NexusUI - AI-Powered Design to Code';
 export const size = {
   width: 1200,
   height: 630,
@@ -58,7 +58,7 @@ export default async function Image() {
             marginBottom: 16,
           }}
         >
-          sstocode
+          NexusUI
         </div>
 
         {/* Tagline */}

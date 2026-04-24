@@ -19,10 +19,10 @@ export default function ContributingPage() {
             </span>
           </div>
           <h1 className="font-headline text-4xl font-bold tracking-tight text-obsidian-on md:text-5xl">
-            Contributing to <span className="text-obsidian-gold">sstocode</span>
+            Contributing to <span className="text-obsidian-gold">NexusUI</span>
           </h1>
           <p className="text-obsidian-on/55 text-lg">
-            sstocode is an open source app: screenshots → React + Tailwind with Gemini, Monaco, and Sandpack. Help us improve
+            NexusUI is an open source app: screenshots → React + Tailwind with Gemini, Monaco, and Sandpack. Help us improve
             prompts, UI, and docs.
           </p>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-obsidian-on/60" aria-label="Site sections">
@@ -42,7 +42,7 @@ export default function ContributingPage() {
               Auth
             </Link>
             <a
-              href="https://github.com/KOUSTAV2409/sstocode"
+              href="https://github.com/KOUSTAV2409/NexusUI"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-obsidian-gold transition-colors"
@@ -63,8 +63,8 @@ export default function ContributingPage() {
               <div>
                 <h3 className="font-medium mb-2 text-obsidian-on">Setup</h3>
                 <pre className="bg-obsidian-bg border border-obsidian-outline/20 p-4 rounded-sm text-sm overflow-x-auto text-obsidian-on/80">
-{`git clone https://github.com/KOUSTAV2409/sstocode.git
-cd sstocode
+{`git clone https://github.com/KOUSTAV2409/NexusUI.git
+cd NexusUI
 npm install
 cp .env.local.example .env.local
 # Add GEMINI_API_KEY (and/or OPENROUTER_API_KEY / MISTRAL_API_KEY) to .env.local
@@ -184,7 +184,7 @@ npm run dev`}
           <p className="text-obsidian-on/55 mb-8">Fork the repo, read the docs, and open a PR — every improvement counts.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-3 flex-wrap">
             <a 
-              href="https://github.com/KOUSTAV2409/sstocode" 
+              href="https://github.com/KOUSTAV2409/NexusUI" 
               target="_blank" 
               rel="noopener noreferrer"
               className="metallic-luster text-obsidian-on-primary font-bold uppercase text-[10px] tracking-[0.2em] py-3 px-8 hover:opacity-90 transition-opacity rounded-sm"

@@ -157,7 +157,7 @@ export default function UploadZone() {
       
       const sid = crypto.randomUUID();
       if (typeof window !== 'undefined') {
-        sessionStorage.setItem(`sstocode_${sid}`, JSON.stringify({ code: data.code, provider: data.provider }));
+        sessionStorage.setItem(`NexusUI_${sid}`, JSON.stringify({ code: data.code, provider: data.provider }));
       }
       
       if (!isRegenerate) {
@@ -246,14 +246,46 @@ export default function UploadZone() {
                 <span className="bg-obsidian-surface-highest text-obsidian-on/60 px-3 py-1 text-[10px] uppercase tracking-widest font-bold">TypeScript</span>
               </div>
 
-              <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); handleTrySample(); }}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm text-obsidian-tertiary hover:text-obsidian-gold hover:bg-obsidian-surface rounded-sm transition-colors mb-4"
-              >
-                <ImageIcon className="w-4 h-4" />
-                Try with sample design
-              </button>
+              <div className="flex flex-col sm:flex-row gap-2 justify-center mb-4">
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); handleTrySample(); }}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm text-obsidian-tertiary hover:text-obsidian-gold hover:bg-obsidian-surface rounded-sm transition-colors"
+                >
+                  <ImageIcon className="w-4 h-4" />
+                  Try with sample design
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    // In a real implementation this would open an OAuth modal or project ID input
+                    const projectId = prompt("Enter Google Stitch Project ID:");
+                    if (projectId) {
+                      // Call the stitch API route
+                      setIsLoading(true);
+                      fetch('/api/stitch/import', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ projectId })
+                      })
+                      .then(res => res.json())
+                      .then(data => {
+                        if (data.error) throw new Error(data.error);
+                        const sid = crypto.randomUUID();
+                        sessionStorage.setItem(`NexusUI_${sid}`, JSON.stringify({ code: data.code, provider: data.provider }));
+                        router.push(`/preview?sid=${sid}`);
+                      })
+                      .catch(err => setError(err.message))
+                      .finally(() => setIsLoading(false));
+                    }
+                  }}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm text-blue-400 hover:text-blue-300 hover:bg-obsidian-surface rounded-sm transition-colors"
+                >
+                  <Upload className="w-4 h-4" />
+                  Import from Google Stitch
+                </button>
+              </div>
               
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <Settings className="h-4 w-4 shrink-0 text-obsidian-on/50" />
@@ -394,7 +426,7 @@ export default function UploadZone() {
                     animate={{ opacity: 1 }}
                     onClick={() => {
                       const sid = crypto.randomUUID();
-                      sessionStorage.setItem(`sstocode_${sid}`, JSON.stringify({ code: generatedCode, provider: usedProvider || 'Gemini' }));
+                      sessionStorage.setItem(`NexusUI_${sid}`, JSON.stringify({ code: generatedCode, provider: usedProvider || 'Gemini' }));
                       router.push(`/preview?sid=${sid}`);
                     }}
                     className="flex items-center justify-center gap-2 px-4 py-3 bg-obsidian-surface-high hover:bg-obsidian-surface text-obsidian-on rounded-sm font-medium transition-colors"

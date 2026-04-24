@@ -12,7 +12,7 @@ export default function PricingPageContent() {
           <div className="inline-block py-1 px-3 bg-surface-container-highest mb-6">
             <span className="font-label text-[10px] uppercase tracking-[0.2em] text-tertiary">Plans &amp; vision</span>
           </div>
-          <h1 className="font-headline text-4xl md:text-7xl font-bold tracking-tighter mb-8 leading-[0.9]">Simple tiers for sstocode</h1>
+          <h1 className="font-headline text-4xl md:text-7xl font-bold tracking-tighter mb-8 leading-[0.9]">Simple tiers for NexusUI</h1>
           <p className="font-body text-lg text-on-surface/60 leading-relaxed">
             The app is open source and free to run locally. Tiers below describe future hosted options — today, everything runs on your
             machine with your own Gemini API key.
@@ -69,7 +69,7 @@ export default function PricingPageContent() {
               ))}
             </div>
             <a
-              href="https://github.com/KOUSTAV2409/sstocode/issues"
+              href="https://github.com/KOUSTAV2409/NexusUI/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-12 w-full py-4 bg-primary-container text-on-primary font-bold text-xs tracking-widest uppercase hover:brightness-110 transition-all shadow-[0_0_20px_rgba(255,189,56,0.15)] text-center block"
@@ -108,7 +108,7 @@ export default function PricingPageContent() {
           <div className="md:col-span-2 bg-surface-container-lowest p-10 border-l border-primary-container/20">
             <h3 className="font-headline text-2xl font-bold mb-4 italic">Built for Scale</h3>
             <p className="text-sm text-on-surface/60 leading-relaxed">
-              sstocode is built for reliability: Next.js, typed APIs, and a preview pipeline you can trust while you iterate on prompts
+              NexusUI is built for reliability: Next.js, typed APIs, and a preview pipeline you can trust while you iterate on prompts
               and models.
             </p>
           </div>
@@ -136,7 +136,7 @@ export default function PricingPageContent() {
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-surface" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <h4 className="font-headline text-4xl font-light tracking-[0.4em] text-on-surface/30">sstocode</h4>
+              <h4 className="font-headline text-4xl font-light tracking-[0.4em] text-on-surface/30">NexusUI</h4>
             </div>
           </div>
         </div>
@@ -144,7 +144,7 @@ export default function PricingPageContent() {
 
       <footer className="w-full py-12 px-8 bg-background border-t border-obsidian-surface-high/40">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 w-full max-w-7xl mx-auto">
-          <div className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40">© {new Date().getFullYear()} sstocode</div>
+          <div className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40">© {new Date().getFullYear()} NexusUI</div>
           <div className="flex flex-wrap gap-6 justify-center">
             <Link className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300" href="/">
               Home
@@ -163,7 +163,7 @@ export default function PricingPageContent() {
             </Link>
             <a
               className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300"
-              href="https://github.com/KOUSTAV2409/sstocode"
+              href="https://github.com/KOUSTAV2409/NexusUI"
               target="_blank"
               rel="noopener noreferrer"
             >

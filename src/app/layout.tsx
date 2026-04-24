@@ -28,19 +28,19 @@ const baseUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "sstocode - AI-Powered Design to Code",
+  title: "NexusUI - AI-Powered Design to Code",
   description: "Transform UI designs into production-ready React components with AI precision. Upload, generate, and ship faster than ever.",
   keywords: ["AI", "React", "UI", "Code Generation", "Design to Code", "Component Generator"],
-  authors: [{ name: "sstocode Team" }],
+  authors: [{ name: "NexusUI Team" }],
   openGraph: {
-    title: "sstocode - AI-Powered Design to Code",
+    title: "NexusUI - AI-Powered Design to Code",
     description: "Transform UI designs into production-ready React components with AI precision. Upload, generate, and ship faster than ever.",
     type: "website",
-    siteName: "sstocode",
+    siteName: "NexusUI",
   },
   twitter: {
     card: "summary_large_image",
-    title: "sstocode - AI-Powered Design to Code",
+    title: "NexusUI - AI-Powered Design to Code",
     description: "Transform UI designs into production-ready React components with AI precision.",
   },
 };

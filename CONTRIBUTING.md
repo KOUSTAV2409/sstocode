@@ -1,6 +1,6 @@
-# Contributing to sstocode
+# Contributing to NexusUI
 
-Thank you for your interest in contributing to sstocode! This guide will help you get started with contributing to our AI-powered design-to-code platform.
+Thank you for your interest in contributing to NexusUI! This guide will help you get started with contributing to our AI-powered design-to-code platform.
 
 ## 🚀 Quick Start
 
@@ -11,8 +11,8 @@ Thank you for your interest in contributing to sstocode! This guide will help yo
 
 ### Setup
 ```bash
-git clone https://github.com/your-username/sstocode.git
-cd sstocode
+git clone https://github.com/your-username/NexusUI.git
+cd NexusUI
 npm install
 cp .env.local.example .env.local
 # Add your GEMINI_API_KEY to .env.local
@@ -28,7 +28,7 @@ npm run dev
 
 ### 2. Fork and Branch
 ```bash
-git fork https://github.com/original-repo/sstocode.git
+git fork https://github.com/original-repo/NexusUI.git
 git checkout -b feature/your-feature-name
 ```
 
@@ -268,4 +268,4 @@ Active contributors may be invited to become maintainers with:
 
 **Questions?** Open an issue or start a discussion. We're here to help!
 
-**Thank you for contributing to sstocode!** 🎉
+**Thank you for contributing to NexusUI!** 🎉

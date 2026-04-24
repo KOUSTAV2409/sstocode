@@ -19,7 +19,7 @@ export default function AuthPageContent() {
             <div className="space-y-4">
               <h1 className="font-headline text-5xl md:text-6xl font-bold tracking-tighter text-[#ffe0b0]">
                 Welcome to <br />
-                sstocode.
+                NexusUI.
               </h1>
               <p className="text-on-surface-variant max-w-md text-lg leading-relaxed">
                 Accounts are not wired up yet — use the app without signing in, or open a GitHub issue if you want SSO later. This
@@ -84,7 +84,7 @@ export default function AuthPageContent() {
                     <div className="relative group input-focus-accent">
                       <input
                         className="w-full bg-surface-container-lowest border-none text-on-surface p-4 focus:ring-0 placeholder:text-on-surface/20 font-mono text-sm transition-all duration-200"
-                        placeholder="dev@sstocode.io"
+                        placeholder="dev@NexusUI.io"
                         type="email"
                         autoComplete="email"
                       />
@@ -120,7 +120,7 @@ export default function AuthPageContent() {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <a
-                    href="https://github.com/KOUSTAV2409/sstocode"
+                    href="https://github.com/KOUSTAV2409/NexusUI"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-3 bg-surface-bright py-3 text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 transition-transform"
@@ -144,7 +144,7 @@ export default function AuthPageContent() {
 
       <footer className="w-full py-12 px-8 bg-background border-t border-obsidian-surface-high/40">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 w-full max-w-5xl mx-auto">
-          <div className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40">© {new Date().getFullYear()} sstocode</div>
+          <div className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40">© {new Date().getFullYear()} NexusUI</div>
           <div className="flex flex-wrap gap-6 justify-center">
             <Link className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300" href="/">
               Home
@@ -163,7 +163,7 @@ export default function AuthPageContent() {
             </Link>
             <a
               className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300"
-              href="https://github.com/KOUSTAV2409/sstocode"
+              href="https://github.com/KOUSTAV2409/NexusUI"
               target="_blank"
               rel="noopener noreferrer"
             >

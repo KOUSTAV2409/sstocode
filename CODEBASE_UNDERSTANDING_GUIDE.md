@@ -1,8 +1,8 @@
-# sstocode - Complete Codebase Understanding Guide
+# NexusUI - Complete Codebase Understanding Guide
 
 ## 🎯 Project Overview
 
-**sstocode** is an AI-powered design-to-code generator that transforms UI screenshots into production-ready React components. The application uses Google's Gemini AI to analyze uploaded images and generate TypeScript React components with Tailwind CSS styling.
+**NexusUI** is an AI-powered design-to-code generator that transforms UI screenshots into production-ready React components. The application uses Google's Gemini AI to analyze uploaded images and generate TypeScript React components with Tailwind CSS styling.
 
 ## 🏗️ Architecture Overview
 
@@ -397,4 +397,4 @@ GEMINI_API_KEY=your_gemini_api_key_here
 6. Monaco Editor integration
 7. Advanced React patterns
 
-This guide provides a complete understanding of your sstocode project. Use it to study each component systematically and understand how they work together to create the AI-powered design-to-code experience.
+This guide provides a complete understanding of your NexusUI project. Use it to study each component systematically and understand how they work together to create the AI-powered design-to-code experience.

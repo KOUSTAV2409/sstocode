@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import SiteRevampNotice from '@/components/SiteRevampNotice';
+import HomeLanding from '@/components/marketing/HomeLanding';
 
 export const metadata: Metadata = {
-  title: 'sstocode — Coming soon',
-  description: 'We are revamping our architecture. The full site will return soon.',
+  title: 'NexusUI — From Screenshot to Production Code',
+  description: 'Convert UI screenshots into production-ready React and Tailwind code using an agentic AI workflow.',
 };
 
 export default function Home() {
-  return <SiteRevampNotice />;
+  return <HomeLanding />;
 }

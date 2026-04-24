@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
-const STORAGE_KEY = 'sstocode_onboarding_seen';
+const STORAGE_KEY = 'NexusUI_onboarding_seen';
 
 export default function OnboardingModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +56,7 @@ export default function OnboardingModal() {
               <X className="w-5 h-5" />
             </button>
 
-            <h2 className="font-headline text-xl font-semibold text-obsidian-on mb-2">Welcome to sstocode</h2>
+            <h2 className="font-headline text-xl font-semibold text-obsidian-on mb-2">Welcome to NexusUI</h2>
             <p className="text-obsidian-on/55 text-sm mb-4">
               Turn UI screenshots into React components with AI. Here&apos;s how:
             </p>
