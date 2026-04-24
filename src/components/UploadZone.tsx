@@ -216,10 +216,10 @@ export default function UploadZone() {
           >
             <div
               {...getRootProps()}
-              className={`cursor-pointer rounded-sm border-2 border-dashed border-obsidian-outline/40 bg-obsidian-surface-lowest p-6 text-center transition-all duration-300 sm:p-10 md:p-14
+              className={`cursor-pointer rounded-[2.5rem] border-2 border-dashed transition-all duration-300 p-8 sm:p-12 md:p-16 text-center diffuse-shadow
                 ${isDragActive 
-                  ? 'border-obsidian-gold bg-obsidian-gold/5 scale-[1.01]' 
-                  : 'hover:border-obsidian-gold/50 hover:bg-obsidian-surface-low/80'
+                  ? 'border-primary-accent bg-primary-accent/5 scale-[1.02]' 
+                  : 'border-ghost-border hover:border-primary-accent/50 hover:bg-surface-lowest'
                 }
               `}
             >
@@ -229,40 +229,39 @@ export default function UploadZone() {
                 animate={isDragActive ? { scale: 1.1 } : { scale: 1 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <Upload className="w-12 h-12 mx-auto mb-4 text-obsidian-gold" />
+                <Upload className="w-12 h-12 mx-auto mb-6 text-primary-accent drop-shadow-[0_4px_12px_rgba(255,126,95,0.3)]" />
               </motion.div>
               
               <motion.p 
-                className="font-headline text-lg font-medium mb-2 text-obsidian-on"
+                className="font-sans text-xl font-bold mb-3 text-white tracking-tight"
                 animate={isDragActive ? { scale: 1.05 } : { scale: 1 }}
               >
-                {isDragActive ? 'Drop here' : 'Drop screenshot or click to upload'}
+                {isDragActive ? 'Drop to initialize' : 'Drop screenshot or click to upload'}
               </motion.p>
-              <p className="text-sm text-obsidian-on/45 mb-4">PNG, JPG, WEBP up to 10MB</p>
+              <p className="text-sm text-on-surface-muted mb-8 font-light">PNG, JPG, WEBP • Max 10MB</p>
               
-              <div className="flex gap-2 justify-center mb-6 flex-wrap">
-                <span className="bg-obsidian-surface-highest text-obsidian-on/60 px-3 py-1 text-[10px] uppercase tracking-widest font-bold">React</span>
-                <span className="bg-obsidian-surface-highest text-obsidian-on/60 px-3 py-1 text-[10px] uppercase tracking-widest font-bold">Tailwind</span>
-                <span className="bg-obsidian-surface-highest text-obsidian-on/60 px-3 py-1 text-[10px] uppercase tracking-widest font-bold">TypeScript</span>
+              <div className="flex gap-3 justify-center mb-8 flex-wrap">
+                <span className="bg-surface border border-ghost-border text-on-surface-muted px-4 py-1.5 text-xs font-semibold rounded-full uppercase tracking-wider">React</span>
+                <span className="bg-surface border border-ghost-border text-on-surface-muted px-4 py-1.5 text-xs font-semibold rounded-full uppercase tracking-wider">Tailwind</span>
+                <span className="bg-surface border border-ghost-border text-on-surface-muted px-4 py-1.5 text-xs font-semibold rounded-full uppercase tracking-wider">TypeScript</span>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-2 justify-center mb-4">
                 <button
                   type="button"
                   onClick={(e) => { e.stopPropagation(); handleTrySample(); }}
-                  className="inline-flex items-center gap-2 px-4 py-2 text-sm text-obsidian-tertiary hover:text-obsidian-gold hover:bg-obsidian-surface rounded-sm transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm text-on-surface-muted hover:text-white bg-surface hover:bg-surface-high rounded-full transition-colors border border-ghost-border font-medium shadow-sm"
                 >
                   <ImageIcon className="w-4 h-4" />
                   Try with sample design
                 </button>
+                {/* 
                 <button
                   type="button"
                   onClick={(e) => { 
                     e.stopPropagation(); 
-                    // In a real implementation this would open an OAuth modal or project ID input
                     const projectId = prompt("Enter Google Stitch Project ID:");
                     if (projectId) {
-                      // Call the stitch API route
                       setIsLoading(true);
                       fetch('/api/stitch/import', {
                         method: 'POST',
@@ -273,8 +272,8 @@ export default function UploadZone() {
                       .then(data => {
                         if (data.error) throw new Error(data.error);
                         const sid = crypto.randomUUID();
-                        sessionStorage.setItem(`NexusUI_${sid}`, JSON.stringify({ code: data.code, provider: data.provider }));
-                        router.push(`/preview?sid=${sid}`);
+                        sessionStorage.setItem(\`NexusUI_\${sid}\`, JSON.stringify({ code: data.code, provider: data.provider }));
+                        router.push(\`/preview?sid=\${sid}\`);
                       })
                       .catch(err => setError(err.message))
                       .finally(() => setIsLoading(false));
@@ -285,11 +284,12 @@ export default function UploadZone() {
                   <Upload className="w-4 h-4" />
                   Import from Google Stitch
                 </button>
+                */}
               </div>
               
               <div className="flex flex-wrap items-center justify-center gap-2">
-                <Settings className="h-4 w-4 shrink-0 text-obsidian-on/50" />
-                <span className="shrink-0 text-sm text-obsidian-on/50">AI Model:</span>
+                <Settings className="h-4 w-4 shrink-0 text-on-surface-muted" />
+                <span className="shrink-0 text-sm text-on-surface-muted font-mono">AI Model:</span>
                 <AIProviderSelector />
               </div>
               
@@ -312,54 +312,54 @@ export default function UploadZone() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="obsidian-glass rounded-sm border border-obsidian-outline/30 bg-obsidian-surface-low p-4 sm:p-6"
+            className="diffuse-shadow rounded-[2rem] border border-ghost-border bg-surface-lowest p-6 sm:p-10"
           >
-            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex min-w-0 items-center gap-3">
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex min-w-0 items-center gap-4">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
-                  className="w-10 h-10 bg-emerald-600/90 rounded-sm flex items-center justify-center"
+                  className="w-12 h-12 bg-primary-accent/10 border border-primary-accent/30 rounded-full flex items-center justify-center"
                 >
-                  <CheckCircle className="w-5 h-5 text-white" />
+                  <CheckCircle className="w-5 h-5 text-primary-accent" />
                 </motion.div>
                 <div className="min-w-0">
-                  <p className="font-medium text-obsidian-on">Design uploaded successfully</p>
+                  <p className="font-bold text-white font-mono tracking-tight uppercase text-sm">DESIGN_UPLOADED</p>
                   {imageInfo && (
-                    <p className="text-sm text-obsidian-on/50 break-words">
-                      {imageInfo.width}×{imageInfo.height} · {imageInfo.size}
+                    <p className="text-xs text-on-surface-muted break-words font-sans mt-1">
+                      {imageInfo.width}×{imageInfo.height}px • {imageInfo.size}
                     </p>
                   )}
                 </div>
               </div>
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleReset}
-                className="self-end p-2 text-obsidian-on/70 transition-colors hover:bg-obsidian-surface rounded-sm sm:self-auto"
+                className="self-end p-2.5 text-on-surface-muted transition-colors hover:text-white hover:bg-surface-high rounded-full sm:self-auto border border-ghost-border bg-surface shadow-sm"
                 aria-label="Remove and upload new"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </motion.button>
             </div>
             
             {/* Compare view: original vs generated code */}
             {isCompareMode && generatedCode ? (
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                <div className="space-y-2">
-                  <p className="text-xs font-medium text-obsidian-on/50">Original design</p>
-                  <div className="aspect-video bg-obsidian-surface-lowest rounded-sm overflow-hidden border border-obsidian-outline/30">
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="space-y-3">
+                  <p className="text-xs font-bold font-mono text-on-surface-muted uppercase">Original design</p>
+                  <div className="aspect-video bg-void rounded-2xl overflow-hidden border border-ghost-border shadow-inner">
                     <img src={previewUrl} alt="Original" className="w-full h-full object-contain" />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <p className="text-xs font-medium text-obsidian-on/50">Generated code</p>
-                  <div className="aspect-video bg-obsidian-surface-lowest rounded-sm overflow-auto border border-obsidian-outline/30 p-3">
-                    <pre className="text-xs text-obsidian-on/80 font-mono whitespace-pre-wrap break-words">
+                <div className="space-y-3">
+                  <p className="text-xs font-bold font-mono text-on-surface-muted uppercase">Generated code</p>
+                  <div className="aspect-video bg-void rounded-2xl overflow-auto border border-ghost-border p-4 shadow-inner">
+                    <pre className="text-xs text-on-surface font-mono whitespace-pre-wrap break-words">
                       {generatedCode.slice(0, 500)}{generatedCode.length > 500 ? '...' : ''}
                     </pre>
-                    <p className="text-xs text-obsidian-tertiary mt-2">View full preview in editor →</p>
+                    <p className="text-xs text-primary-accent mt-3 font-mono">View full preview in editor →</p>
                   </div>
                 </div>
               </div>
@@ -368,40 +368,40 @@ export default function UploadZone() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 }}
-                className="relative aspect-video bg-obsidian-surface-lowest rounded-sm mb-6 overflow-hidden border border-obsidian-outline/30"
+                className="relative aspect-video bg-void rounded-2xl mb-8 overflow-hidden border border-ghost-border shadow-inner"
               >
                 <img src={previewUrl} alt="Preview" className="w-full h-full object-contain" />
               </motion.div>
             )}
 
-            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4">
-              <div className="flex min-w-0 flex-wrap items-center gap-2">
-                <Settings className="h-4 w-4 shrink-0 text-obsidian-on/50" />
-                <span className="shrink-0 text-sm text-obsidian-on/50">AI Model:</span>
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+              <div className="flex min-w-0 flex-wrap items-center gap-3">
+                <Settings className="h-4 w-4 shrink-0 text-on-surface-muted" />
+                <span className="shrink-0 text-sm text-on-surface-muted font-sans font-medium">AI Model:</span>
                 <AIProviderSelector />
               </div>
               {generatedCode && (
                 <button
                   type="button"
                   onClick={() => setIsCompareMode(!isCompareMode)}
-                  className="text-left text-sm text-obsidian-tertiary transition-colors hover:text-obsidian-gold sm:text-right"
+                  className="text-left text-sm text-primary-accent transition-colors hover:text-white sm:text-right font-sans font-semibold tracking-wide"
                 >
                   {isCompareMode ? 'Hide compare' : 'Compare original vs generated'}
                 </button>
               )}
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-4">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleGenerate(false)}
                 disabled={isLoading}
-                className="flex-1 metallic-luster text-obsidian-on-primary py-3 rounded-sm font-bold tracking-tight transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-primary-accent text-void py-3.5 rounded-full font-bold tracking-wide font-sans shadow-[0_0_30px_-5px_rgba(255,126,95,0.4)] transition-all hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:hover:scale-100"
               >
                 {isLoading ? (
                   <span className="flex items-center justify-center gap-2">
-                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <Loader2 className="w-5 h-5 animate-spin text-void" />
                     Generating... {progress}%
                   </span>
                 ) : (
@@ -416,10 +416,10 @@ export default function UploadZone() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handleGenerate(true)}
-                    className="flex items-center justify-center gap-2 px-4 py-3 border border-obsidian-outline/50 text-obsidian-on/80 hover:border-obsidian-gold/50 hover:text-obsidian-on rounded-sm font-medium transition-colors"
+                    className="flex items-center justify-center gap-2 px-6 py-3.5 border border-ghost-border text-on-surface hover:border-primary-accent hover:text-primary-accent bg-surface rounded-full font-bold font-sans tracking-wide transition-colors"
                   >
                     <RotateCcw className="w-4 h-4" />
-                    Regenerate
+                    Regen
                   </motion.button>
                   <motion.button
                     initial={{ opacity: 0 }}
@@ -429,9 +429,9 @@ export default function UploadZone() {
                       sessionStorage.setItem(`NexusUI_${sid}`, JSON.stringify({ code: generatedCode, provider: usedProvider || 'Gemini' }));
                       router.push(`/preview?sid=${sid}`);
                     }}
-                    className="flex items-center justify-center gap-2 px-4 py-3 bg-obsidian-surface-high hover:bg-obsidian-surface text-obsidian-on rounded-sm font-medium transition-colors"
+                    className="flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-white/90 text-void rounded-full font-bold font-sans tracking-wide transition-colors shadow-lg"
                   >
-                    View in preview
+                    View Editor
                   </motion.button>
                 </>
               )}
@@ -441,17 +441,17 @@ export default function UploadZone() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="mt-4"
+                className="mt-6"
               >
-                <div className="w-full bg-obsidian-surface rounded-full h-2">
+                <div className="w-full bg-surface border border-ghost-border rounded-full h-2 overflow-hidden shadow-inner">
                   <motion.div
-                    className="bg-obsidian-gold h-2 rounded-full"
+                    className="bg-primary-accent h-2 rounded-full"
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
                     transition={{ duration: 0.3 }}
                   />
                 </div>
-                <p className="text-sm text-obsidian-on/50 mt-2 text-center">
+                <p className="text-xs text-on-surface-muted mt-3 text-center font-sans font-semibold tracking-wide uppercase">
                   {usedProvider ? `Using ${usedProvider}...` : 'AI is analyzing your design...'}
                 </p>
               </motion.div>

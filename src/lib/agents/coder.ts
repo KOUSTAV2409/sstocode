@@ -48,10 +48,14 @@ Requirements:
 7. The file MUST end with valid closing tags and syntax.
 `;
 
-    const result = await model.generateContent([
-      prompt,
-      { inlineData: { mimeType: 'image/jpeg', data: base64 } },
-    ]);
+    const contentParts: any[] = [prompt];
+    
+    if (imageBuffer && imageBuffer.length > 0) {
+      const base64 = imageBuffer.toString('base64');
+      contentParts.push({ inlineData: { mimeType: 'image/jpeg', data: base64 } });
+    }
+
+    const result = await model.generateContent(contentParts);
 
     return result.response.text();
   }

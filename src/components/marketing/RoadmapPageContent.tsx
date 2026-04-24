@@ -3,68 +3,68 @@ import { CalendarDays, Check, CheckCircle, LayoutGrid, RefreshCw, Terminal } fro
 
 export default function RoadmapPageContent() {
   return (
-    <div className="min-h-screen bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+    <div className="min-h-screen bg-void text-white font-sans selection:bg-primary-accent selection:text-void">
       <main className="pt-24 pb-24 px-6 md:px-8 max-w-7xl mx-auto">
         <header className="mb-24 max-w-3xl">
-          <div className="inline-block bg-surface-container-highest px-3 py-1 mb-6">
-            <span className="text-[10px] font-label uppercase tracking-[0.2em] text-tertiary">Product roadmap</span>
+          <div className="inline-block py-1.5 px-4 bg-surface-highest border border-ghost-border rounded-full mb-6">
+            <span className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-primary-accent">Product roadmap</span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-headline font-bold tracking-tighter text-on-surface mb-8">
-            The <span className="text-primary-container">NexusUI</span> roadmap
+          <h1 className="text-4xl sm:text-6xl font-sans font-bold tracking-tight text-white mb-8">
+            The <span className="text-primary-accent">NexusUI</span> roadmap
           </h1>
-          <p className="text-on-surface/60 text-xl font-light leading-relaxed">
+          <p className="text-on-surface-muted text-xl font-light leading-relaxed">
             What we are building next: better generation, preview, and developer experience — tracked openly on GitHub.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl">
           <section className="lg:col-span-7 flex flex-col gap-8">
             <div className="flex items-center gap-4 mb-4">
-              <RefreshCw className="size-6 shrink-0 text-primary-container" strokeWidth={1.75} aria-hidden />
-              <h2 className="text-[10px] font-label uppercase tracking-[0.3em] text-[#ffe0b0]">In Progress</h2>
+              <RefreshCw className="size-6 shrink-0 text-primary-accent" strokeWidth={1.75} aria-hidden />
+              <h2 className="text-[10px] font-sans font-bold uppercase tracking-widest text-white">In Progress</h2>
             </div>
 
-            <div className="bg-surface-container-low p-8 relative overflow-hidden group">
+            <div className="bg-surface-lowest border border-ghost-border diffuse-shadow rounded-3xl p-8 relative overflow-hidden group">
               <div
-                className="pointer-events-none absolute top-0 right-0 p-4 text-primary-container/25 select-none"
+                className="pointer-events-none absolute top-0 right-0 p-4 text-primary-accent/10 select-none"
                 aria-hidden
               >
                 <LayoutGrid className="size-26 max-md:size-20" strokeWidth={1.25} />
               </div>
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-6 flex-wrap gap-2">
-                  <h3 className="text-2xl sm:text-3xl font-headline font-bold text-on-surface">Preview &amp; editor polish</h3>
-                  <span className="text-[10px] font-label uppercase tracking-widest bg-primary-container/10 text-primary-container px-2 py-1 rounded-sm shrink-0">
+                  <h3 className="text-2xl sm:text-3xl font-sans font-bold text-white">Preview &amp; editor polish</h3>
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest bg-primary-accent/10 text-primary-accent px-3 py-1 rounded-full shrink-0">
                     In progress
                   </span>
                 </div>
-                <p className="text-on-surface/50 mb-8 max-w-md">
+                <p className="text-on-surface-muted mb-8 max-w-md font-light">
                   Sandpack preview, Monaco editing, device modes, and zoom — so generated code is easy to verify before you copy it into
                   your app.
                 </p>
-                <div className="h-1 bg-surface-container-high w-full relative">
-                  <div className="h-full bg-primary-container w-[72%]" />
+                <div className="h-1.5 rounded-full bg-surface-high w-full relative overflow-hidden">
+                  <div className="h-full bg-primary-accent w-[72%] rounded-full" />
                 </div>
-                <div className="mt-4 flex justify-between items-center text-[10px] font-label text-on-surface/40 uppercase tracking-widest">
+                <div className="mt-4 flex justify-between items-center text-[10px] font-sans font-bold text-on-surface-muted uppercase tracking-widest">
                   <span>Integration Phase</span>
                   <span>72%</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-surface-container-low p-8 relative group">
+            <div className="bg-surface-lowest border border-ghost-border diffuse-shadow rounded-3xl p-8 relative group">
               <div className="flex items-start gap-8">
-                <div className="w-16 h-16 bg-surface-container flex items-center justify-center shrink-0">
-                  <Terminal className="size-8 text-primary-container" strokeWidth={1.75} aria-hidden />
+                <div className="w-16 h-16 bg-surface rounded-2xl flex items-center justify-center shrink-0 border border-ghost-border">
+                  <Terminal className="size-8 text-primary-accent" strokeWidth={1.75} aria-hidden />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-headline font-bold text-on-surface mb-2">Generation quality</h3>
-                  <p className="text-on-surface/50 text-sm mb-6">
+                  <h3 className="text-2xl font-sans font-bold text-white mb-2">Generation quality</h3>
+                  <p className="text-on-surface-muted text-sm mb-6 font-light">
                     Retries, truncation handling, and prompt tuning so Gemini returns complete React + Tailwind more reliably.
                   </p>
                   <div className="flex gap-4 flex-wrap">
-                    <span className="text-[10px] font-label text-tertiary bg-tertiary/5 px-2 py-1">Gemini</span>
-                    <span className="text-[10px] font-label text-tertiary bg-tertiary/5 px-2 py-1">Next.js</span>
+                    <span className="text-[10px] font-sans font-bold text-secondary-accent bg-secondary-accent/10 rounded-full px-3 py-1">Gemini</span>
+                    <span className="text-[10px] font-sans font-bold text-secondary-accent bg-secondary-accent/10 rounded-full px-3 py-1">Next.js</span>
                   </div>
                 </div>
               </div>
@@ -74,49 +74,49 @@ export default function RoadmapPageContent() {
           <aside className="lg:col-span-5 flex flex-col gap-12">
             <div>
               <div className="flex items-center gap-4 mb-8">
-                <CalendarDays className="size-6 shrink-0 text-on-surface/30" strokeWidth={1.75} aria-hidden />
-                <h2 className="text-[10px] font-label uppercase tracking-[0.3em] text-on-surface/50">Planned</h2>
+                <CalendarDays className="size-6 shrink-0 text-on-surface-muted/50" strokeWidth={1.75} aria-hidden />
+                <h2 className="text-[10px] font-sans font-bold uppercase tracking-widest text-on-surface-muted">Planned</h2>
               </div>
               <div className="space-y-6">
-                <div className="bg-surface-container p-6 monolith-border">
-                  <h3 className="text-lg font-headline font-medium text-on-surface mb-2">Figma Plugin</h3>
-                  <p className="text-sm text-on-surface/50 mb-4">Native integration for direct bridge to SSTOCODE workspace.</p>
+                <div className="bg-surface-lowest border border-ghost-border diffuse-shadow rounded-3xl p-6">
+                  <h3 className="text-lg font-sans font-bold text-white mb-2">Figma Plugin</h3>
+                  <p className="text-sm text-on-surface-muted font-light mb-4">Native integration for direct bridge to SSTOCODE workspace.</p>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[#dac3a9]" />
-                    <span className="text-[9px] font-label uppercase tracking-widest text-[#dac3a9]">Scheduled Q3</span>
+                    <div className="w-2 h-2 rounded-full bg-primary-accent" />
+                    <span className="text-[9px] font-sans font-bold uppercase tracking-widest text-primary-accent">Scheduled Q3</span>
                   </div>
                 </div>
-                <div className="bg-surface-container p-6 monolith-border">
-                  <h3 className="text-lg font-headline font-medium text-on-surface mb-2">Export to Vue/Svelte</h3>
-                  <p className="text-sm text-on-surface/50 mb-4">
+                <div className="bg-surface-lowest border border-ghost-border diffuse-shadow rounded-3xl p-6">
+                  <h3 className="text-lg font-sans font-bold text-white mb-2">Export to Vue/Svelte</h3>
+                  <p className="text-sm text-on-surface-muted font-light mb-4">
                     Extending the engine beyond React/Tailwind to support native Vue 3 and Svelte architectures.
                   </p>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[#dac3a9]" />
-                    <span className="text-[9px] font-label uppercase tracking-widest text-[#dac3a9]">In Research</span>
+                    <div className="w-2 h-2 rounded-full bg-primary-accent" />
+                    <span className="text-[9px] font-sans font-bold uppercase tracking-widest text-primary-accent">In Research</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-surface-container-low p-8">
+            <div className="bg-surface-lowest border border-ghost-border diffuse-shadow rounded-3xl p-8">
               <div className="flex items-center gap-4 mb-8">
-                <CheckCircle className="size-6 shrink-0 text-tertiary" strokeWidth={1.75} aria-hidden />
-                <h2 className="text-[10px] font-label uppercase tracking-[0.3em] text-tertiary">Completed</h2>
+                <CheckCircle className="size-6 shrink-0 text-secondary-accent" strokeWidth={1.75} aria-hidden />
+                <h2 className="text-[10px] font-sans font-bold uppercase tracking-widest text-secondary-accent">Completed</h2>
               </div>
               <ul className="space-y-6">
                 <li className="flex items-start gap-4">
-                  <Check className="size-4 shrink-0 text-on-surface/30 mt-0.5" strokeWidth={2} aria-hidden />
+                  <Check className="size-4 shrink-0 text-secondary-accent mt-0.5" strokeWidth={2} aria-hidden />
                   <div>
-                    <span className="text-sm font-medium text-on-surface">Screenshot → React + Tailwind</span>
-                    <p className="text-[11px] text-on-surface/40">Gemini multimodal generation from UI images.</p>
+                    <span className="text-sm font-bold text-white">Screenshot → React + Tailwind</span>
+                    <p className="text-xs text-on-surface-muted mt-1 font-light">Gemini multimodal generation from UI images.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
-                  <Check className="size-4 shrink-0 text-on-surface/30 mt-0.5" strokeWidth={2} aria-hidden />
+                  <Check className="size-4 shrink-0 text-secondary-accent mt-0.5" strokeWidth={2} aria-hidden />
                   <div>
-                    <span className="text-sm font-medium text-on-surface">Live preview &amp; editor</span>
-                    <p className="text-[11px] text-on-surface/40">Monaco + Sandpack workflow.</p>
+                    <span className="text-sm font-bold text-white">Live preview &amp; editor</span>
+                    <p className="text-xs text-on-surface-muted mt-1 font-light">Monaco + Sandpack workflow.</p>
                   </div>
                 </li>
               </ul>
@@ -124,24 +124,24 @@ export default function RoadmapPageContent() {
           </aside>
         </div>
 
-        <section className="mt-32">
-          <div className="glass-panel p-8 md:p-16 border-t border-primary-container/10 flex flex-col md:flex-row justify-between items-center gap-12 relative overflow-hidden">
-            <div className="absolute -right-24 -bottom-24 w-96 h-96 bg-primary-container/5 blur-[120px] rounded-full" />
+        <section className="mt-32 max-w-6xl mx-auto">
+          <div className="bg-surface-lowest border border-ghost-border diffuse-shadow rounded-3xl p-8 md:p-16 flex flex-col md:flex-row justify-between items-center gap-12 relative overflow-hidden">
+            <div className="absolute -right-24 -bottom-24 w-96 h-96 bg-primary-accent/10 blur-[120px] rounded-full" />
             <div className="max-w-xl relative z-10">
-              <h2 className="text-3xl md:text-4xl font-headline font-bold text-on-surface mb-6">
+              <h2 className="text-3xl md:text-4xl font-sans font-bold text-white mb-6">
                 Shape <br />
                 NexusUI.
               </h2>
-              <p className="text-on-surface/50 leading-relaxed">
+              <p className="text-on-surface-muted leading-relaxed font-light">
                 Open an issue, pick up a good-first-issue, or suggest a feature — the roadmap follows what builders need.
               </p>
             </div>
-            <div className="flex flex-col gap-4 w-full md:w-auto relative z-10">
+            <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto relative z-10">
               <a
                 href="https://github.com/KOUSTAV2409/NexusUI/issues"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary-container text-on-primary font-bold uppercase text-[10px] tracking-[0.2em] py-5 px-12 hover:opacity-90 transition-opacity text-center"
+                className="bg-primary-accent text-void font-bold uppercase text-[10px] tracking-widest py-4 px-10 rounded-full hover:brightness-110 transition-all text-center shadow-[0_0_30px_-5px_rgba(255,126,95,0.4)]"
               >
                 Request feature
               </a>
@@ -149,7 +149,7 @@ export default function RoadmapPageContent() {
                 href="https://github.com/KOUSTAV2409/NexusUI"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-tertiary border border-tertiary/20 font-bold uppercase text-[10px] tracking-[0.2em] py-5 px-12 hover:bg-tertiary/5 transition-colors text-center"
+                className="text-white border border-ghost-border font-bold uppercase text-[10px] tracking-widest py-4 px-10 rounded-full hover:bg-surface-high transition-colors text-center"
               >
                 View GitHub
               </a>
@@ -158,30 +158,30 @@ export default function RoadmapPageContent() {
         </section>
       </main>
 
-      <footer className="w-full py-12 px-8 bg-background border-t border-obsidian-surface-high/40">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 w-full max-w-7xl mx-auto">
-          <p className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40">© {new Date().getFullYear()} NexusUI</p>
-          <div className="flex flex-wrap gap-6 justify-center">
-            <Link className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300" href="/">
+      <footer className="w-full py-12 px-8 bg-void border-t border-ghost-border mt-auto">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 w-full max-w-7xl mx-auto">
+          <p className="font-sans font-bold text-[10px] uppercase tracking-widest text-on-surface-muted">© {new Date().getFullYear()} NexusUI</p>
+          <div className="flex flex-wrap gap-8 justify-center">
+            <Link className="font-sans font-bold text-[10px] uppercase tracking-widest text-on-surface-muted hover:text-white transition-colors duration-300" href="/">
               Home
             </Link>
-            <Link className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300" href="/docs">
+            <Link className="font-sans font-bold text-[10px] uppercase tracking-widest text-on-surface-muted hover:text-white transition-colors duration-300" href="/docs">
               Docs
             </Link>
-            <Link className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300" href="/pricing">
+            <Link className="font-sans font-bold text-[10px] uppercase tracking-widest text-on-surface-muted hover:text-white transition-colors duration-300" href="/pricing">
               Pricing
             </Link>
-            <Link className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300" href="/auth">
+            <Link className="font-sans font-bold text-[10px] uppercase tracking-widest text-on-surface-muted hover:text-white transition-colors duration-300" href="/auth">
               Sign in
             </Link>
             <Link
-              className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300"
+              className="font-sans font-bold text-[10px] uppercase tracking-widest text-on-surface-muted hover:text-white transition-colors duration-300"
               href="/contributing"
             >
               Contributing
             </Link>
             <a
-              className="font-body text-[10px] uppercase tracking-widest text-on-surface opacity-40 hover:text-tertiary hover:opacity-100 transition-opacity duration-300"
+              className="font-sans font-bold text-[10px] uppercase tracking-widest text-on-surface-muted hover:text-white transition-colors duration-300"
               href="https://github.com/KOUSTAV2409/NexusUI"
               target="_blank"
               rel="noopener noreferrer"

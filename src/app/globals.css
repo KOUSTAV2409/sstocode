@@ -42,69 +42,32 @@
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 6px);
 
-  /* Obsidian / stitch design system */
-  --color-obsidian-bg: #001717;
-  --color-obsidian-nav: #071f1f;
-  --color-obsidian-surface: #0b2323;
-  --color-obsidian-surface-low: #071f1f;
-  --color-obsidian-surface-lowest: #001111;
-  --color-obsidian-surface-high: #172e2e;
-  --color-obsidian-surface-highest: #223938;
-  --color-obsidian-on: #cee8e7;
-  --color-obsidian-gold: #ffbd38;
-  --color-obsidian-on-primary: #422c00;
-  --color-obsidian-tertiary: #a3f1ff;
-  --color-obsidian-bright: #263d3d;
-  --color-obsidian-outline: #504534;
-  --font-headline: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  /* Nodus Template Design System */
+  --color-void: #0a0a0a;
+  --color-surface-lowest: #0a0a0a;
+  --color-surface: #0f0f0f;
+  --color-surface-low: #171717;
+  --color-surface-high: #262626;
+  --color-surface-highest: #404040;
+  
+  --color-nodus-accent: #ff7e5f;
+  --color-nodus-accent-hover: #eb5e28;
+  --color-nodus-accent-dim: rgba(255, 126, 95, 0.2);
+  
+  --color-primary-accent: var(--color-nodus-accent);
+  --color-primary-accent-hover: var(--color-nodus-accent-hover);
+  --color-primary-accent-dim: var(--color-nodus-accent-dim);
+  --color-secondary-accent: #e5e5e5;
+  
+  --color-on-void: #fafafa;
+  --color-on-surface: #f5f5f5;
+  --color-on-surface-muted: #a3a3a3;
+  
+  --color-ghost-border: #262626;
+  
+  --font-headline: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-label: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-
-  /* Stitch revampLanding.html — Material palette (CDN tailwind.config extend.colors) */
-  --color-tertiary-fixed: #9cf0ff;
-  --color-secondary-container: #544430;
-  --color-inverse-surface: #cee8e7;
-  --color-on-error: #690005;
-  --color-on-tertiary-fixed: #001f24;
-  --color-tertiary-container: #00dcf5;
-  --color-on-surface-variant: #d4c4ae;
-  --color-on-secondary-container: #c8b198;
-  --color-surface-container-highest: #223938;
-  --color-surface-container-lowest: #001111;
-  --color-on-primary-fixed: #271900;
-  --color-error: #ffb4ab;
-  --color-primary-fixed: #ffdea9;
-  --color-error-container: #93000a;
-  --color-on-primary-fixed-variant: #5f4100;
-  --color-primary-fixed-dim: #fdbb36;
-  --color-primary-container: #ffbd38;
-  --color-tertiary: #a3f1ff;
-  --color-surface-container-high: #172e2e;
-  --color-outline-variant: #504534;
-  --color-on-surface: #cee8e7;
-  --color-inverse-primary: #7d5800;
-  --color-on-tertiary-fixed-variant: #004f58;
-  --color-on-primary-container: #6f4e00;
-  --color-outline: #9d8f7a;
-  --color-surface-dim: #001717;
-  --color-surface-variant: #223938;
-  --color-surface-container-low: #071f1f;
-  --color-surface-bright: #263d3d;
-  --color-inverse-on-surface: #1d3434;
-  --color-on-secondary-fixed-variant: #544430;
-  --color-surface-container: #0b2323;
-  --color-on-primary: #422c00;
-  --color-on-tertiary: #00363d;
-  --color-on-tertiary-container: #005d68;
-  --color-on-secondary: #3c2e1c;
-  --color-secondary-fixed-dim: #dac3a9;
-  --color-tertiary-fixed-dim: #00daf3;
-  --color-on-secondary-fixed: #261909;
-  --color-surface-tint: #fdbb36;
-  --color-secondary-fixed: #f7dfc4;
-  --color-on-error-container: #ffdad6;
-  --color-on-background: #cee8e7;
-  --color-surface: #001717;
+  --font-label: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 :root {
@@ -272,50 +235,60 @@
     transform: translateY(0);
   }
 
-  /* Stitch / Obsidian utilities */
-  .obsidian-glass {
-    background: rgba(34, 57, 56, 0.6);
-    backdrop-filter: blur(20px);
+  /* Nodus Utilities */
+  .diffuse-shadow {
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+  }
+
+  .nodus-gradient-text {
+    background: linear-gradient(to right, #ff7e5f, #eb5e28);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .ghost-border {
+    border: 1px solid var(--color-ghost-border);
+  }
+
+  .glass-panel {
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
 
   .metallic-luster {
-    background: linear-gradient(135deg, #ffe0b0 0%, #ffbd38 100%);
+    background: linear-gradient(135deg, #ff7e5f 0%, #eb5e28 100%);
   }
 
   .monolith-border {
-    border-left: 2px solid #ffbd38;
+    border-left: 2px solid var(--color-primary-accent);
   }
 
   .nav-gradient-line {
-    background: linear-gradient(to right, transparent, #172e2e, transparent);
+    background: linear-gradient(to right, transparent, var(--color-surface-high), transparent);
   }
 
-  /* Stitch docs / auth / roadmap */
   .code-block {
-    background-color: #001111;
-    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    background-color: var(--color-surface-lowest);
+    font-family: var(--font-mono), ui-monospace, monospace;
   }
 
   .sidebar-scroll::-webkit-scrollbar {
     width: 4px;
   }
   .sidebar-scroll::-webkit-scrollbar-track {
-    background: #001717;
+    background: var(--color-surface);
   }
   .sidebar-scroll::-webkit-scrollbar-thumb {
-    background: #172e2e;
-  }
-
-  .glass-panel {
-    background: rgba(34, 57, 56, 0.6);
-    backdrop-filter: blur(20px);
+    background: var(--color-surface-high);
   }
 
   .monolith-gradient {
-    background: linear-gradient(180deg, #001717 0%, #071f1f 100%);
+    background: linear-gradient(180deg, var(--color-surface-lowest) 0%, var(--color-surface-low) 100%);
   }
 
   .input-focus-accent:focus-within {
-    border-left: 2px solid #ffe0b0;
+    border-left: 2px solid var(--color-primary-accent);
   }
 }
