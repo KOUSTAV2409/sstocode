@@ -82,7 +82,7 @@ export default function Header() {
         <div className="flex shrink-0 items-center gap-3 sm:gap-4">
           <Link
             href="/#upload"
-            className="whitespace-nowrap rounded-full px-5 py-2 text-[10px] font-bold uppercase tracking-widest bg-primary-accent text-void transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_-5px_rgba(255,126,95,0.5)]"
+            className="whitespace-nowrap rounded-md px-5 py-2 text-[10px] font-bold uppercase tracking-widest bg-primary-accent text-void transition-colors hover:bg-white"
           >
             Upload
           </Link>
@@ -134,7 +134,7 @@ export default function Header() {
               </div>
 
               {/* Minimal structural grid lines instead of abstract SVG slop */}
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
               <div className="flex flex-col flex-1 p-6 gap-2 overflow-y-auto relative z-10 mt-4">
                 {navItems.map((item, idx) => {

@@ -29,18 +29,6 @@ export default function MarketingFooter() {
           <Link href="/docs" className="text-on-surface-muted hover:text-white transition-colors font-sans font-bold text-[10px] uppercase tracking-widest">
             Docs
           </Link>
-          <Link href="/roadmap" className="text-on-surface-muted hover:text-white transition-colors font-sans font-bold text-[10px] uppercase tracking-widest">
-            Roadmap
-          </Link>
-          <Link href="/pricing" className="text-on-surface-muted hover:text-white transition-colors font-sans font-bold text-[10px] uppercase tracking-widest">
-            Pricing
-          </Link>
-          <Link href="/contributing" className="text-on-surface-muted hover:text-white transition-colors font-sans font-bold text-[10px] uppercase tracking-widest">
-            Contributing
-          </Link>
-          <Link href="/auth" className="text-on-surface-muted hover:text-white transition-colors font-sans font-bold text-[10px] uppercase tracking-widest">
-            Sign in
-          </Link>
         </nav>
         <p className="max-w-full text-center font-sans font-bold text-[10px] uppercase tracking-widest text-on-surface-muted break-words md:text-right">
           © {new Date().getFullYear()} NexusUI · open source design-to-code

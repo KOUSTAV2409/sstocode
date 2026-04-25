@@ -216,28 +216,22 @@ export default function UploadZone() {
           >
             <div
               {...getRootProps()}
-              className={`cursor-pointer rounded-[2.5rem] border-2 border-dashed transition-all duration-300 p-8 sm:p-12 md:p-16 text-center diffuse-shadow
+              className={`cursor-pointer rounded-xl border border-dashed transition-colors duration-200 p-8 sm:p-12 md:p-16 text-center
                 ${isDragActive 
-                  ? 'border-primary-accent bg-primary-accent/5 scale-[1.02]' 
-                  : 'border-ghost-border hover:border-primary-accent/50 hover:bg-surface-lowest'
+                  ? 'border-white bg-white/5' 
+                  : 'border-white/20 hover:border-white/50 hover:bg-surface-lowest'
                 }
               `}
             >
               <input {...getInputProps()} />
               
-              <motion.div
-                animate={isDragActive ? { scale: 1.1 } : { scale: 1 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <Upload className="w-12 h-12 mx-auto mb-6 text-primary-accent drop-shadow-[0_4px_12px_rgba(255,126,95,0.3)]" />
-              </motion.div>
+              <div className="flex justify-center mb-6">
+                <Upload className="w-8 h-8 text-white/50" />
+              </div>
               
-              <motion.p 
-                className="font-sans text-xl font-bold mb-3 text-white tracking-tight"
-                animate={isDragActive ? { scale: 1.05 } : { scale: 1 }}
-              >
+              <p className="font-sans text-xl font-bold mb-3 text-white tracking-tight">
                 {isDragActive ? 'Drop to initialize' : 'Drop screenshot or click to upload'}
-              </motion.p>
+              </p>
               <p className="text-sm text-on-surface-muted mb-8 font-light">PNG, JPG, WEBP • Max 10MB</p>
               
               <div className="flex gap-3 justify-center mb-8 flex-wrap">
@@ -250,7 +244,7 @@ export default function UploadZone() {
                 <button
                   type="button"
                   onClick={(e) => { e.stopPropagation(); handleTrySample(); }}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm text-on-surface-muted hover:text-white bg-surface hover:bg-surface-high rounded-full transition-colors border border-ghost-border font-medium shadow-sm"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm text-on-surface-muted hover:text-white bg-transparent hover:bg-white/5 rounded-md transition-colors border border-white/10 font-medium"
                 >
                   <ImageIcon className="w-4 h-4" />
                   Try with sample design
@@ -312,18 +306,15 @@ export default function UploadZone() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="diffuse-shadow rounded-[2rem] border border-ghost-border bg-surface-lowest p-6 sm:p-10"
+            className="rounded-xl border border-white/10 bg-void p-6 sm:p-10 shadow-2xl"
           >
             <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex min-w-0 items-center gap-4">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
-                  className="w-12 h-12 bg-primary-accent/10 border border-primary-accent/30 rounded-full flex items-center justify-center"
+                <div
+                  className="w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center"
                 >
-                  <CheckCircle className="w-5 h-5 text-primary-accent" />
-                </motion.div>
+                  <CheckCircle className="w-5 h-5 text-white" />
+                </div>
                 <div className="min-w-0">
                   <p className="font-bold text-white font-mono tracking-tight uppercase text-sm">DESIGN_UPLOADED</p>
                   {imageInfo && (
@@ -392,12 +383,10 @@ export default function UploadZone() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <button
                 onClick={() => handleGenerate(false)}
                 disabled={isLoading}
-                className="flex-1 bg-primary-accent text-void py-3.5 rounded-full font-bold tracking-wide font-sans shadow-[0_0_30px_-5px_rgba(255,126,95,0.4)] transition-all hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:hover:scale-100"
+                className="flex-1 bg-white text-void py-3 rounded-md font-bold tracking-wide font-sans transition-colors hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -407,32 +396,26 @@ export default function UploadZone() {
                 ) : (
                   'Generate Code'
                 )}
-              </motion.button>
+              </button>
               {generatedCode && !isLoading && (
                 <>
-                  <motion.button
-                    initial={{ opacity: 0, width: 0 }}
-                    animate={{ opacity: 1, width: 'auto' }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  <button
                     onClick={() => handleGenerate(true)}
-                    className="flex items-center justify-center gap-2 px-6 py-3.5 border border-ghost-border text-on-surface hover:border-primary-accent hover:text-primary-accent bg-surface rounded-full font-bold font-sans tracking-wide transition-colors"
+                    className="flex items-center justify-center gap-2 px-6 py-3 border border-white/20 text-white hover:bg-white/5 rounded-md font-bold font-sans tracking-wide transition-colors"
                   >
                     <RotateCcw className="w-4 h-4" />
                     Regen
-                  </motion.button>
-                  <motion.button
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                  </button>
+                  <button
                     onClick={() => {
                       const sid = crypto.randomUUID();
                       sessionStorage.setItem(`NexusUI_${sid}`, JSON.stringify({ code: generatedCode, provider: usedProvider || 'Gemini' }));
                       router.push(`/preview?sid=${sid}`);
                     }}
-                    className="flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-white/90 text-void rounded-full font-bold font-sans tracking-wide transition-colors shadow-lg"
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-white/90 text-void rounded-md font-bold font-sans tracking-wide transition-colors"
                   >
                     View Editor
-                  </motion.button>
+                  </button>
                 </>
               )}
             </div>

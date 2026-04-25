@@ -61,8 +61,8 @@ export default function HomeLanding() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
           
           <div className="mx-auto max-w-4xl px-6 sm:px-8 md:px-12 relative z-10 text-center flex flex-col items-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-ghost-border bg-surface-lowest/50 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-primary-accent animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-primary-accent" />
               <span className="font-mono text-[10px] sm:text-xs font-semibold tracking-widest text-on-surface uppercase">FOR FAST MOVING ENGINEERING TEAMS</span>
             </div>
             
@@ -82,13 +82,13 @@ export default function HomeLanding() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
               <Link
                 href="#upload"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold tracking-wide text-void bg-white rounded-full transition-transform hover:scale-105 shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold tracking-wide text-void bg-white rounded-md transition-colors hover:bg-white/90"
               >
                 Upload a screenshot
               </Link>
               <Link
                 href="/docs"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold tracking-wide text-white bg-surface-high border border-ghost-border rounded-full transition-colors hover:bg-surface-highest"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold tracking-wide text-white bg-transparent border border-white/20 rounded-md transition-colors hover:bg-white/5"
               >
                 Read the docs
               </Link>
@@ -96,9 +96,9 @@ export default function HomeLanding() {
             
             <p className="mt-8 text-xs text-on-surface-muted">
               Prefer the terminal?{' '}
-              <Link href="/contributing" className="text-primary-accent hover:text-white transition-colors font-medium">
+              <a href="https://github.com/KOUSTAV2409/NexusUI" target="_blank" rel="noopener noreferrer" className="text-primary-accent hover:text-white transition-colors font-medium">
                 Clone and run locally
-              </Link>
+              </a>
             </p>
           </div>
         </section>
@@ -106,7 +106,7 @@ export default function HomeLanding() {
         {/* Centered Upload Zone */}
         <section id="upload" className="relative pb-32 scroll-mt-32">
           <div className="mx-auto max-w-4xl px-6 sm:px-8 md:px-12 relative z-10">
-            <div className="diffuse-shadow rounded-2xl bg-surface-lowest border border-ghost-border p-2">
+            <div className="rounded-xl bg-void border border-white/10 p-2 shadow-2xl">
               <UploadZone />
             </div>
           </div>
@@ -195,8 +195,8 @@ export default function HomeLanding() {
               </div>
               <h2 className="font-sans text-4xl md:text-5xl font-bold tracking-tight mb-4 text-white">Deep Inspection</h2>
             </div>
-            <div className="diffuse-shadow overflow-hidden border border-ghost-border rounded-2xl bg-surface-lowest">
-              <div className="flex min-w-0 overflow-x-auto border-b border-ghost-border bg-surface-low [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="overflow-hidden border border-white/10 rounded-xl bg-void shadow-2xl">
+              <div className="flex min-w-0 overflow-x-auto border-b border-white/10 bg-surface-low [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 <button
                   type="button"
                   className="shrink-0 border-r border-ghost-border px-6 py-4 text-xs font-mono font-bold tracking-widest text-primary-accent bg-surface"
@@ -241,8 +241,8 @@ export default function HomeLanding() {
                       THE FUTURE OF DEVELOPMENT IS VISUAL
                     </h2>
                     <div className="flex flex-wrap justify-center gap-4">
-                      <div className="bg-primary-accent px-8 py-3.5 text-sm font-semibold tracking-wide text-white rounded-full shadow-[0_0_30px_-5px_rgba(255,126,95,0.4)] hover:scale-105 transition-transform cursor-pointer">GET STARTED</div>
-                      <div className="border border-void/20 px-8 py-3.5 text-sm font-semibold tracking-wide text-void rounded-full hover:bg-void/5 transition-colors cursor-pointer">
+                      <div className="bg-void border border-white/20 px-8 py-3 text-sm font-semibold tracking-wide text-white rounded-md hover:bg-white/5 transition-colors cursor-pointer">GET STARTED</div>
+                      <div className="border border-void/20 px-8 py-3 text-sm font-semibold tracking-wide text-void rounded-md hover:bg-void/5 transition-colors cursor-pointer">
                         LEARN MORE
                       </div>
                     </div>
@@ -266,15 +266,17 @@ export default function HomeLanding() {
                 Clone NexusUI, add your Gemini key, and go from mockup to React + Tailwind in one flow. Open source and built for builders.
               </p>
               <div className="relative z-10 flex flex-col justify-center gap-4 sm:flex-row sm:gap-4">
-                <Link
-                  href="/contributing"
-                  className="metallic-luster inline-block px-10 py-4 text-center text-sm font-semibold tracking-wide text-white hover:opacity-90 rounded-full shadow-lg"
+                <a
+                  href="https://github.com/KOUSTAV2409/NexusUI"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-10 py-4 text-center text-sm font-semibold tracking-wide text-void bg-white transition-colors hover:bg-white/90 rounded-md"
                 >
-                  Contribute or run locally
-                </Link>
+                  Run locally
+                </a>
                 <a
                   href="mailto:koustavganguly24@gmail.com"
-                  className="inline-block bg-surface-high border border-ghost-border px-10 py-4 text-center text-sm font-semibold tracking-wide text-white transition-colors hover:bg-surface-highest rounded-full"
+                  className="inline-block bg-transparent border border-white/20 px-10 py-4 text-center text-sm font-semibold tracking-wide text-white transition-colors hover:bg-white/5 rounded-md"
                 >
                   Contact
                 </a>
